@@ -32,6 +32,23 @@ public class UserInfo implements Serializable {
      */
     private String roleCode;
 
+    /**
+     * 学校id（学生/教师）
+     */
+    private Long schoolId;
+    /**
+     * 学校名（学生/教师）
+     */
+    private String schoolName;
+    /**
+     * 班级id（学生）
+     */
+    private Long classId;
+    /**
+     * 班级名（学生）
+     */
+    private String className;
+
     public UserInfo() {
     }
 
@@ -83,6 +100,37 @@ public class UserInfo implements Serializable {
         this.roleCode = roleCode;
     }
 
+    public Long getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(Long schoolId) {
+        this.schoolId = schoolId;
+    }
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
+    }
+
+    public Long getClassId() {
+        return classId;
+    }
+
+    public void setClassId(Long classId) {
+        this.classId = classId;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
 
     @Override
     public String toString() {
