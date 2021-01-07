@@ -13,10 +13,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -150,6 +147,11 @@ public class SysPermissionController{
     @GetMapping("/queryPermissionTree")
     public HttpResultEntry queryPermissionTree(Integer projectType) {
         return sysPermissionService.queryPermissionTree(projectType);
+    }
+
+    @GetMapping("/getPermissionByRoleCode")
+    public List<String> getPermissionByRoleCode(@RequestParam("roleCode") String roleCode){
+        return sysPermissionService.getPermissionByRoleCode(roleCode);
     }
 }
 

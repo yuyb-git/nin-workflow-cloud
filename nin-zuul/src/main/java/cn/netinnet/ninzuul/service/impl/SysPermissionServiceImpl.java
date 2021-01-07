@@ -221,4 +221,9 @@ public class SysPermissionServiceImpl extends BaseService<SysPermission>
     public Class getClazz() {
         return null;
     }
+
+    @Override
+    public List<String> getPermissionByRoleCode(String roleCode) {
+        return sysRolePermissionMapper.queryPermissionByRoleCode(roleCode);
+    }
 }

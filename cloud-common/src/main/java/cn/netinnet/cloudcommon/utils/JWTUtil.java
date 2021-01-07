@@ -1,4 +1,4 @@
-package cn.netinnet.ninzuul.authentication;
+package cn.netinnet.cloudcommon.utils;
 
 
 import cn.netinnet.cloudcommon.dto.UserInfo;
@@ -15,13 +15,10 @@ import org.apache.shiro.authc.ExpiredCredentialsException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.Map;
 
-@Component
 public class JWTUtil {
     private final static Logger LOG = LoggerFactory.getLogger(JWTUtil.class);
     /**
@@ -32,8 +29,7 @@ public class JWTUtil {
     /**
      * jwt加密的秘钥
      */
-    public static String SECRET_KEY;
-    @Value("${apigateway.shiro.secretKey}")
+    public static String SECRET_KEY = "nin-zuul:(^*$^(*%#W^&&*)(%$^*!@#$%";
     public void setSecretKey(String secretKey) {
         JWTUtil.SECRET_KEY = secretKey;
     }
@@ -41,12 +37,11 @@ public class JWTUtil {
     /**
      * jwt签发有效期，默认一小时
      */
-    public static long EXPIRE_TIME;
+    public static long EXPIRE_TIME = 3600;
 
     /**
      * 静态变量通过set方法注入(乘以1000，将其转为秒单位)
      */
-    @Value("${apigateway.shiro.jwtTimeOut:3600}")
     public void setExpireTime(long expireTime) {
         JWTUtil.EXPIRE_TIME = expireTime * 1000;
     }
@@ -54,12 +49,11 @@ public class JWTUtil {
     /**
      * jwt刷新有效期，默认7天
      */
-    public static long REFRESH_TIME;
+    public static long REFRESH_TIME = 3;
 
     /**
      * 静态变量通过set方法注入(乘以1000*60*60*24，将其转为小时)
      */
-    @Value("${apigateway.shiro.jwtFreshDay:3}")
     public void setRefreshTime(long freshDay) {
         JWTUtil.REFRESH_TIME = freshDay * 1000 * 60 * 60;
     }

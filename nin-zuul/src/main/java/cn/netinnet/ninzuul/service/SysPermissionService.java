@@ -1,10 +1,13 @@
 package cn.netinnet.ninzuul.service;
 
 
+import cn.netinnet.cloudcommon.dto.UserInfo;
 import cn.netinnet.cloudcommon.globol.HttpResultEntry;
 import cn.netinnet.common.base.Service;
 import cn.netinnet.ninzuul.domain.SysPermission;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * @author yuyb
@@ -26,4 +29,8 @@ public interface SysPermissionService extends Service<SysPermission> {
 
     /** 后台查询权限列表树 **/
     HttpResultEntry queryPermissionTree(Integer projectType);
+
+    /** 根据角色获取权限 **/
+    List<String> getPermissionByRoleCode(String roleCode);
+
 }
