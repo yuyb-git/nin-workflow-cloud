@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.netinnet.workflow.sys.dao.SysRoleMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.workflow.sys.domain.SysRole">
+    <id column="role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="role_code" jdbcType="VARCHAR" property="roleCode" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="role_descr" jdbcType="VARCHAR" property="roleDescr" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, role_code, role_name, role_descr, create_user_id, create_time, modify_user_id, 
+    modify_time, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role
+    where role_id = #{roleId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_role
+    where role_id = #{roleId,jdbcType=BIGINT}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.workflow.sys.domain.SysRole">
+    update sys_role
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDescr != null">
+        role_descr = #{roleDescr,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=BIGINT}
+  </update>
+  <sql id="sql_columns">
+    insert into sys_role
+	<trim prefix="(" suffix=") values" suffixOverrides=",">
+		role_id,role_code,role_name,role_descr,create_user_id,modify_user_id,del_flag,
+	</trim>
+  </sql>
+  <sql id="sql_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		, #{item.roleId}
+		, #{item.roleCode}
+		, #{item.roleName}
+		, #{item.roleDescr}
+		, #{item.createUserId}
+		, #{item.createTime}
+		, #{item.modifyUserId}
+		, #{item.modifyTime}
+		, #{item.delFlag}
+	</trim>	
+  </sql>
+  <sql id="sql_where">
+    <where>
+		<if test="null != item.roleId">and role_id = #{item.roleId}</if>
+		<if test="null != item.roleCode">and role_code = #{item.roleCode}</if>
+		<if test="null != item.roleName">and role_name = #{item.roleName}</if>
+		<if test="null != item.roleDescr">and role_descr = #{item.roleDescr}</if>
+		<if test="null != item.createUserId">and create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">and create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">and modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">and modify_time = #{item.modifyTime}</if>
+		<if test="null != item.delFlag">and del_flag = #{item.delFlag}</if>
+	</where>
+  </sql>
+  <sql id="sql_update">
+    update sys_role set
+	<trim prefix="" suffix="" prefixOverrides=",">
+		<if test="null != item.roleId">, role_id = #{item.roleId}</if>
+		<if test="null != item.roleCode">, role_code = #{item.roleCode}</if>
+		<if test="null != item.roleName">, role_name = #{item.roleName}</if>
+		<if test="null != item.roleDescr">, role_descr = #{item.roleDescr}</if>
+		<if test="null != item.createUserId">, create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">, create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, modify_time = #{item.modifyTime}</if>
+		<if test="null != item.delFlag">, del_flag = #{item.delFlag}</if>
+	</trim>
+	where  role_id = #{item.roleId}
+  </sql>
+  <sql id="sql_save_columns">
+    insert into sys_role
+	<trim prefix="(" suffix=") values" prefixOverrides=",">
+		<if test="null != list[0].roleId">, role_id</if>
+		<if test="null != list[0].roleCode">, role_code</if>
+		<if test="null != list[0].roleName">, role_name</if>
+		<if test="null != list[0].roleDescr">, role_descr</if>
+		<if test="null != list[0].createUserId">, create_user_id</if>
+		<if test="null != list[0].createTime">, create_time</if>
+		<if test="null != list[0].modifyUserId">, modify_user_id</if>
+		<if test="null != list[0].modifyTime">, modify_time</if>
+		<if test="null != list[0].delFlag">, del_flag</if>
+	</trim>	
+  </sql>
+  <sql id="sql_save_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		<if test="null != item.roleId">, #{item.roleId}</if>
+		<if test="null != item.roleCode">, #{item.roleCode}</if>
+		<if test="null != item.roleName">, #{item.roleName}</if>
+		<if test="null != item.roleDescr">, #{item.roleDescr}</if>
+		<if test="null != item.createUserId">, #{item.createUserId}</if>
+		<if test="null != item.createTime">, #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, #{item.modifyTime}</if>
+		<if test="null != item.delFlag">, #{item.delFlag}</if>
+	</trim>	
+  </sql>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <include refid="sql_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_values" />
+	</foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    <include refid="sql_save_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_save_values" />
+	</foreach>
+  </insert>
+  <update id="batchUpdateByPrimaryKey">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <insert id="insertSelective" parameterType="cn.netinnet.workflow.sys.domain.SysRole">
+    insert into sys_role
+	<trim prefix="(" suffix=") " suffixOverrides=",">
+		<if test="null != roleId"> role_id,</if>
+		<if test="null != roleCode"> role_code,</if>
+		<if test="null != roleName"> role_name,</if>
+		<if test="null != roleDescr"> role_descr,</if>
+		<if test="null != createUserId"> create_user_id,</if>
+		<if test="null != createTime"> create_time,</if>
+		<if test="null != modifyUserId"> modify_user_id,</if>
+		<if test="null != modifyTime"> modify_time,</if>
+		<if test="null != delFlag"> del_flag,</if>
+	</trim>
+	 <trim prefix=" values(" suffix=")" suffixOverrides=",">
+		<if test="null != roleId"> #{roleId,jdbcType=BIGINT},</if>
+		<if test="null != roleCode"> #{roleCode,jdbcType=VARCHAR},</if>
+		<if test="null != roleName"> #{roleName,jdbcType=VARCHAR},</if>
+		<if test="null != roleDescr"> #{roleDescr,jdbcType=VARCHAR},</if>
+		<if test="null != createUserId"> #{createUserId,jdbcType=BIGINT},</if>
+		<if test="null != createTime"> #{createTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != modifyUserId"> #{modifyUserId,jdbcType=BIGINT},</if>
+		<if test="null != modifyTime"> #{modifyTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != delFlag"> #{delFlag,jdbcType=TINYINT},</if>
+	</trim>
+  </insert>
+  <delete id="batchDeleteByArray">
+    delete from sys_role where role_id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="batchDeleteByList">
+    delete from sys_role where role_id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <select id="getList" parameterType="cn.netinnet.workflow.sys.domain.SysRole" resultMap="BaseResultMap">
+     select role_id,role_code, role_name, role_descr, create_user_id, create_time, modify_user_id, modify_time, del_flag from sys_role
+    <include refid="sql_where" />
+  </select>
+
+  <!-- 查询所有角色code和name -->
+  <select id="queryAllCodeName" resultMap="BaseResultMap">
+      select
+        role_code,
+        role_name
+      from sys_role
+      where del_flag = 0
+  </select>
+
+  <!-- 根据角色id查找对应的用户id列表 -->
+  <select id="queryUserIdsByRoleId" resultType="java.lang.Long">
+      select b.user_id
+      from sys_role a join sys_user b
+      on a.role_code = b.role_code
+        and b.del_flag = 0
+      where a.role_id = #{roleId}
+        and a.del_flag = 0
+  </select>
+
+  <!-- 校验code是否已存在 -->
+  <select id="countRoleCodeAndId" resultType="java.lang.Integer">
+      select count(1)
+      from sys_role
+      where role_code = #{roleCode}
+        <if test="roleId != null">
+            and role_id != #{roleId}
+        </if>
+        and del_flag = 0
+  </select>
+
+  <!-- 查询角色信息列表 -->
+  <select id="queryList" parameterType="cn.netinnet.workflow.sys.domain.SysRole" resultMap="BaseResultMap">
+      select
+        role_id,
+        role_code,
+        role_name,
+        role_descr
+      from sys_role
+      <where>
+          <if test="null != roleName and  '' != roleName">
+              and role_name like #{roleName}
+          </if>
+          and del_flag = 0
+      </where>
+  </select>
+</mapper>
