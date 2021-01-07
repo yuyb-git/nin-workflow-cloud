@@ -1,0 +1,50 @@
+server:
+  port: 8771
+
+spring:
+  application:
+    name: user-center
+  profiles:
+    active: dev
+  session:
+    store-type: redis
+    timeout: 3600
+  redis:
+    # 指定库
+    database: 6
+    host: localhost
+    port: 6379
+    timeout: 5000
+  datasource:
+    url: jdbc:mysql://localhost:3306/nin_workflow?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&nullCatalogMeansCurrent=true&useSSL=false&allowMultiQueries=true
+    username: root
+    password: 123456
+    #password: Netinnet.2011
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 1000
+    initialSize: 10
+    maxWait: 9000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  zipkin:
+    base-url: http://172.16.39.15:9411
+  sleuth:
+    sampler:
+      probability: 1.0
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+  eager-load:
+    enabled: true
+

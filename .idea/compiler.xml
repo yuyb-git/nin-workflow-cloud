@@ -10,6 +10,7 @@
         <module name="config-server" />
         <module name="eureka-server" />
         <module name="nin-zuul" />
+        <module name="user-center" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />
@@ -21,6 +22,7 @@
       <module name="eureka-server" options="-parameters" />
       <module name="nin-workflow-cloud" options="-parameters" />
       <module name="nin-zuul" options="-parameters" />
+      <module name="user-center" options="-parameters" />
     </option>
   </component>
 </project>
