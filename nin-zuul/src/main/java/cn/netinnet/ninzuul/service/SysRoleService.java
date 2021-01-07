@@ -1,7 +1,7 @@
 package cn.netinnet.ninzuul.service;
 
+import cn.netinnet.common.base.Service;
 import cn.netinnet.ninzuul.domain.SysRole;
-import cn.netinnet.cloudcommon.base.Service;
 import cn.netinnet.cloudcommon.globol.HttpResultEntry;
 
 import java.util.List;

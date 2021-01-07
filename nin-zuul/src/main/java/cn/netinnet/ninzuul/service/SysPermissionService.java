@@ -1,8 +1,8 @@
 package cn.netinnet.ninzuul.service;
 
 
-import cn.netinnet.cloudcommon.base.Service;
 import cn.netinnet.cloudcommon.globol.HttpResultEntry;
+import cn.netinnet.common.base.Service;
 import cn.netinnet.ninzuul.domain.SysPermission;
 import org.springframework.web.bind.annotation.RequestParam;
 

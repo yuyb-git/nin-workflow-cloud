@@ -67,7 +67,7 @@
         <dependency>
             <groupId>cn.netinnet</groupId>
             <artifactId>nin_common</artifactId>
-            <version>1.1.5</version>
+            <version>${nin_common.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
@@ -78,8 +78,14 @@
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>1.2.10</version>
+            <version>${github.pagehelper.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>${aliyun-sdk-oss.version}</version>
+        </dependency>
+
     </dependencies>
 
 </project>

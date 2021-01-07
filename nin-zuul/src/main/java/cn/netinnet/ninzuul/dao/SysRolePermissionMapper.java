@@ -6,8 +6,8 @@
  */
 package cn.netinnet.ninzuul.dao;
 
+import cn.netinnet.common.base.BaseMapper;
 import cn.netinnet.ninzuul.domain.SysRolePermission;
-import cn.netinnet.cloudcommon.base.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

@@ -1,5 +1,6 @@
 package cn.netinnet.ninzuul.service.impl;
 
+import cn.netinnet.common.base.BaseService;
 import cn.netinnet.ninzuul.dao.SysPermissionMapper;
 import cn.netinnet.ninzuul.dao.SysRoleMapper;
 import cn.netinnet.ninzuul.dao.SysRolePermissionMapper;
@@ -9,7 +10,6 @@ import cn.netinnet.ninzuul.domain.SysRolePermission;
 import cn.netinnet.ninzuul.service.SysRoleService;
 import cn.netinnet.ninzuul.utils.RedisUtil;
 import cn.netinnet.common.util.DateUtil;
-import cn.netinnet.cloudcommon.base.BaseService;
 import cn.netinnet.cloudcommon.constant.CacheConstant;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.globol.HttpResultEntry;
@@ -107,7 +107,7 @@ public class SysRoleServiceImpl extends BaseService<SysRole> implements SysRoleS
             logicDeleteRole.setModifyTime(now);
             logicDeleteRoles.add(logicDeleteRole);
         }
-        sysRoleService.batchUpdateById(logicDeleteRoles);
+        sysRoleService.batchUpdateByPrimaryKey(logicDeleteRoles);
         // 逻辑删除对应的角色权限
         sysRolePermissionMapper.logicDeleteByRoleIds(roleIds, userId);
         return HttpResultEntry.ok();
@@ -128,7 +128,7 @@ public class SysRoleServiceImpl extends BaseService<SysRole> implements SysRoleS
         SysRole logicDeleteRole = new SysRole();
         logicDeleteRole.setRoleId(roleId);
         logicDeleteRole.setDelFlag(1);
-        sysRoleService.updateByIdSelective(logicDeleteRole);
+        sysRoleService.updateByPrimaryKeySelective(logicDeleteRole, userId);
         // 逻辑删除角色权限
         sysRolePermissionMapper.logicDeleteByRoleId(roleId, userId);
         return HttpResultEntry.ok();
@@ -183,7 +183,7 @@ public class SysRoleServiceImpl extends BaseService<SysRole> implements SysRoleS
         // 删除原有的角色权限
         sysRolePermissionMapper.deletePermissionByRoleId(roleId);
         // 修改角色并新增对应对应的角色权限数据
-        sysRoleService.updateByIdSelective(updateRole);
+        sysRoleService.updateByPrimaryKeySelective(updateRole, userId);
         sysRolePermissionMapper.batchInsertSelective(rolePermissions);
         return HttpResultEntry.ok();
     }
@@ -223,6 +223,11 @@ public class SysRoleServiceImpl extends BaseService<SysRole> implements SysRoleS
         sysRoleService.insertSelective(sysRole, userId);
         sysRolePermissionMapper.batchInsertSelective(rolePermissions);
         return HttpResultEntry.ok();
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(SysRole sysRole, long l) {
+        return 0;
     }
 
     @Override

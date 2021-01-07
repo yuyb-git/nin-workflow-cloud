@@ -1,5 +1,6 @@
 package cn.netinnet.ninzuul.service.impl;
 
+import cn.netinnet.common.base.BaseService;
 import cn.netinnet.ninzuul.dao.SysPermissionMapper;
 import cn.netinnet.ninzuul.dao.SysRolePermissionMapper;
 import cn.netinnet.ninzuul.domain.SysPermission;
@@ -7,7 +8,6 @@ import cn.netinnet.ninzuul.dto.VueRouter;
 import cn.netinnet.ninzuul.service.SysPermissionService;
 import cn.netinnet.ninzuul.utils.TreeUtil;
 import cn.netinnet.common.util.DateUtil;
-import cn.netinnet.cloudcommon.base.BaseService;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.dto.UserInfo;
 import cn.netinnet.cloudcommon.globol.HttpResultEntry;
@@ -95,7 +95,7 @@ public class SysPermissionServiceImpl extends BaseService<SysPermission>
             insertSelective(sysPermission, userId);
         } else {
             // 编辑权限
-            updateByIdSelective(sysPermission);
+            updateByPrimaryKeySelective(sysPermission, userId);
             // 同步更新关联表中的权限编码
             String permissionCode = "";
             if (StringUtils.isNotBlank(sysPermission.getPermissionCode())) {
@@ -104,6 +104,11 @@ public class SysPermissionServiceImpl extends BaseService<SysPermission>
             sysRolePermissionMapper.updatePermissionCodeById(permissionId, permissionCode);
         }
         return HttpResultEntry.ok(GlobalConstant.SUCCESS_MSG, permissionId);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(SysPermission sysPermission, long l) {
+        return 0;
     }
 
     @Override

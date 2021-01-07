@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.netinnet.workflow.sys.dao.SysRoleMapper">
-  <resultMap id="BaseResultMap" type="cn.netinnet.workflow.sys.domain.SysRole">
+<mapper namespace="cn.netinnet.ninzuul.dao.SysRoleMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.ninzuul.domain.SysRole">
     <id column="role_id" jdbcType="BIGINT" property="roleId" />
     <result column="role_code" jdbcType="VARCHAR" property="roleCode" />
     <result column="role_name" jdbcType="VARCHAR" property="roleName" />
@@ -26,7 +26,7 @@
     delete from sys_role
     where role_id = #{roleId,jdbcType=BIGINT}
   </delete>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.workflow.sys.domain.SysRole">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.ninzuul.domain.SysRole">
     update sys_role
     <set>
       <if test="roleCode != null">
@@ -147,7 +147,7 @@
 	  <include refid="sql_update" />
 	</foreach>
   </update>
-  <insert id="insertSelective" parameterType="cn.netinnet.workflow.sys.domain.SysRole">
+  <insert id="insertSelective" parameterType="cn.netinnet.ninzuul.domain.SysRole">
     insert into sys_role
 	<trim prefix="(" suffix=") " suffixOverrides=",">
 		<if test="null != roleId"> role_id,</if>
@@ -180,7 +180,7 @@
     delete from sys_role where role_id in
 	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
   </delete>
-  <select id="getList" parameterType="cn.netinnet.workflow.sys.domain.SysRole" resultMap="BaseResultMap">
+  <select id="getList" parameterType="cn.netinnet.ninzuul.domain.SysRole" resultMap="BaseResultMap">
      select role_id,role_code, role_name, role_descr, create_user_id, create_time, modify_user_id, modify_time, del_flag from sys_role
     <include refid="sql_where" />
   </select>
@@ -216,7 +216,7 @@
   </select>
 
   <!-- 查询角色信息列表 -->
-  <select id="queryList" parameterType="cn.netinnet.workflow.sys.domain.SysRole" resultMap="BaseResultMap">
+  <select id="queryList" parameterType="cn.netinnet.ninzuul.domain.SysRole" resultMap="BaseResultMap">
       select
         role_id,
         role_code,
