@@ -52,8 +52,6 @@ spring:
     maxOpenPreparedStatements: 20
 
 ribbon:
-  ReadTimeout: 10000
-  ConnectTimeout: 10000
   eager-load:
     enabled: true
 

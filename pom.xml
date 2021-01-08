@@ -11,7 +11,7 @@
         <module>eureka-server</module>
         <module>cloud-common</module>
         <module>user-center</module>
-        <module>config-server</module>
+        <module>nin-zuul</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -99,6 +99,11 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.3</version>
         </dependency>
     </dependencies>
 

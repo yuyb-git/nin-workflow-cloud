@@ -1,6 +1,7 @@
 package cn.netinnet.ninzuul.authentication;
 
 
+import cn.netinnet.cloudcommon.utils.JWTUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authz.UnauthorizedException;
@@ -32,7 +33,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
     /**
      * 静态变量通过set方法注入
      **/
-    @Value("${apigateway.shiro.anonUrl}")
+    @Value("${ninzuul.shiro.anonUrl}")
     public void setAnonUrl(String anonUrl) {
         JWTFilter.anonUrl = anonUrl;
     }

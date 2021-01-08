@@ -23,7 +23,7 @@ spring:
         min-idle: 5
     timeout: 5000
   datasource:
-    url: jdbc:mysql://localhost:3306/nin_ssc?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&nullCatalogMeansCurrent=true&useSSL=false&allowMultiQueries=true
+    url: jdbc:mysql://localhost:3306/nin_workflow?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&nullCatalogMeansCurrent=true&useSSL=false&allowMultiQueries=true
     username: root
     password: 123456
     #password: Netinnet.2011
@@ -59,25 +59,17 @@ zuul:
     socket-timeout-millis: 60000   #socket超时
 
 ribbon:
-  ReadTimeout: 10000
-  ConnectTimeout: 10000
   eager-load:
     enabled: true
 
 # 项目配置
-apigateway:
+ninzuul:
   isOpenLog: true  #是否开启系统日志，false-关闭，true-开启, 默认开启
   shiro:
     # 后端免认证接口 url
     #  /ue/uploadimage, /tGameStudent/importGameStudent, /student/importStudent, /tCourse/importTest, （上传接口）
     anonUrl: /, /index, /login, /logout, /refreshToken, /error/**, /test/**,
       /fdata/**, /fchart/**, /UEditor/**, /ue/**,/api/**
-    # token有效期，单位秒
-    jwtTimeOut: 3600
-    # jwt刷新期，单位小时
-    jwtFreshDay: 3
-    # 加密秘钥
-    secretKey: nin-zuul:(^*$^(*%#W^&&*)(%$^*!@#$%
 
 app:
   app_id: '@u'

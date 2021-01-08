@@ -1,11 +1,12 @@
 package cn.netinnet.ninzuul.authentication;
 
-import cn.netinnet.ninzuul.dao.SysRolePermissionMapper;
-import cn.netinnet.ninzuul.utils.RedisUtil;
 import cn.netinnet.cloudcommon.constant.CacheConstant;
 import cn.netinnet.cloudcommon.constant.RoleConstant;
 import cn.netinnet.cloudcommon.dto.UserInfo;
 import cn.netinnet.cloudcommon.exception.ExpiredAccountException;
+import cn.netinnet.cloudcommon.utils.JWTUtil;
+import cn.netinnet.ninzuul.dao.SysRolePermissionMapper;
+import cn.netinnet.ninzuul.utils.RedisUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

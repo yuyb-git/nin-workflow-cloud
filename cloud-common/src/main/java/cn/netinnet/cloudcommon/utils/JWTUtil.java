@@ -29,7 +29,7 @@ public class JWTUtil {
     /**
      * jwt加密的秘钥
      */
-    public static String SECRET_KEY = "nin-zuul:(^*$^(*%#W^&&*)(%$^*!@#$%";
+    public static String SECRET_KEY = "nin-workflow:(^*$^(*%#W^&&*)(%$^*!@#$%";
     public void setSecretKey(String secretKey) {
         JWTUtil.SECRET_KEY = secretKey;
     }
