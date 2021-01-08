@@ -19,13 +19,19 @@ spring:
     name: nin-zuul
   profiles:
     active: dev
-    # 配置redis
+  zipkin:
+    base-url: http://172.16.39.15:9411
+    discovery-client-enabled: true
+  sleuth:
+    sampler:
+      probability: 1.0
+  # 配置redis
   session:
     store-type: redis
     timeout: 3600
   redis:
     # 指定库
-    database: 6
+    database: 5
     host: localhost
     port: 6379
     lettuce:
@@ -56,6 +62,10 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
 
 eureka:
   client:
