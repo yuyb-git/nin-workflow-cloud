@@ -1,5 +1,6 @@
-package cn.netinnet.usercenter.client;
+package cn.netinnet.usercenter.feign;
 
+import cn.netinnet.usercenter.feign.fallback.NinZuulClientFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +13,7 @@ import java.util.List;
  * @Author yuyb
  * @Date 2021/1/7 17:28
  */
-@FeignClient(value = "nin-zuul")
+@FeignClient(value = "nin-zuul", fallback = NinZuulClientFallback.class)
 public interface NinZuulClient {
 
     /**  方法描述

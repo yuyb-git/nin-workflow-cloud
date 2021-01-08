@@ -23,6 +23,7 @@
     </parent>
 
     <properties>
+        <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
@@ -39,6 +40,7 @@
         <nin_common.version>1.1.7</nin_common.version>
         <github.pagehelper.version>1.2.10</github.pagehelper.version>
         <aliyun-sdk-oss.version>2.8.3</aliyun-sdk-oss.version>
+        <zipkin-server.version>2.9.4</zipkin-server.version>
     </properties>
 
     <dependencies>

@@ -3,6 +3,7 @@ package cn.netinnet.ninzuul;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
@@ -11,6 +12,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
  */
 @SpringBootApplication(scanBasePackages={"cn.netinnet"})
 @EnableEurekaClient
+@EnableCircuitBreaker
 @EnableZuulProxy
 @MapperScan({"cn.netinnet.ninzuul.dao"})
 public class NinZuulApplication {

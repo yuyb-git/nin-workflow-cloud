@@ -10,26 +10,18 @@ import cn.netinnet.cloudcommon.globol.ResultEnum;
 import cn.netinnet.cloudcommon.utils.JWTUtil;
 import cn.netinnet.cloudcommon.utils.UserUtil;
 import cn.netinnet.common.base.BaseService;
-import cn.netinnet.common.util.DateUtil;
 import cn.netinnet.common.util.Md5EncryptUtil;
-import cn.netinnet.common.util.StringUtil;
-import cn.netinnet.common.util.httpclient.RequestUtil;
-import cn.netinnet.usercenter.client.NinZuulClient;
 import cn.netinnet.usercenter.dao.SysUserMapper;
 import cn.netinnet.usercenter.domain.SysUser;
+import cn.netinnet.usercenter.feign.NinZuulClient;
 import cn.netinnet.usercenter.service.SysLoginLogService;
 import cn.netinnet.usercenter.service.SysUserService;
 import cn.netinnet.usercenter.utils.RedisUtil;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.auth0.jwt.interfaces.Claim;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
 
