@@ -44,16 +44,12 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/sysLog/debug", "anon");
         filterChainDefinitionMap.put("/druid/**", "anon");
         filterChainDefinitionMap.put("/login", "anon");
-        //下面4个是对接dif、考试打包的放行接口
-        filterChainDefinitionMap.put("/admin/dologin", "anon");
-        filterChainDefinitionMap.put("/teacher/diflogin", "anon");
-        filterChainDefinitionMap.put("/diflogin", "anon");
-        filterChainDefinitionMap.put("/home", "anon");
 
         filterChainDefinitionMap.put("/api/**", "anon");
-        filterChainDefinitionMap.put("/nin-zuul/user/**", "anon");
-        filterChainDefinitionMap.put("/zbyapi/**", "anon");
-        filterChainDefinitionMap.put("/sysLog/queryLoginLog", "anon");
+        filterChainDefinitionMap.put("/sysPermission/**", "anon");
+        filterChainDefinitionMap.put("/user-center/login", "anon");
+        filterChainDefinitionMap.put("/user-center/logout", "anon");
+        filterChainDefinitionMap.put("/user-center/changePwd", "anon");
         filterChainDefinitionMap.put("/assist/**", "anon");
         filterChainDefinitionMap.put("/", "anon");
         // 配置退出过滤器，其中具体的退出代码Shiro已经替我们实现了

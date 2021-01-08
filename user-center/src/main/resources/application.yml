@@ -1,6 +1,19 @@
 server:
   port: 8771
 
+# 日志配置
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    web: debug
+    org.springframework.cloud.openfeign: debug
+
+# 配置mybatis
+mybatis:
+  mapperLocations: classpath*:cn/netinnet/usercenter/dao/mapper/*Mapper.xml
+  configLocation: classpath:mybatis-config.xml
+  typeAliasesPackage: cn.netinnet.usercenter.domain
+
 eureka:
   client:
     register-with-eureka: true

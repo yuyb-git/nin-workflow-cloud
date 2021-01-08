@@ -1,6 +1,19 @@
 server:
   port: 8080
 
+# 日志配置
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    web: debug
+    org.springframework.cloud.openfeign: debug
+
+# 配置mybatis
+mybatis:
+  mapperLocations: classpath*:cn/netinnet/ninzuul/dao/mapper/*Mapper.xml
+  configLocation: classpath:mybatis-config.xml
+  typeAliasesPackage: cn.netinnet.ninzuul.domain
+
 spring:
   application:
     name: nin-zuul
@@ -68,8 +81,8 @@ ninzuul:
   shiro:
     # 后端免认证接口 url
     #  /ue/uploadimage, /tGameStudent/importGameStudent, /student/importStudent, /tCourse/importTest, （上传接口）
-    anonUrl: /, /index, /login, /logout, /refreshToken, /error/**, /test/**,
-      /fdata/**, /fchart/**, /UEditor/**, /ue/**,/api/**
+    anonUrl: /, /index, /nin-zuul/login, /nin-zuul/logout, /refreshToken, /error/**, /test/**,
+      /fdata/**, /fchart/**, /UEditor/**, /ue/**,/api/**,/nin-zuul/sysPermission/**
 
 app:
   app_id: '@u'
