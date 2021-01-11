@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8773
 
 # 日志配置
 logging:
@@ -10,22 +10,23 @@ logging:
 
 # 配置mybatis
 mybatis:
-  mapperLocations: classpath*:cn/netinnet/ninzuul/dao/mapper/*Mapper.xml
+  mapperLocations: classpath*:cn/netinnet/processcenter/dao/mapper/*Mapper.xml
   configLocation: classpath:mybatis-config.xml
-  typeAliasesPackage: cn.netinnet.ninzuul.domain
+  typeAliasesPackage: cn.netinnet.processcenter.domain
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
 
 spring:
   application:
-    name: nin-zuul
+    name: process-center
   profiles:
     active: dev
-  zipkin:
-    base-url: http://172.16.39.15:9411
-    discovery-client-enabled: true
-  sleuth:
-    sampler:
-      probability: 1.0
-  # 配置redis
+    # 配置redis
   session:
     store-type: redis
     timeout: 3600
@@ -62,44 +63,11 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
-  cloud:
-    loadbalancer:
-      ribbon:
-        enabled: false
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-
-zuul:
-  routes:
-    process-center:
-      path: /nin-zuul/**
-      serviceId: process-center
-    education-center:
-      path: /nin-zuul/**
-      serviceId: education-center
-  # 忽略匹配，不允许访问通过
-  # ignored-patterns: /*-center/**
-  host:
-    connect-timeout-millis: 15000
-    socket-timeout-millis: 60000   #socket超时
 
 ribbon:
   eager-load:
     enabled: true
-  ReadTimeout: 10000
-  ConnectTimeout: 10000
 
-# 项目配置
-ninzuul:
-  isOpenLog: true  #是否开启系统日志，false-关闭，true-开启, 默认开启
-  shiro:
-    # 后端免认证接口 url
-    #  /ue/uploadimage, /tGameStudent/importGameStudent, /student/importStudent, /tCourse/importTest, （上传接口）
-    anonUrl: /, /index, /nin-zuul/login, /nin-zuul/logout, /refreshToken, /error/**, /test/**,
-      /fdata/**, /fchart/**, /UEditor/**, /ue/**,/api/**,/nin-zuul/sysPermission/**,/nin-zuul/redis/**
 
 app:
   app_id: '@u'

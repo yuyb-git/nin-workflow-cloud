@@ -1,4 +1,4 @@
-package cn.netinnet.ninzuul.config;
+package cn.netinnet.cloudcommon.config;
 
 import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
 import org.springframework.cache.CacheManager;

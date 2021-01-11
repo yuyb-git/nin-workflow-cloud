@@ -1,7 +1,7 @@
 package cn.netinnet.ninzuul.authentication.cache;
 
-import cn.netinnet.ninzuul.utils.RedisUtil;
 import cn.netinnet.cloudcommon.constant.CacheConstant;
+import cn.netinnet.cloudcommon.utils.RedisUtil;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.cache.Cache;

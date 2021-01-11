@@ -12,6 +12,7 @@
         <module>cloud-common</module>
         <module>nin-zuul</module>
         <module>education-center</module>
+        <module>process-center</module>
     </modules>
     <packaging>pom</packaging>
 

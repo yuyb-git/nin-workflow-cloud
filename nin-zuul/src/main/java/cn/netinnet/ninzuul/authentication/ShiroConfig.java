@@ -46,6 +46,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/login", "anon");
 
         filterChainDefinitionMap.put("/api/**", "anon");
+        filterChainDefinitionMap.put("/nin-zuul/redis/setUser", "anon");
+        filterChainDefinitionMap.put("/redis/**", "anon");
         filterChainDefinitionMap.put("/sysPermission/**", "anon");
         filterChainDefinitionMap.put("/nin-zuul/login", "anon");
         filterChainDefinitionMap.put("/nin-zuul/logout", "anon");

@@ -1,6 +1,13 @@
 package cn.netinnet.ninzuul.service.impl;
 
+import cn.netinnet.cloudcommon.constant.CacheConstant;
+import cn.netinnet.cloudcommon.constant.GlobalConstant;
+import cn.netinnet.cloudcommon.globol.HttpResultEntry;
+import cn.netinnet.cloudcommon.utils.JsonValidator;
+import cn.netinnet.cloudcommon.utils.RedisUtil;
+import cn.netinnet.cloudcommon.utils.UserUtil;
 import cn.netinnet.common.base.BaseService;
+import cn.netinnet.common.util.DateUtil;
 import cn.netinnet.ninzuul.dao.SysPermissionMapper;
 import cn.netinnet.ninzuul.dao.SysRoleMapper;
 import cn.netinnet.ninzuul.dao.SysRolePermissionMapper;
@@ -8,13 +15,6 @@ import cn.netinnet.ninzuul.domain.SysPermission;
 import cn.netinnet.ninzuul.domain.SysRole;
 import cn.netinnet.ninzuul.domain.SysRolePermission;
 import cn.netinnet.ninzuul.service.SysRoleService;
-import cn.netinnet.ninzuul.utils.RedisUtil;
-import cn.netinnet.common.util.DateUtil;
-import cn.netinnet.cloudcommon.constant.CacheConstant;
-import cn.netinnet.cloudcommon.constant.GlobalConstant;
-import cn.netinnet.cloudcommon.globol.HttpResultEntry;
-import cn.netinnet.cloudcommon.utils.JsonValidator;
-import cn.netinnet.cloudcommon.utils.UserUtil;
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
