@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.netinnet.educationcenter.dao.SysBatchStudentMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.educationcenter.domain.SysBatchStudent">
+    <id column="batch_student_id" jdbcType="BIGINT" property="batchStudentId" />
+    <result column="batch_id" jdbcType="BIGINT" property="batchId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    batch_student_id, batch_id, user_id, user_name, create_user_id, create_time, modify_user_id,
+    modify_time, del_flag
+  </sql>
+ <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_batch_student
+    where batch_student_id = #{batchStudentId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_batch_student
+    where batch_student_id = #{batchStudentId,jdbcType=BIGINT}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.educationcenter.domain.SysBatchStudent">
+    update sys_batch_student
+    <set>
+      <if test="batchId != null">
+        batch_id = #{batchId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where batch_student_id = #{batchStudentId,jdbcType=BIGINT}
+  </update>
+  <sql id="sql_columns">
+    insert into sys_batch_student
+	<trim prefix="(" suffix=") values" suffixOverrides=",">
+		batch_student_id,batch_id,user_id,user_name,create_user_id,modify_user_id,del_flag,
+	</trim>
+  </sql>
+  <sql id="sql_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		, #{item.batchStudentId}
+		, #{item.batchId}
+		, #{item.userId}
+		, #{item.userName}
+		, #{item.createUserId}
+		, #{item.createTime}
+		, #{item.modifyUserId}
+		, #{item.modifyTime}
+		, #{item.delFlag}
+	</trim>
+  </sql>
+  <sql id="sql_where">
+    <where>
+		<if test="null != item.batchStudentId">and batch_student_id = #{item.batchStudentId}</if>
+		<if test="null != item.batchId">and batch_id = #{item.batchId}</if>
+		<if test="null != item.userId">and user_id = #{item.userId}</if>
+		<if test="null != item.userName">and user_name = #{item.userName}</if>
+		<if test="null != item.createUserId">and create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">and create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">and modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">and modify_time = #{item.modifyTime}</if>
+		<if test="null != item.delFlag">and del_flag = #{item.delFlag}</if>
+	</where>
+  </sql>
+  <sql id="sql_update">
+    update sys_batch_student set
+	<trim prefix="" suffix="" prefixOverrides=",">
+		<if test="null != item.batchStudentId">, batch_student_id = #{item.batchStudentId}</if>
+		<if test="null != item.batchId">, batch_id = #{item.batchId}</if>
+		<if test="null != item.userId">, user_id = #{item.userId}</if>
+		<if test="null != item.userName">, user_name = #{item.userName}</if>
+		<if test="null != item.createUserId">, create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">, create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, modify_time = #{item.modifyTime}</if>
+		<if test="null != item.delFlag">, del_flag = #{item.delFlag}</if>
+	</trim>
+	where  batch_student_id = #{item.batchStudentId}
+  </sql>
+  <sql id="sql_save_columns">
+    insert into sys_batch_student
+	<trim prefix="(" suffix=") values" prefixOverrides=",">
+		<if test="null != list[0].batchStudentId">, batch_student_id</if>
+		<if test="null != list[0].batchId">, batch_id</if>
+		<if test="null != list[0].userId">, user_id</if>
+		<if test="null != list[0].userName">, user_name</if>
+		<if test="null != list[0].createUserId">, create_user_id</if>
+		<if test="null != list[0].createTime">, create_time</if>
+		<if test="null != list[0].modifyUserId">, modify_user_id</if>
+		<if test="null != list[0].modifyTime">, modify_time</if>
+		<if test="null != list[0].delFlag">, del_flag</if>
+	</trim>
+  </sql>
+  <sql id="sql_save_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		<if test="null != item.batchStudentId">, #{item.batchStudentId}</if>
+		<if test="null != item.batchId">, #{item.batchId}</if>
+		<if test="null != item.userId">, #{item.userId}</if>
+		<if test="null != item.userName">, #{item.userName}</if>
+		<if test="null != item.createUserId">, #{item.createUserId}</if>
+		<if test="null != item.createTime">, #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, #{item.modifyTime}</if>
+		<if test="null != item.delFlag">, #{item.delFlag}</if>
+	</trim>
+  </sql>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <include refid="sql_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_values" />
+	</foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    <include refid="sql_save_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_save_values" />
+	</foreach>
+  </insert>
+  <update id="batchUpdateByPrimaryKey">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+    <insert id="insertSelective" parameterType="cn.netinnet.educationcenter.domain.SysBatchStudent">
+    insert into sys_batch_student
+	<trim prefix="(" suffix=") " suffixOverrides=",">
+		<if test="null != batchStudentId"> batch_student_id,</if>
+		<if test="null != batchId"> batch_id,</if>
+		<if test="null != userId"> user_id,</if>
+		<if test="null != userName"> user_name,</if>
+		<if test="null != createUserId"> create_user_id,</if>
+		<if test="null != createTime"> create_time,</if>
+		<if test="null != modifyUserId"> modify_user_id,</if>
+		<if test="null != modifyTime"> modify_time,</if>
+		<if test="null != delFlag"> del_flag,</if>
+	</trim>
+	 <trim prefix=" values(" suffix=")" suffixOverrides=",">
+		<if test="null != batchStudentId"> #{batchStudentId,jdbcType=BIGINT},</if>
+		<if test="null != batchId"> #{batchId,jdbcType=BIGINT},</if>
+		<if test="null != userId"> #{userId,jdbcType=BIGINT},</if>
+		<if test="null != userName"> #{userName,jdbcType=VARCHAR},</if>
+		<if test="null != createUserId"> #{createUserId,jdbcType=BIGINT},</if>
+		<if test="null != createTime"> #{createTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != modifyUserId"> #{modifyUserId,jdbcType=BIGINT},</if>
+		<if test="null != modifyTime"> #{modifyTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != delFlag"> #{delFlag,jdbcType=TINYINT},</if>
+	</trim>
+  </insert>
+  <delete id="batchDeleteByArray">
+    delete from sys_batch_student where batch_student_id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="batchDeleteByList">
+    delete from sys_batch_student where batch_student_id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <select id="getList" parameterType="cn.netinnet.educationcenter.domain.SysBatchStudent" resultMap="BaseResultMap">
+     select batch_student_id,batch_id, user_id, user_name, create_user_id, create_time, modify_user_id, modify_time, del_flag from sys_batch_student
+    <include refid="sql_where" />
+  </select>
+
+    <!--获取批次学生列表-->
+    <select id="queryBatchStudentList" resultType="map">
+        SELECT
+               a.batch_student_id AS batchStudentId,a.batch_id AS batchId,
+               a.user_id AS userId,(CASE WHEN b.del_flag>0 THEN CONCAT(a.user_name,'(已删除)') ELSE a.user_name END) AS userName,
+               a.create_time AS createTime,
+               b.class_id AS classId, b.class_name AS className,b.user_login as userLogin
+        FROM sys_batch_student a
+        INNER JOIN sys_user b ON (a.user_id = b.user_id)
+        <where>
+            a.batch_id = #{batchId}
+            AND a.del_flag = 0
+            <if test="classId != null">
+                AND b.class_id = #{classId}
+            </if>
+            <if test="userLogin != null and '' != userLogin">
+                AND b.user_login LIKE #{userLogin}
+            </if>
+            <if test="userName != null and '' != userName">
+                AND a.user_name LIKE #{userName}
+            </if>
+        </where>
+        ORDER BY createTime DESC, userLogin
+    </select>
+
+    <!-- 查询该批次下的班级列表数据 -->
+    <select id="queryStudentClassByBatch" resultType="cn.netinnet.educationcenter.domain.SysUser">
+        SELECT DISTINCT b.class_id, b.class_name
+        FROM sys_batch_student a
+            INNER JOIN sys_user b ON a.user_id = b.user_id
+        WHERE a.batch_id = #{batchId} AND a.del_flag = 0
+    </select>
+
+    <!-- 根据批次Id 获取批次学生 -->
+    <select id="queryBatchStudentIdsByBatchId" resultType="java.lang.Long">
+        select batch_student_id
+        from  sys_batch_student
+        where batch_id = #{batchId}
+    </select>
+
+    <!-- 获取已经被删除的批次学生ID -->
+    <select id="queryDeletedBatchStudentIds" resultType="java.lang.Long">
+        select  batch_student_id
+        from   sys_batch_student
+        where  del_flag = '1'
+        and    modify_time <![CDATA[<=]]> #{endDate}
+    </select>
+
+    <!-- 根据批次id和用户id查询SysBatchStudent -->
+    <select id="selectByBatchAndUser" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sys_batch_student
+        where batch_id = #{batchId}
+        and user_id = #{userId}
+    </select>
+
+
+
+    <!-- 批量逻辑删除批次学生  -->
+    <update id="batchLogicalDelete">
+        update    sys_batch_student
+        set       del_flag = 1
+        where     batch_id = #{batchId}
+        and       user_id     in
+        <foreach collection="studentIds" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 查询已经存在批次的学生 -->
+    <select id="queryExistBatchStudentIds" resultType="java.lang.Long">
+        select    user_id
+        from      sys_batch_student
+        where     user_id  in
+        <foreach collection="userIds" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!-- 根据batchStudentId 获取studentId -->
+    <select id="queryStudentIdByBatchStudentIds" resultType="java.lang.Long">
+        select    user_id
+        from      sys_batch_student
+        where     batch_student_id in
+        <foreach collection="batchStudentIds" item="item" index="index"  open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and del_flag = 0
+    </select>
+
+    <!-- 获取批次学生 -->
+    <select id="queryBatchStudentByIds" resultType="cn.netinnet.educationcenter.domain.SysBatchStudent">
+        select    batch_id, batch_student_id, user_id
+        from      sys_batch_student
+        where     batch_student_id in
+        <foreach collection="batchStudentIds" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!--逻辑删除批次下的学生-->
+    <update id="logicDeleteByIdUserId">
+        update sys_batch_student set del_flag = 1 where user_id in
+        <foreach collection="userIds" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--统计批次下学生个数-->
+    <select id="countByBatchIds" resultType="java.util.Map">
+        select count(1) as num, batch_id as batchId from sys_batch_student where del_flag = 0 and batch_id in
+        <foreach collection="batchIds" item="item" close=")" open="(" separator=",">#{item}</foreach>
+        group by batch_id
+    </select>
+
+    <!-- 根据批次id查询相关individuality_id -->
+    <select id="queryIndividualIdByBatchIdDif" resultType="long">
+        SELECT su.individuality_id
+        FROM sys_batch_student sbs
+        inner join sys_user su on su.user_id = sbs.user_id
+        WHERE sbs.batch_id = #{batchId}
+          AND sbs.del_flag = 0
+          AND su.del_flag = 0
+    </select>
+
+    <!--删除逻辑删除的数据-->
+    <delete id="delLogicDeleteData">
+        delete from sys_batch_student where batch_id = #{batchId} and del_flag = 1 and user_id in
+        <foreach collection="userIds" item="item" close=")" open="(" separator=",">#{item}</foreach>
+    </delete>
+
+    <!--查询批次学生（包含已删除的）-->
+    <select id="queryAllByUserId" resultType="long">
+        select batch_student_id from sys_batch_student where user_id = #{userId}
+    </select>
+</mapper>

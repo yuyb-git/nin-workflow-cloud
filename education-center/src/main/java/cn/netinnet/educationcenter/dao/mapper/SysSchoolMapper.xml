@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.netinnet.educationcenter.dao.SysSchoolMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.educationcenter.domain.SysSchool">
+    <id column="school_id" jdbcType="BIGINT" property="schoolId" />
+    <result column="school_name" jdbcType="VARCHAR" property="schoolName" />
+    <result column="school_nickname" jdbcType="VARCHAR" property="schoolNickname" />
+    <result column="school_code" jdbcType="VARCHAR" property="schoolCode" />
+    <result column="school_area" jdbcType="VARCHAR" property="schoolArea" />
+    <result column="school_province" jdbcType="VARCHAR" property="schoolProvince" />
+    <result column="school_city" jdbcType="VARCHAR" property="schoolCity" />
+    <result column="school_address" jdbcType="VARCHAR" property="schoolAddress" />
+    <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+    <result column="contact_number" jdbcType="VARCHAR" property="contactNumber" />
+    <result column="school_status" jdbcType="TINYINT" property="schoolStatus" />
+    <result column="school_descr" jdbcType="VARCHAR" property="schoolDescr" />
+    <result column="admin_login" jdbcType="VARCHAR" property="adminLogin" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    school_id, school_name, school_nickname, school_code, school_area, school_province,
+    school_city, school_address, contact_name, contact_number, school_status, school_descr,
+    admin_login, create_user_id, create_time, modify_user_id, modify_time, del_flag
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_school
+    where school_id = #{schoolId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_school
+    where school_id = #{schoolId,jdbcType=BIGINT}
+  </delete>
+
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.educationcenter.domain.SysSchool">
+    update sys_school
+    <set>
+      <if test="schoolName != null">
+        school_name = #{schoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolNickname != null">
+        school_nickname = #{schoolNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolCode != null">
+        school_code = #{schoolCode,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolArea != null">
+        school_area = #{schoolArea,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolProvince != null">
+        school_province = #{schoolProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolCity != null">
+        school_city = #{schoolCity,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolAddress != null">
+        school_address = #{schoolAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null">
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactNumber != null">
+        contact_number = #{contactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolStatus != null">
+        school_status = #{schoolStatus,jdbcType=TINYINT},
+      </if>
+      <if test="schoolDescr != null">
+        school_descr = #{schoolDescr,jdbcType=VARCHAR},
+      </if>
+      <if test="adminLogin != null">
+        admin_login = #{adminLogin,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where school_id = #{schoolId,jdbcType=BIGINT}
+  </update>
+  <sql id="sql_columns">
+    insert into sys_school
+	<trim prefix="(" suffix=") values" suffixOverrides=",">
+		school_id,school_name,school_nickname,school_code,school_area,school_province,school_city,school_address,contact_name,contact_number,school_status,school_descr,admin_login,create_user_id,modify_user_id,del_flag,
+	</trim>
+  </sql>
+  <sql id="sql_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		, #{item.schoolId}
+		, #{item.schoolName}
+		, #{item.schoolNickname}
+		, #{item.schoolCode}
+		, #{item.schoolArea}
+		, #{item.schoolProvince}
+		, #{item.schoolCity}
+		, #{item.schoolAddress}
+		, #{item.contactName}
+		, #{item.contactNumber}
+		, #{item.schoolStatus}
+		, #{item.schoolDescr}
+		, #{item.adminLogin}
+		, #{item.createUserId}
+		, #{item.createTime}
+		, #{item.modifyUserId}
+		, #{item.modifyTime}
+		, #{item.delFlag}
+	</trim>
+  </sql>
+  <sql id="sql_where">
+    <where>
+		<if test="null != item.schoolId">and school_id = #{item.schoolId}</if>
+		<if test="null != item.schoolName">and school_name = #{item.schoolName}</if>
+		<if test="null != item.schoolNickname">and school_nickname = #{item.schoolNickname}</if>
+		<if test="null != item.schoolCode">and school_code = #{item.schoolCode}</if>
+		<if test="null != item.schoolArea">and school_area = #{item.schoolArea}</if>
+		<if test="null != item.schoolProvince">and school_province = #{item.schoolProvince}</if>
+		<if test="null != item.schoolCity">and school_city = #{item.schoolCity}</if>
+		<if test="null != item.schoolAddress">and school_address = #{item.schoolAddress}</if>
+		<if test="null != item.contactName">and contact_name = #{item.contactName}</if>
+		<if test="null != item.contactNumber">and contact_number = #{item.contactNumber}</if>
+		<if test="null != item.schoolStatus">and school_status = #{item.schoolStatus}</if>
+		<if test="null != item.schoolDescr">and school_descr = #{item.schoolDescr}</if>
+		<if test="null != item.adminLogin">and admin_login = #{item.adminLogin}</if>
+		<if test="null != item.createUserId">and create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">and create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">and modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">and modify_time = #{item.modifyTime}</if>
+		<if test="null != item.delFlag">and del_flag = #{item.delFlag}</if>
+	</where>
+  </sql>
+  <sql id="sql_update">
+    update sys_school set
+	<trim prefix="" suffix="" prefixOverrides=",">
+		<if test="null != item.schoolId">, school_id = #{item.schoolId}</if>
+		<if test="null != item.schoolName">, school_name = #{item.schoolName}</if>
+		<if test="null != item.schoolNickname">, school_nickname = #{item.schoolNickname}</if>
+		<if test="null != item.schoolCode">, school_code = #{item.schoolCode}</if>
+		<if test="null != item.schoolArea">, school_area = #{item.schoolArea}</if>
+		<if test="null != item.schoolProvince">, school_province = #{item.schoolProvince}</if>
+		<if test="null != item.schoolCity">, school_city = #{item.schoolCity}</if>
+		<if test="null != item.schoolAddress">, school_address = #{item.schoolAddress}</if>
+		<if test="null != item.contactName">, contact_name = #{item.contactName}</if>
+		<if test="null != item.contactNumber">, contact_number = #{item.contactNumber}</if>
+		<if test="null != item.schoolStatus">, school_status = #{item.schoolStatus}</if>
+		<if test="null != item.schoolDescr">, school_descr = #{item.schoolDescr}</if>
+		<if test="null != item.adminLogin">, admin_login = #{item.adminLogin}</if>
+		<if test="null != item.createUserId">, create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">, create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, modify_time = #{item.modifyTime}</if>
+		<if test="null != item.delFlag">, del_flag = #{item.delFlag}</if>
+	</trim>
+	where  school_id = #{item.schoolId}
+  </sql>
+  <sql id="sql_save_columns">
+    insert into sys_school
+	<trim prefix="(" suffix=") values" prefixOverrides=",">
+		<if test="null != list[0].schoolId">, school_id</if>
+		<if test="null != list[0].schoolName">, school_name</if>
+		<if test="null != list[0].schoolNickname">, school_nickname</if>
+		<if test="null != list[0].schoolCode">, school_code</if>
+		<if test="null != list[0].schoolArea">, school_area</if>
+		<if test="null != list[0].schoolProvince">, school_province</if>
+		<if test="null != list[0].schoolCity">, school_city</if>
+		<if test="null != list[0].schoolAddress">, school_address</if>
+		<if test="null != list[0].contactName">, contact_name</if>
+		<if test="null != list[0].contactNumber">, contact_number</if>
+		<if test="null != list[0].schoolStatus">, school_status</if>
+		<if test="null != list[0].schoolDescr">, school_descr</if>
+		<if test="null != list[0].adminLogin">, admin_login</if>
+		<if test="null != list[0].createUserId">, create_user_id</if>
+		<if test="null != list[0].createTime">, create_time</if>
+		<if test="null != list[0].modifyUserId">, modify_user_id</if>
+		<if test="null != list[0].modifyTime">, modify_time</if>
+		<if test="null != list[0].delFlag">, del_flag</if>
+	</trim>
+  </sql>
+  <sql id="sql_save_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		<if test="null != item.schoolId">, #{item.schoolId}</if>
+		<if test="null != item.schoolName">, #{item.schoolName}</if>
+		<if test="null != item.schoolNickname">, #{item.schoolNickname}</if>
+		<if test="null != item.schoolCode">, #{item.schoolCode}</if>
+		<if test="null != item.schoolArea">, #{item.schoolArea}</if>
+		<if test="null != item.schoolProvince">, #{item.schoolProvince}</if>
+		<if test="null != item.schoolCity">, #{item.schoolCity}</if>
+		<if test="null != item.schoolAddress">, #{item.schoolAddress}</if>
+		<if test="null != item.contactName">, #{item.contactName}</if>
+		<if test="null != item.contactNumber">, #{item.contactNumber}</if>
+		<if test="null != item.schoolStatus">, #{item.schoolStatus}</if>
+		<if test="null != item.schoolDescr">, #{item.schoolDescr}</if>
+		<if test="null != item.adminLogin">, #{item.adminLogin}</if>
+		<if test="null != item.createUserId">, #{item.createUserId}</if>
+		<if test="null != item.createTime">, #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, #{item.modifyTime}</if>
+		<if test="null != item.delFlag">, #{item.delFlag}</if>
+	</trim>
+  </sql>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <include refid="sql_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_values" />
+	</foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    <include refid="sql_save_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_save_values" />
+	</foreach>
+  </insert>
+  <update id="batchUpdateByPrimaryKey">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <insert id="insertSelective" parameterType="cn.netinnet.educationcenter.domain.SysSchool">
+    insert into sys_school
+	<trim prefix="(" suffix=") " suffixOverrides=",">
+		<if test="null != schoolId"> school_id,</if>
+		<if test="null != schoolName"> school_name,</if>
+		<if test="null != schoolNickname"> school_nickname,</if>
+		<if test="null != schoolCode"> school_code,</if>
+		<if test="null != schoolArea"> school_area,</if>
+		<if test="null != schoolProvince"> school_province,</if>
+		<if test="null != schoolCity"> school_city,</if>
+		<if test="null != schoolAddress"> school_address,</if>
+		<if test="null != contactName"> contact_name,</if>
+		<if test="null != contactNumber"> contact_number,</if>
+		<if test="null != schoolStatus"> school_status,</if>
+		<if test="null != schoolDescr"> school_descr,</if>
+		<if test="null != adminLogin"> admin_login,</if>
+		<if test="null != createUserId"> create_user_id,</if>
+		<if test="null != createTime"> create_time,</if>
+		<if test="null != modifyUserId"> modify_user_id,</if>
+		<if test="null != modifyTime"> modify_time,</if>
+		<if test="null != delFlag"> del_flag,</if>
+	</trim>
+	 <trim prefix=" values(" suffix=")" suffixOverrides=",">
+		<if test="null != schoolId"> #{schoolId,jdbcType=BIGINT},</if>
+		<if test="null != schoolName"> #{schoolName,jdbcType=VARCHAR},</if>
+		<if test="null != schoolNickname"> #{schoolNickname,jdbcType=VARCHAR},</if>
+		<if test="null != schoolCode"> #{schoolCode,jdbcType=VARCHAR},</if>
+		<if test="null != schoolArea"> #{schoolArea,jdbcType=VARCHAR},</if>
+		<if test="null != schoolProvince"> #{schoolProvince,jdbcType=VARCHAR},</if>
+		<if test="null != schoolCity"> #{schoolCity,jdbcType=VARCHAR},</if>
+		<if test="null != schoolAddress"> #{schoolAddress,jdbcType=VARCHAR},</if>
+		<if test="null != contactName"> #{contactName,jdbcType=VARCHAR},</if>
+		<if test="null != contactNumber"> #{contactNumber,jdbcType=VARCHAR},</if>
+		<if test="null != schoolStatus"> #{schoolStatus,jdbcType=TINYINT},</if>
+		<if test="null != schoolDescr"> #{schoolDescr,jdbcType=VARCHAR},</if>
+		<if test="null != adminLogin"> #{adminLogin,jdbcType=VARCHAR},</if>
+		<if test="null != createUserId"> #{createUserId,jdbcType=BIGINT},</if>
+		<if test="null != createTime"> #{createTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != modifyUserId"> #{modifyUserId,jdbcType=BIGINT},</if>
+		<if test="null != modifyTime"> #{modifyTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != delFlag"> #{delFlag,jdbcType=TINYINT},</if>
+	</trim>
+  </insert>
+  <delete id="batchDeleteByArray">
+    delete from sys_school where school_id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="batchDeleteByList">
+    delete from sys_school where school_id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <select id="getList" parameterType="cn.netinnet.educationcenter.domain.SysSchool" resultMap="BaseResultMap">
+     select school_id,school_name, school_nickname, school_code, school_area, school_province, school_city, school_address, contact_name, contact_number, school_status, school_descr, admin_login, create_user_id, create_time, modify_user_id, modify_time, del_flag from sys_school
+    <include refid="sql_where" />
+  </select>
+
+    <!-- 根据学校id查询管理员账号 -->
+    <select id="queryAdminLoginBySchoolId" resultType="java.lang.String">
+        select
+            admin_login
+        from sys_school
+        where school_id = #{schoolId}
+          and del_flag = 0
+    </select>
+
+    <!-- 根据学校类型查询学校idNameList -->
+    <select id="queryListByType" resultMap="BaseResultMap">
+        select school_id, school_name
+        from sys_school
+        where del_flag = 0
+    </select>
+
+    <!-- 查询学校列表 -->
+    <select id="queryList" parameterType="cn.netinnet.educationcenter.domain.SysSchool" resultMap="BaseResultMap">
+        select
+        school_id,
+        school_name,
+        school_nickname,
+        school_code,
+        school_area,
+        school_province,
+        school_city,
+        create_time,
+        school_address,
+        contact_name,
+        contact_number,
+        school_status,
+        school_descr,
+        admin_login
+        from sys_school
+        <where>
+            del_flag = 0
+            <if test="null != schoolProvince and  '' != schoolProvince">
+                and school_province LIKE #{schoolProvince}
+            </if>
+            <if test="null != schoolCity and  '' != schoolCity">
+                and school_city LIKE #{schoolCity}
+            </if>
+            <if test="null != schoolStatus">
+                and school_status = #{schoolStatus}
+            </if>
+            <if test="null != schoolName and  '' != schoolName">
+                and school_name LIKE #{schoolName}
+            </if>
+            order by create_time desc
+        </where>
+    </select>
+    <!-- 获取被删除的学校id -->
+    <select id="queryDeletedSchoolIds" resultType="java.lang.Long">
+        select  school_id
+        from    sys_school
+        where   del_flag = '1'
+        and     modify_time <![CDATA[<=]]> #{endDate}
+    </select>
+
+    <!-- 查询学校名称 -->
+    <select id="querySchoolNameById" resultType="java.lang.String">
+        select   school_name
+        from     sys_school
+        where    school_id = #{schoolId}
+        limit    1
+    </select>
+
+</mapper>

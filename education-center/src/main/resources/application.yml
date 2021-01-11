@@ -1,5 +1,10 @@
 server:
-  port: 8080
+  port: 8091
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
 
 # 日志配置
 logging:
@@ -10,21 +15,13 @@ logging:
 
 # 配置mybatis
 mybatis:
-  mapperLocations: classpath*:cn/netinnet/ninzuul/dao/mapper/*Mapper.xml
+  mapperLocations: classpath*:cn/netinnet/educationcenter/dao/mapper/*Mapper.xml
   configLocation: classpath:mybatis-config.xml
-  typeAliasesPackage: cn.netinnet.ninzuul.domain
+  typeAliasesPackage: cn.netinnet.educationcenter.domain
 
 spring:
   application:
-    name: nin-zuul
-  profiles:
-    active: dev
-  zipkin:
-    base-url: http://172.16.39.15:9411
-    discovery-client-enabled: true
-  sleuth:
-    sampler:
-      probability: 1.0
+    name: education-center
   # 配置redis
   session:
     store-type: redis
@@ -41,6 +38,8 @@ spring:
         max-idle: 50
         min-idle: 5
     timeout: 5000
+  profiles:
+    active: dev
   datasource:
     url: jdbc:mysql://localhost:3306/nin_workflow?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&nullCatalogMeansCurrent=true&useSSL=false&allowMultiQueries=true
     username: root
@@ -62,37 +61,10 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
-  cloud:
-    loadbalancer:
-      ribbon:
-        enabled: false
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-
-zuul:
-  routes:
-    education-center: /nin-zuul/**
-  # 忽略匹配，不允许访问通过
-  ignored-patterns: /*-center/**
-  host:
-    connect-timeout-millis: 15000
-    socket-timeout-millis: 60000   #socket超时
 
 ribbon:
   eager-load:
     enabled: true
-
-# 项目配置
-ninzuul:
-  isOpenLog: true  #是否开启系统日志，false-关闭，true-开启, 默认开启
-  shiro:
-    # 后端免认证接口 url
-    #  /ue/uploadimage, /tGameStudent/importGameStudent, /student/importStudent, /tCourse/importTest, （上传接口）
-    anonUrl: /, /index, /nin-zuul/login, /nin-zuul/logout, /refreshToken, /error/**, /test/**,
-      /fdata/**, /fchart/**, /UEditor/**, /ue/**,/api/**,/nin-zuul/sysPermission/**
 
 app:
   app_id: '@u'

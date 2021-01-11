@@ -10,8 +10,8 @@
     <modules>
         <module>eureka-server</module>
         <module>cloud-common</module>
-        <module>user-center</module>
         <module>nin-zuul</module>
+        <module>education-center</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -180,3 +180,5 @@
     </build>
 
 </project>
+
+

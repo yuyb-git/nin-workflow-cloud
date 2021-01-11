@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.netinnet.educationcenter.dao.SysBatchMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.educationcenter.domain.SysBatch">
+    <id column="batch_id" jdbcType="BIGINT" property="batchId" />
+    <result column="batch_name" jdbcType="VARCHAR" property="batchName" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="school_id" jdbcType="BIGINT" property="schoolId" />
+    <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="batch_status" jdbcType="TINYINT" property="batchStatus" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    batch_id, batch_name, user_id, user_name, school_id, begin_date, end_date, batch_status,
+    create_user_id, create_time, modify_user_id, modify_time, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_batch
+    where batch_id = #{batchId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_batch
+    where batch_id = #{batchId,jdbcType=BIGINT}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.educationcenter.domain.SysBatch">
+    update sys_batch
+    <set>
+      <if test="batchName != null">
+        batch_name = #{batchName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolId != null">
+        school_id = #{schoolId,jdbcType=BIGINT},
+      </if>
+      <if test="beginDate != null">
+        begin_date = #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchStatus != null">
+        batch_status = #{batchStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where batch_id = #{batchId,jdbcType=BIGINT}
+  </update>
+  <sql id="sql_columns">
+    insert into sys_batch
+	<trim prefix="(" suffix=") values" suffixOverrides=",">
+		batch_id,batch_name,user_id,user_name,school_id,begin_date,end_date,batch_status,create_user_id,modify_user_id,del_flag,
+	</trim>
+  </sql>
+  <sql id="sql_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		, #{item.batchId}
+		, #{item.batchName}
+		, #{item.userId}
+		, #{item.userName}
+		, #{item.schoolId}
+		, #{item.beginDate}
+		, #{item.endDate}
+		, #{item.batchStatus}
+		, #{item.createUserId}
+		, #{item.createTime}
+		, #{item.modifyUserId}
+		, #{item.modifyTime}
+		, #{item.delFlag}
+	</trim>
+  </sql>
+  <sql id="sql_where">
+    <where>
+		<if test="null != item.batchId">and batch_id = #{item.batchId}</if>
+		<if test="null != item.batchName">and batch_name = #{item.batchName}</if>
+		<if test="null != item.userId">and user_id = #{item.userId}</if>
+		<if test="null != item.userName">and user_name = #{item.userName}</if>
+		<if test="null != item.schoolId">and school_id = #{item.schoolId}</if>
+		<if test="null != item.beginDate">and begin_date = #{item.beginDate}</if>
+		<if test="null != item.endDate">and end_date = #{item.endDate}</if>
+		<if test="null != item.batchStatus">and batch_status = #{item.batchStatus}</if>
+		<if test="null != item.createUserId">and create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">and create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">and modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">and modify_time = #{item.modifyTime}</if>
+		<if test="null != item.delFlag">and del_flag = #{item.delFlag}</if>
+	</where>
+  </sql>
+  <sql id="sql_update">
+    update sys_batch set
+	<trim prefix="" suffix="" prefixOverrides=",">
+		<if test="null != item.batchId">, batch_id = #{item.batchId}</if>
+		<if test="null != item.batchName">, batch_name = #{item.batchName}</if>
+		<if test="null != item.userId">, user_id = #{item.userId}</if>
+		<if test="null != item.userName">, user_name = #{item.userName}</if>
+		<if test="null != item.schoolId">, school_id = #{item.schoolId}</if>
+		<if test="null != item.beginDate">, begin_date = #{item.beginDate}</if>
+		<if test="null != item.endDate">, end_date = #{item.endDate}</if>
+		<if test="null != item.batchStatus">, batch_status = #{item.batchStatus}</if>
+		<if test="null != item.createUserId">, create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">, create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, modify_time = #{item.modifyTime}</if>
+		<if test="null != item.delFlag">, del_flag = #{item.delFlag}</if>
+	</trim>
+	where  batch_id = #{item.batchId}
+  </sql>
+  <sql id="sql_save_columns">
+    insert into sys_batch
+	<trim prefix="(" suffix=") values" prefixOverrides=",">
+		<if test="null != list[0].batchId">, batch_id</if>
+		<if test="null != list[0].batchName">, batch_name</if>
+		<if test="null != list[0].userId">, user_id</if>
+		<if test="null != list[0].userName">, user_name</if>
+		<if test="null != list[0].schoolId">, school_id</if>
+		<if test="null != list[0].beginDate">, begin_date</if>
+		<if test="null != list[0].endDate">, end_date</if>
+		<if test="null != list[0].batchStatus">, batch_status</if>
+		<if test="null != list[0].createUserId">, create_user_id</if>
+		<if test="null != list[0].createTime">, create_time</if>
+		<if test="null != list[0].modifyUserId">, modify_user_id</if>
+		<if test="null != list[0].modifyTime">, modify_time</if>
+		<if test="null != list[0].delFlag">, del_flag</if>
+	</trim>
+  </sql>
+  <sql id="sql_save_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		<if test="null != item.batchId">, #{item.batchId}</if>
+		<if test="null != item.batchName">, #{item.batchName}</if>
+		<if test="null != item.userId">, #{item.userId}</if>
+		<if test="null != item.userName">, #{item.userName}</if>
+		<if test="null != item.schoolId">, #{item.schoolId}</if>
+		<if test="null != item.beginDate">, #{item.beginDate}</if>
+		<if test="null != item.endDate">, #{item.endDate}</if>
+		<if test="null != item.batchStatus">, #{item.batchStatus}</if>
+		<if test="null != item.createUserId">, #{item.createUserId}</if>
+		<if test="null != item.createTime">, #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, #{item.modifyTime}</if>
+		<if test="null != item.delFlag">, #{item.delFlag}</if>
+	</trim>
+  </sql>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <include refid="sql_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_values" />
+	</foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    <include refid="sql_save_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_save_values" />
+	</foreach>
+  </insert>
+  <update id="batchUpdateByPrimaryKey">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+    <insert id="insertSelective" parameterType="cn.netinnet.educationcenter.domain.SysBatch">
+    insert into sys_batch
+	<trim prefix="(" suffix=") " suffixOverrides=",">
+		<if test="null != batchId"> batch_id,</if>
+		<if test="null != batchName"> batch_name,</if>
+		<if test="null != userId"> user_id,</if>
+		<if test="null != userName"> user_name,</if>
+		<if test="null != schoolId"> school_id,</if>
+		<if test="null != beginDate"> begin_date,</if>
+		<if test="null != endDate"> end_date,</if>
+		<if test="null != batchStatus"> batch_status,</if>
+		<if test="null != createUserId"> create_user_id,</if>
+		<if test="null != createTime"> create_time,</if>
+		<if test="null != modifyUserId"> modify_user_id,</if>
+		<if test="null != modifyTime"> modify_time,</if>
+		<if test="null != delFlag"> del_flag,</if>
+	</trim>
+	 <trim prefix=" values(" suffix=")" suffixOverrides=",">
+		<if test="null != batchId"> #{batchId,jdbcType=BIGINT},</if>
+		<if test="null != batchName"> #{batchName,jdbcType=VARCHAR},</if>
+		<if test="null != userId"> #{userId,jdbcType=BIGINT},</if>
+		<if test="null != userName"> #{userName,jdbcType=VARCHAR},</if>
+		<if test="null != schoolId"> #{schoolId,jdbcType=BIGINT},</if>
+		<if test="null != beginDate"> #{beginDate,jdbcType=TIMESTAMP},</if>
+		<if test="null != endDate"> #{endDate,jdbcType=TIMESTAMP},</if>
+		<if test="null != batchStatus"> #{batchStatus,jdbcType=TINYINT},</if>
+		<if test="null != createUserId"> #{createUserId,jdbcType=BIGINT},</if>
+		<if test="null != createTime"> #{createTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != modifyUserId"> #{modifyUserId,jdbcType=BIGINT},</if>
+		<if test="null != modifyTime"> #{modifyTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != delFlag"> #{delFlag,jdbcType=TINYINT},</if>
+	</trim>
+  </insert>
+  <delete id="batchDeleteByArray">
+    delete from sys_batch where batch_id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="batchDeleteByList">
+    delete from sys_batch where batch_id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <select id="getList" parameterType="cn.netinnet.educationcenter.domain.SysBatch" resultMap="BaseResultMap">
+     select batch_id,batch_name, user_id, user_name, school_id, begin_date, end_date, batch_status, create_user_id, create_time, modify_user_id, modify_time, del_flag from sys_batch
+    <include refid="sql_where" />
+  </select>
+
+    <!--查询批次列表-->
+    <select id="queryList" resultMap="BaseResultMap">
+        select
+            batch_id,batch_name, user_id, user_name, begin_date, end_date,create_time
+        from sys_batch
+        <where>
+            del_flag = 0
+            <if test="null != batchName and  '' != batchName">
+                and batch_name LIKE #{batchName}
+            </if>
+            <if test="null != schoolId">
+                and school_id = #{schoolId}
+            </if>
+            <if test="null != userId">
+                and user_id = #{userId}
+            </if>
+            <if test="batchStatus != null and batchStatus == 0">
+                and NOW() <![CDATA[<=]]> begin_date
+            </if>
+            <if test="batchStatus != null and batchStatus == 1">
+                and NOW() <![CDATA[>=]]> begin_date
+                and NOW() <![CDATA[<=]]> end_date
+            </if>
+            <if test="batchStatus != null and batchStatus == 2">
+                and NOW() <![CDATA[>=]]> end_date
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <!-- 根据学校id和学生id获取其所在批次列表 -->
+    <select id="queryBatchByUserIdAndSchoolId" resultType="map">
+        SELECT
+            b.batch_id as batchId, b.batch_name as batchName,
+            b.batch_status as batchStatus, a.user_id as userId,
+            b.begin_date as beginDate, b.end_date as endDate, b.user_name as teaName,
+            CASE WHEN #{now} <![CDATA[>=]]> b.begin_date AND #{now} <![CDATA[<=]]> b.end_date THEN 0
+            WHEN #{now} <![CDATA[<]]> b.begin_date THEN 1
+            ELSE 2
+            END AS batchState
+        FROM sys_batch_student a
+            inner JOIN sys_batch b ON a.batch_id = b.batch_id
+        WHERE  a.user_id in
+        <foreach collection="userIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+          AND b.school_id = #{schoolId}
+          AND a.del_flag=0
+          AND b.del_flag=0
+        <if test="batchStatus != null and batchStatus == 1">
+            and #{now} <![CDATA[<=]]> begin_date
+        </if>
+        <if test="batchStatus != null and batchStatus == 0">
+            and #{now} <![CDATA[>=]]> begin_date
+            and #{now} <![CDATA[<=]]> end_date
+        </if>
+        <if test="batchStatus != null and batchStatus == 2">
+            and #{now} <![CDATA[>=]]> end_date
+        </if>
+        order by batchState,b.begin_date desc
+    </select>
+
+    <!-- 根据schoolId 获取批次 Id-->
+    <select id="queryBatchIdsBySchoolId" resultType="java.lang.Long">
+        select batch_id
+        from  sys_batch
+        where school_id = #{schoolId}
+    </select>
+
+    <!-- 获取已经被删除的批次Id -->
+    <select id="queryDeletedBatchIds" resultType="java.lang.Long">
+        select batch_id
+        from  sys_batch
+        where del_flag = '1'
+        and   modify_time <![CDATA[<=]]> #{endDate}
+    </select>
+
+    <!--逻辑删除批次-->
+    <update id="logicalDelete">
+        update   sys_batch
+        set      del_flag = 1
+        where    batch_id =#{batchId}
+    </update>
+
+    <!-- 查询教师批次 -->
+    <select id="batchList" resultType="map">
+        SELECT
+            batch_id as batchId, batch_name as batchName,
+            begin_date as beginDate, end_date as endDate,
+            CASE WHEN #{now} <![CDATA[>=]]> begin_date AND #{now} <![CDATA[<=]]> end_date THEN 0
+                 WHEN #{now} <![CDATA[<]]> begin_date THEN 1
+                 ELSE 2
+                END AS batchState
+        FROM sys_batch
+        WHERE
+          school_id = #{schoolId}
+          <if test="userId != null">
+              and user_id = #{userId}
+          </if>
+          <if test="null != batchName and  '' != batchName">
+            and batch_name LIKE #{batchName}
+          </if>
+          <if test="batchStatus != null and batchStatus == 1">
+            and #{now} <![CDATA[<=]]> begin_date
+          </if>
+          <if test="batchStatus != null and batchStatus == 0">
+            and #{now} <![CDATA[>=]]> begin_date
+            and #{now} <![CDATA[<=]]> end_date
+          </if>
+          <if test="batchStatus != null and batchStatus == 2">
+            and #{now} <![CDATA[>=]]> end_date
+          </if>
+          AND del_flag=0
+        order by batchState, beginDate desc
+    </select>
+
+    <select id="existBatch" resultType="java.lang.Integer">
+        select 1 from sys_batch where  batch_name = #{batchName} and user_id = #{userId}
+        <if test="batchId != null">
+            and batch_id <![CDATA[!=]]> #{batchId}
+        </if>
+        AND del_flag=0
+    </select>
+
+</mapper>

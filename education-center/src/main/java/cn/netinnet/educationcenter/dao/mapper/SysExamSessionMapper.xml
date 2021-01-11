@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.netinnet.educationcenter.dao.SysExamSessionMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.educationcenter.domain.SysExamSession">
+    <id column="session_id" jdbcType="BIGINT" property="sessionId" />
+    <result column="session_from" jdbcType="TINYINT" property="sessionFrom" />
+    <result column="session_type" jdbcType="TINYINT" property="sessionType" />
+    <result column="session_name" jdbcType="VARCHAR" property="sessionName" />
+    <result column="batch_id" jdbcType="BIGINT" property="batchId" />
+    <result column="question_id" jdbcType="BIGINT" property="questionId" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="session_status" jdbcType="TINYINT" property="sessionStatus" />
+    <result column="resetable" jdbcType="TINYINT" property="resetable" />
+    <result column="view_answer" jdbcType="TINYINT" property="viewAnswer" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    session_id, session_from, session_type, session_name, batch_id, question_id, start_time,
+    end_time, session_status, resetable, view_answer, del_flag, create_user_id, create_time,
+    modify_user_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_exam_session
+    where session_id = #{sessionId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_exam_session
+    where session_id = #{sessionId,jdbcType=BIGINT}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.educationcenter.domain.SysExamSession">
+    update sys_exam_session
+    <set>
+      <if test="sessionFrom != null">
+        session_from = #{sessionFrom,jdbcType=TINYINT},
+      </if>
+      <if test="sessionType != null">
+        session_type = #{sessionType,jdbcType=TINYINT},
+      </if>
+      <if test="sessionName != null">
+        session_name = #{sessionName,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null">
+        batch_id = #{batchId,jdbcType=BIGINT},
+      </if>
+      <if test="questionId != null">
+        question_id = #{questionId,jdbcType=BIGINT},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sessionStatus != null">
+        session_status = #{sessionStatus,jdbcType=TINYINT},
+      </if>
+      <if test="resetable != null">
+        resetable = #{resetable,jdbcType=TINYINT},
+      </if>
+      <if test="viewAnswer != null">
+        view_answer = #{viewAnswer,jdbcType=TINYINT},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where session_id = #{sessionId,jdbcType=BIGINT}
+  </update>
+  <sql id="sql_columns">
+    insert into sys_exam_session
+	<trim prefix="(" suffix=") values" suffixOverrides=",">
+		session_id,session_from,session_type,session_name,batch_id,question_id,start_time,end_time,session_status,resetable,view_answer,del_flag,create_user_id,modify_user_id,
+	</trim>
+  </sql>
+  <sql id="sql_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		, #{item.sessionId}
+		, #{item.sessionFrom}
+		, #{item.sessionType}
+		, #{item.sessionName}
+		, #{item.batchId}
+		, #{item.questionId}
+		, #{item.startTime}
+		, #{item.endTime}
+		, #{item.sessionStatus}
+		, #{item.resetable}
+		, #{item.viewAnswer}
+		, #{item.delFlag}
+		, #{item.createUserId}
+		, #{item.createTime}
+		, #{item.modifyUserId}
+		, #{item.modifyTime}
+	</trim>
+  </sql>
+  <sql id="sql_where">
+    <where>
+		<if test="null != item.sessionId">and session_id = #{item.sessionId}</if>
+		<if test="null != item.sessionFrom">and session_from = #{item.sessionFrom}</if>
+		<if test="null != item.sessionType">and session_type = #{item.sessionType}</if>
+		<if test="null != item.sessionName">and session_name = #{item.sessionName}</if>
+		<if test="null != item.batchId">and batch_id = #{item.batchId}</if>
+		<if test="null != item.questionId">and question_id = #{item.questionId}</if>
+		<if test="null != item.startTime">and start_time = #{item.startTime}</if>
+		<if test="null != item.endTime">and end_time = #{item.endTime}</if>
+		<if test="null != item.sessionStatus">and session_status = #{item.sessionStatus}</if>
+		<if test="null != item.resetable">and resetable = #{item.resetable}</if>
+		<if test="null != item.viewAnswer">and view_answer = #{item.viewAnswer}</if>
+		<if test="null != item.delFlag">and del_flag = #{item.delFlag}</if>
+		<if test="null != item.createUserId">and create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">and create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">and modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">and modify_time = #{item.modifyTime}</if>
+	</where>
+  </sql>
+  <sql id="sql_update">
+    update sys_exam_session set
+	<trim prefix="" suffix="" prefixOverrides=",">
+		<if test="null != item.sessionId">, session_id = #{item.sessionId}</if>
+		<if test="null != item.sessionFrom">, session_from = #{item.sessionFrom}</if>
+		<if test="null != item.sessionType">, session_type = #{item.sessionType}</if>
+		<if test="null != item.sessionName">, session_name = #{item.sessionName}</if>
+		<if test="null != item.batchId">, batch_id = #{item.batchId}</if>
+		<if test="null != item.questionId">, question_id = #{item.questionId}</if>
+		<if test="null != item.startTime">, start_time = #{item.startTime}</if>
+		<if test="null != item.endTime">, end_time = #{item.endTime}</if>
+		<if test="null != item.sessionStatus">, session_status = #{item.sessionStatus}</if>
+		<if test="null != item.resetable">, resetable = #{item.resetable}</if>
+		<if test="null != item.viewAnswer">, view_answer = #{item.viewAnswer}</if>
+		<if test="null != item.delFlag">, del_flag = #{item.delFlag}</if>
+		<if test="null != item.createUserId">, create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">, create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, modify_time = #{item.modifyTime}</if>
+	</trim>
+	where  session_id = #{item.sessionId}
+  </sql>
+  <sql id="sql_save_columns">
+    insert into sys_exam_session
+	<trim prefix="(" suffix=") values" prefixOverrides=",">
+		<if test="null != list[0].sessionId">, session_id</if>
+		<if test="null != list[0].sessionFrom">, session_from</if>
+		<if test="null != list[0].sessionType">, session_type</if>
+		<if test="null != list[0].sessionName">, session_name</if>
+		<if test="null != list[0].batchId">, batch_id</if>
+		<if test="null != list[0].questionId">, question_id</if>
+		<if test="null != list[0].startTime">, start_time</if>
+		<if test="null != list[0].endTime">, end_time</if>
+		<if test="null != list[0].sessionStatus">, session_status</if>
+		<if test="null != list[0].resetable">, resetable</if>
+		<if test="null != list[0].viewAnswer">, view_answer</if>
+		<if test="null != list[0].delFlag">, del_flag</if>
+		<if test="null != list[0].createUserId">, create_user_id</if>
+		<if test="null != list[0].createTime">, create_time</if>
+		<if test="null != list[0].modifyUserId">, modify_user_id</if>
+		<if test="null != list[0].modifyTime">, modify_time</if>
+	</trim>
+  </sql>
+  <sql id="sql_save_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		<if test="null != item.sessionId">, #{item.sessionId}</if>
+		<if test="null != item.sessionFrom">, #{item.sessionFrom}</if>
+		<if test="null != item.sessionType">, #{item.sessionType}</if>
+		<if test="null != item.sessionName">, #{item.sessionName}</if>
+		<if test="null != item.batchId">, #{item.batchId}</if>
+		<if test="null != item.questionId">, #{item.questionId}</if>
+		<if test="null != item.startTime">, #{item.startTime}</if>
+		<if test="null != item.endTime">, #{item.endTime}</if>
+		<if test="null != item.sessionStatus">, #{item.sessionStatus}</if>
+		<if test="null != item.resetable">, #{item.resetable}</if>
+		<if test="null != item.viewAnswer">, #{item.viewAnswer}</if>
+		<if test="null != item.delFlag">, #{item.delFlag}</if>
+		<if test="null != item.createUserId">, #{item.createUserId}</if>
+		<if test="null != item.createTime">, #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, #{item.modifyTime}</if>
+	</trim>
+  </sql>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <include refid="sql_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_values" />
+	</foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    <include refid="sql_save_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_save_values" />
+	</foreach>
+  </insert>
+  <update id="batchUpdateByPrimaryKey">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <insert id="insertSelective" parameterType="cn.netinnet.educationcenter.domain.SysExamSession">
+    insert into sys_exam_session
+	<trim prefix="(" suffix=") " suffixOverrides=",">
+		<if test="null != sessionId"> session_id,</if>
+		<if test="null != sessionFrom"> session_from,</if>
+		<if test="null != sessionType"> session_type,</if>
+		<if test="null != sessionName"> session_name,</if>
+		<if test="null != batchId"> batch_id,</if>
+		<if test="null != questionId"> question_id,</if>
+		<if test="null != startTime"> start_time,</if>
+		<if test="null != endTime"> end_time,</if>
+		<if test="null != sessionStatus"> session_status,</if>
+		<if test="null != resetable"> resetable,</if>
+		<if test="null != viewAnswer"> view_answer,</if>
+		<if test="null != delFlag"> del_flag,</if>
+		<if test="null != createUserId"> create_user_id,</if>
+		<if test="null != createTime"> create_time,</if>
+		<if test="null != modifyUserId"> modify_user_id,</if>
+		<if test="null != modifyTime"> modify_time,</if>
+	</trim>
+	 <trim prefix=" values(" suffix=")" suffixOverrides=",">
+		<if test="null != sessionId"> #{sessionId,jdbcType=BIGINT},</if>
+		<if test="null != sessionFrom"> #{sessionFrom,jdbcType=TINYINT},</if>
+		<if test="null != sessionType"> #{sessionType,jdbcType=TINYINT},</if>
+		<if test="null != sessionName"> #{sessionName,jdbcType=VARCHAR},</if>
+		<if test="null != batchId"> #{batchId,jdbcType=BIGINT},</if>
+		<if test="null != questionId"> #{questionId,jdbcType=BIGINT},</if>
+		<if test="null != startTime"> #{startTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != endTime"> #{endTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != sessionStatus"> #{sessionStatus,jdbcType=TINYINT},</if>
+		<if test="null != resetable"> #{resetable,jdbcType=TINYINT},</if>
+		<if test="null != viewAnswer"> #{viewAnswer,jdbcType=TINYINT},</if>
+		<if test="null != delFlag"> #{delFlag,jdbcType=TINYINT},</if>
+		<if test="null != createUserId"> #{createUserId,jdbcType=BIGINT},</if>
+		<if test="null != createTime"> #{createTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != modifyUserId"> #{modifyUserId,jdbcType=BIGINT},</if>
+		<if test="null != modifyTime"> #{modifyTime,jdbcType=TIMESTAMP},</if>
+	</trim>
+  </insert>
+  <delete id="batchDeleteByArray">
+    delete from sys_exam_session where session_id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="batchDeleteByList">
+    delete from sys_exam_session where session_id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <select id="getList" parameterType="cn.netinnet.educationcenter.domain.SysExamSession" resultMap="BaseResultMap">
+     select session_id,session_from, session_type, session_name, batch_id, question_id, start_time, end_time, session_status, resetable, view_answer, del_flag, create_user_id, create_time, modify_user_id, modify_time from sys_exam_session
+    <include refid="sql_where" />
+  </select>
+
+    <!-- 查询指定的字段 -->
+    <select id="selectColumnsById" resultMap="BaseResultMap">
+        select ${columns} from sys_exam_session where session_id = #{sessionId}
+    </select>
+
+    <!-- 查询建套餐人的场次 -->
+    <select id="getPackageSessionList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_exam_session
+        where del_flag = 0
+        and create_user_id = #{userId}
+        <if test="sessionType != null">
+            and session_type = #{sessionType}
+        </if>
+        <if test="sessionName != null and sessionName != ''">
+            and session_name like #{sessionName}
+        </if>
+    </select>
+
+    <!--查询考试列表-->
+    <select id="queryList" resultType="map">
+        select
+        ses.session_id as sessionId,
+        ses.session_type as sessionType,
+        ses.session_name as sessionName,
+        ses.question_id as questionId,
+        ses.start_time as startTime,
+        ses.end_time as endTime,
+        ses.view_answer as viewAnswer,
+        ses.resetable as resetable,
+        sq.question_title as questionTitle
+        from sys_exam_session ses
+        left join sys_question sq on sq.question_id = ses.question_id
+        where ses.del_flag = 0
+        <choose>
+            <when test="sessionId != 0">
+                and ses.session_id = #{sessionId}
+            </when>
+            <otherwise>
+                <if test="roleCode != 'admin'">
+                    and ses.create_user_id = #{userId}
+                </if>
+            </otherwise>
+        </choose>
+        <if test="sessionType != null">
+            and ses.session_type = #{sessionType}
+        </if><if test="sessionName != null and sessionName != ''">
+        and ses.session_name like #{sessionName}
+    </if>
+        order by ses.create_time desc
+    </select>
+
+    <!-- 查询考试状态 -->
+    <select id="getSessionStatus" resultType="int">
+        select session_status from sys_exam_session where session_id = #{sessionId}
+    </select>
+
+    <!-- 逻辑删除 -->
+    <update id="logicalDeleteById">
+        update   sys_exam_session
+        set      del_flag = 1
+        where    session_id = #{sessionId}
+    </update>
+
+    <!-- 检查是否存在 -->
+    <select id="checkExist" resultType="java.lang.Integer">
+        select 1 from sys_exam_session where session_id = #{id} and del_flag = 0
+    </select>
+
+    <!-- 更新考试结束时间和状态 -->
+    <update id="updateStateAndEndTime">
+        update sys_exam_session set end_time = #{endTime}, session_status = #{state} where session_id IN
+        <foreach collection="sessionIds" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>;
+    </update>
+
+    <!-- 更新考试状态 -->
+    <update id="updateEndAndSubmitState">
+        update sys_exam_session set  session_status = #{endState} where session_id IN
+        <foreach collection="sessionIds" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>;
+        update sys_exam_user set submit_state = #{submitState} where session_id in
+        <foreach collection="sessionIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+    </update>
+
+    <!--查询考试结束时间-->
+    <select id="queryEndTime" resultType="date">
+        select end_time from sys_exam_session where session_id = #{sessionId}
+    </select>
+
+    <!-- 获取已经被删除的场次 -->
+    <select id="queryDeletedExamSession" resultType="java.lang.Long">
+        select
+            session_id
+        from   sys_exam_session
+        where  end_time <![CDATA[<=]]> #{endDate}
+          and del_flag = 1
+    </select>
+
+    <!-- 按分类统计 -->
+    <select id="countByType" resultType="java.util.Map">
+        SELECT COUNT(1) num, session_type FROM sys_exam_session WHERE batch_id = #{batchId} AND del_flag = 0 AND session_status = 1 GROUP BY session_type
+    </select>
+
+    <!-- 查询批次列表 -->
+    <select id="queryListByBatchIdAndType" resultType="cn.netinnet.educationcenter.domain.dto.SessionDetail">
+        select
+        ses.session_id as sessionId,
+        ses.session_name as sessionName,
+        ses.session_status as sessionStatus,
+        ses.batch_id as batchId,
+        ses.start_time as startTime,
+        ses.end_time as endTime,
+        ses.view_answer as viewAnswer,
+        ses.create_user_id as createUserId,
+        CASE WHEN #{now} <![CDATA[>]]> ses.start_time AND #{now} <![CDATA[<]]> ses.end_time THEN 0
+             WHEN #{now} <![CDATA[<]]> ses.start_time THEN 1
+             ELSE 2
+        END AS state
+        <if test="sessionType == 1">,ses.question_id as questionId,sq.question_title as questionTitle</if>
+        from sys_exam_session ses
+        <if test="sessionType == 1">inner join sys_question sq on sq.question_id = ses.question_id</if>
+        where ses.batch_id = #{batchId} and ses.del_flag = 0 and ses.session_type = #{sessionType}
+        <if test="openStatus != null">
+            and ses.session_status = #{openStatus}
+        </if>
+        <choose>
+            <when test="startData != null and endData == null">
+                <!--未开始-->
+                and ses.start_time <![CDATA[>]]> #{startData}
+            </when>
+            <when test="startData != null and endData != null">
+                <!--进行中-->
+                and ses.start_time <![CDATA[<=]]> #{startData} and end_time  <![CDATA[>]]> #{endData}
+            </when>
+            <when test="startData == null and endData != null">
+                <!--已结束-->
+                and ses.end_time  <![CDATA[<=]]> #{endData}
+            </when>
+            <otherwise></otherwise>
+        </choose>
+        <if test="sessionName != null and sessionName != ''">
+            and instr(ses.session_name, #{sessionName}) > 0
+        </if>
+        order by state,ses.start_time desc
+    </select>
+
+    <!-- 查询考试试题 -->
+    <select id="getSessionQuestionId" resultType="long">
+        select question_id from sys_exam_session where session_id = #{sessionId}
+    </select>
+
+    <!-- 查询题目 -->
+    <select id="queryQuests" resultMap="BaseResultMap">
+        select question_id, session_id from sys_exam_session where session_id in
+        <foreach collection="sessionIds" item="item" close=")" open="(" separator=",">#{item}</foreach>
+    </select>
+</mapper>

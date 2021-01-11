@@ -37,7 +37,7 @@ public class JWTUtil {
     /**
      * jwt签发有效期，默认一小时
      */
-    public static long EXPIRE_TIME = 3600;
+    public static long EXPIRE_TIME = 3600 * 1000;
 
     /**
      * 静态变量通过set方法注入(乘以1000，将其转为秒单位)
@@ -49,7 +49,7 @@ public class JWTUtil {
     /**
      * jwt刷新有效期，默认7天
      */
-    public static long REFRESH_TIME = 3;
+    public static long REFRESH_TIME = 3 * 1000 * 60 * 60;
 
     /**
      * 静态变量通过set方法注入(乘以1000*60*60*24，将其转为小时)

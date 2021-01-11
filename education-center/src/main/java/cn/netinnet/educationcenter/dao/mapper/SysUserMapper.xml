@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.netinnet.educationcenter.dao.SysUserMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.educationcenter.domain.SysUser">
+    <id column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="user_type" jdbcType="TINYINT" property="userType" />
+    <result column="role_code" jdbcType="VARCHAR" property="roleCode" />
+    <result column="user_login" jdbcType="VARCHAR" property="userLogin" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
+    <result column="user_nickname" jdbcType="VARCHAR" property="userNickname" />
+    <result column="user_sex" jdbcType="TINYINT" property="userSex" />
+    <result column="user_birthday" jdbcType="CHAR" property="userBirthday" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="user_mail" jdbcType="VARCHAR" property="userMail" />
+    <result column="user_grade" jdbcType="CHAR" property="userGrade" />
+    <result column="user_status" jdbcType="TINYINT" property="userStatus" />
+    <result column="school_id" jdbcType="BIGINT" property="schoolId" />
+    <result column="school_name" jdbcType="VARCHAR" property="schoolName" />
+    <result column="college_id" jdbcType="BIGINT" property="collegeId" />
+    <result column="college_name" jdbcType="VARCHAR" property="collegeName" />
+    <result column="major_id" jdbcType="BIGINT" property="majorId" />
+    <result column="major_name" jdbcType="VARCHAR" property="majorName" />
+    <result column="class_id" jdbcType="BIGINT" property="classId" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+    <result column="individuality_id" jdbcType="BIGINT" property="individualityId" />
+    <result column="create_class_permission" jdbcType="TINYINT" property="createClassPermission" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_type, role_code, user_login, user_name, user_pwd, user_nickname, user_sex,
+    user_birthday, user_phone, user_mail, user_grade, user_status, school_id, school_name,
+    college_id, college_name, major_id, major_name, class_id, class_name, individuality_id,
+    create_class_permission, create_user_id, create_time, modify_user_id, modify_time,
+    del_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.educationcenter.domain.SysUser">
+    update sys_user
+    <set>
+      <if test="userType != null">
+        user_type = #{userType,jdbcType=TINYINT},
+      </if>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userLogin != null">
+        user_login = #{userLogin,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        user_pwd = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null">
+        user_nickname = #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        user_sex = #{userSex,jdbcType=TINYINT},
+      </if>
+      <if test="userBirthday != null">
+        user_birthday = #{userBirthday,jdbcType=CHAR},
+      </if>
+      <if test="userPhone != null">
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userMail != null">
+        user_mail = #{userMail,jdbcType=VARCHAR},
+      </if>
+      <if test="userGrade != null">
+        user_grade = #{userGrade,jdbcType=CHAR},
+      </if>
+      <if test="userStatus != null">
+        user_status = #{userStatus,jdbcType=TINYINT},
+      </if>
+      <if test="schoolId != null">
+        school_id = #{schoolId,jdbcType=BIGINT},
+      </if>
+      <if test="schoolName != null">
+        school_name = #{schoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="collegeId != null">
+        college_id = #{collegeId,jdbcType=BIGINT},
+      </if>
+      <if test="collegeName != null">
+        college_name = #{collegeName,jdbcType=VARCHAR},
+      </if>
+      <if test="majorId != null">
+        major_id = #{majorId,jdbcType=BIGINT},
+      </if>
+      <if test="majorName != null">
+        major_name = #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="classId != null">
+        class_id = #{classId,jdbcType=BIGINT},
+      </if>
+      <if test="className != null">
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="individualityId != null">
+        individuality_id = #{individualityId,jdbcType=BIGINT},
+      </if>
+      <if test="createClassPermission != null">
+        create_class_permission = #{createClassPermission,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <sql id="sql_columns">
+    insert into sys_user
+	<trim prefix="(" suffix=") values" suffixOverrides=",">
+		user_id,user_type,role_code,user_login,user_name,user_pwd,user_nickname,user_sex,user_birthday,user_phone,user_mail,user_grade,user_status,school_id,school_name,college_id,college_name,major_id,major_name,class_id,class_name,individuality_id,create_class_permission,create_user_id,modify_user_id,del_flag,
+	</trim>
+  </sql>
+  <sql id="sql_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		, #{item.userId}
+		, #{item.userType}
+		, #{item.roleCode}
+		, #{item.userLogin}
+		, #{item.userName}
+		, #{item.userPwd}
+		, #{item.userNickname}
+		, #{item.userSex}
+		, #{item.userBirthday}
+		, #{item.userPhone}
+		, #{item.userMail}
+		, #{item.userGrade}
+		, #{item.userStatus}
+		, #{item.schoolId}
+		, #{item.schoolName}
+		, #{item.collegeId}
+		, #{item.collegeName}
+		, #{item.majorId}
+		, #{item.majorName}
+		, #{item.classId}
+		, #{item.className}
+		, #{item.individualityId}
+		, #{item.createClassPermission}
+		, #{item.createUserId}
+		, #{item.createTime}
+		, #{item.modifyUserId}
+		, #{item.modifyTime}
+		, #{item.delFlag}
+	</trim>
+  </sql>
+  <sql id="sql_where">
+    <where>
+		<if test="null != item.userId">and user_id = #{item.userId}</if>
+		<if test="null != item.userType">and user_type = #{item.userType}</if>
+		<if test="null != item.roleCode">and role_code = #{item.roleCode}</if>
+		<if test="null != item.userLogin">and user_login = #{item.userLogin}</if>
+		<if test="null != item.userName">and user_name = #{item.userName}</if>
+		<if test="null != item.userPwd">and user_pwd = #{item.userPwd}</if>
+		<if test="null != item.userNickname">and user_nickname = #{item.userNickname}</if>
+		<if test="null != item.userSex">and user_sex = #{item.userSex}</if>
+		<if test="null != item.userBirthday">and user_birthday = #{item.userBirthday}</if>
+		<if test="null != item.userPhone">and user_phone = #{item.userPhone}</if>
+		<if test="null != item.userMail">and user_mail = #{item.userMail}</if>
+		<if test="null != item.userGrade">and user_grade = #{item.userGrade}</if>
+		<if test="null != item.userStatus">and user_status = #{item.userStatus}</if>
+		<if test="null != item.schoolId">and school_id = #{item.schoolId}</if>
+		<if test="null != item.schoolName">and school_name = #{item.schoolName}</if>
+		<if test="null != item.collegeId">and college_id = #{item.collegeId}</if>
+		<if test="null != item.collegeName">and college_name = #{item.collegeName}</if>
+		<if test="null != item.majorId">and major_id = #{item.majorId}</if>
+		<if test="null != item.majorName">and major_name = #{item.majorName}</if>
+		<if test="null != item.classId">and class_id = #{item.classId}</if>
+		<if test="null != item.className">and class_name = #{item.className}</if>
+		<if test="null != item.individualityId">and individuality_id = #{item.individualityId}</if>
+		<if test="null != item.createClassPermission">and create_class_permission = #{item.createClassPermission}</if>
+		<if test="null != item.createUserId">and create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">and create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">and modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">and modify_time = #{item.modifyTime}</if>
+		<if test="null != item.delFlag">and del_flag = #{item.delFlag}</if>
+	</where>
+  </sql>
+  <sql id="sql_update">
+    update sys_user set
+	<trim prefix="" suffix="" prefixOverrides=",">
+		<if test="null != item.userId">, user_id = #{item.userId}</if>
+		<if test="null != item.userType">, user_type = #{item.userType}</if>
+		<if test="null != item.roleCode">, role_code = #{item.roleCode}</if>
+		<if test="null != item.userLogin">, user_login = #{item.userLogin}</if>
+		<if test="null != item.userName">, user_name = #{item.userName}</if>
+		<if test="null != item.userPwd">, user_pwd = #{item.userPwd}</if>
+		<if test="null != item.userNickname">, user_nickname = #{item.userNickname}</if>
+		<if test="null != item.userSex">, user_sex = #{item.userSex}</if>
+		<if test="null != item.userBirthday">, user_birthday = #{item.userBirthday}</if>
+		<if test="null != item.userPhone">, user_phone = #{item.userPhone}</if>
+		<if test="null != item.userMail">, user_mail = #{item.userMail}</if>
+		<if test="null != item.userGrade">, user_grade = #{item.userGrade}</if>
+		<if test="null != item.userStatus">, user_status = #{item.userStatus}</if>
+		<if test="null != item.schoolId">, school_id = #{item.schoolId}</if>
+		<if test="null != item.schoolName">, school_name = #{item.schoolName}</if>
+		<if test="null != item.collegeId">, college_id = #{item.collegeId}</if>
+		<if test="null != item.collegeName">, college_name = #{item.collegeName}</if>
+		<if test="null != item.majorId">, major_id = #{item.majorId}</if>
+		<if test="null != item.majorName">, major_name = #{item.majorName}</if>
+		<if test="null != item.classId">, class_id = #{item.classId}</if>
+		<if test="null != item.className">, class_name = #{item.className}</if>
+		<if test="null != item.individualityId">, individuality_id = #{item.individualityId}</if>
+		<if test="null != item.createClassPermission">, create_class_permission = #{item.createClassPermission}</if>
+		<if test="null != item.createUserId">, create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">, create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, modify_time = #{item.modifyTime}</if>
+		<if test="null != item.delFlag">, del_flag = #{item.delFlag}</if>
+	</trim>
+	where  user_id = #{item.userId}
+  </sql>
+  <sql id="sql_save_columns">
+    insert into sys_user
+	<trim prefix="(" suffix=") values" prefixOverrides=",">
+		<if test="null != list[0].userId">, user_id</if>
+		<if test="null != list[0].userType">, user_type</if>
+		<if test="null != list[0].roleCode">, role_code</if>
+		<if test="null != list[0].userLogin">, user_login</if>
+		<if test="null != list[0].userName">, user_name</if>
+		<if test="null != list[0].userPwd">, user_pwd</if>
+		<if test="null != list[0].userNickname">, user_nickname</if>
+		<if test="null != list[0].userSex">, user_sex</if>
+		<if test="null != list[0].userBirthday">, user_birthday</if>
+		<if test="null != list[0].userPhone">, user_phone</if>
+		<if test="null != list[0].userMail">, user_mail</if>
+		<if test="null != list[0].userGrade">, user_grade</if>
+		<if test="null != list[0].userStatus">, user_status</if>
+		<if test="null != list[0].schoolId">, school_id</if>
+		<if test="null != list[0].schoolName">, school_name</if>
+		<if test="null != list[0].collegeId">, college_id</if>
+		<if test="null != list[0].collegeName">, college_name</if>
+		<if test="null != list[0].majorId">, major_id</if>
+		<if test="null != list[0].majorName">, major_name</if>
+		<if test="null != list[0].classId">, class_id</if>
+		<if test="null != list[0].className">, class_name</if>
+		<if test="null != list[0].individualityId">, individuality_id</if>
+		<if test="null != list[0].createClassPermission">, create_class_permission</if>
+		<if test="null != list[0].createUserId">, create_user_id</if>
+		<if test="null != list[0].createTime">, create_time</if>
+		<if test="null != list[0].modifyUserId">, modify_user_id</if>
+		<if test="null != list[0].modifyTime">, modify_time</if>
+		<if test="null != list[0].delFlag">, del_flag</if>
+	</trim>
+  </sql>
+  <sql id="sql_save_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		<if test="null != item.userId">, #{item.userId}</if>
+		<if test="null != item.userType">, #{item.userType}</if>
+		<if test="null != item.roleCode">, #{item.roleCode}</if>
+		<if test="null != item.userLogin">, #{item.userLogin}</if>
+		<if test="null != item.userName">, #{item.userName}</if>
+		<if test="null != item.userPwd">, #{item.userPwd}</if>
+		<if test="null != item.userNickname">, #{item.userNickname}</if>
+		<if test="null != item.userSex">, #{item.userSex}</if>
+		<if test="null != item.userBirthday">, #{item.userBirthday}</if>
+		<if test="null != item.userPhone">, #{item.userPhone}</if>
+		<if test="null != item.userMail">, #{item.userMail}</if>
+		<if test="null != item.userGrade">, #{item.userGrade}</if>
+		<if test="null != item.userStatus">, #{item.userStatus}</if>
+		<if test="null != item.schoolId">, #{item.schoolId}</if>
+		<if test="null != item.schoolName">, #{item.schoolName}</if>
+		<if test="null != item.collegeId">, #{item.collegeId}</if>
+		<if test="null != item.collegeName">, #{item.collegeName}</if>
+		<if test="null != item.majorId">, #{item.majorId}</if>
+		<if test="null != item.majorName">, #{item.majorName}</if>
+		<if test="null != item.classId">, #{item.classId}</if>
+		<if test="null != item.className">, #{item.className}</if>
+		<if test="null != item.individualityId">, #{item.individualityId}</if>
+		<if test="null != item.createClassPermission">, #{item.createClassPermission}</if>
+		<if test="null != item.createUserId">, #{item.createUserId}</if>
+		<if test="null != item.createTime">, #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, #{item.modifyTime}</if>
+		<if test="null != item.delFlag">, #{item.delFlag}</if>
+	</trim>
+  </sql>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <include refid="sql_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_values" />
+	</foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    <include refid="sql_save_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_save_values" />
+	</foreach>
+  </insert>
+  <update id="batchUpdateByPrimaryKey">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <insert id="insertSelective" parameterType="cn.netinnet.educationcenter.domain.SysUser">
+    insert into sys_user
+	<trim prefix="(" suffix=") " suffixOverrides=",">
+		<if test="null != userId"> user_id,</if>
+		<if test="null != userType"> user_type,</if>
+		<if test="null != roleCode"> role_code,</if>
+		<if test="null != userLogin"> user_login,</if>
+		<if test="null != userName"> user_name,</if>
+		<if test="null != userPwd"> user_pwd,</if>
+		<if test="null != userNickname"> user_nickname,</if>
+		<if test="null != userSex"> user_sex,</if>
+		<if test="null != userBirthday"> user_birthday,</if>
+		<if test="null != userPhone"> user_phone,</if>
+		<if test="null != userMail"> user_mail,</if>
+		<if test="null != userGrade"> user_grade,</if>
+		<if test="null != userStatus"> user_status,</if>
+		<if test="null != schoolId"> school_id,</if>
+		<if test="null != schoolName"> school_name,</if>
+		<if test="null != collegeId"> college_id,</if>
+		<if test="null != collegeName"> college_name,</if>
+		<if test="null != majorId"> major_id,</if>
+		<if test="null != majorName"> major_name,</if>
+		<if test="null != classId"> class_id,</if>
+		<if test="null != className"> class_name,</if>
+		<if test="null != individualityId"> individuality_id,</if>
+		<if test="null != createClassPermission"> create_class_permission,</if>
+		<if test="null != createUserId"> create_user_id,</if>
+		<if test="null != createTime"> create_time,</if>
+		<if test="null != modifyUserId"> modify_user_id,</if>
+		<if test="null != modifyTime"> modify_time,</if>
+		<if test="null != delFlag"> del_flag,</if>
+	</trim>
+	 <trim prefix=" values(" suffix=")" suffixOverrides=",">
+		<if test="null != userId"> #{userId,jdbcType=BIGINT},</if>
+		<if test="null != userType"> #{userType,jdbcType=TINYINT},</if>
+		<if test="null != roleCode"> #{roleCode,jdbcType=VARCHAR},</if>
+		<if test="null != userLogin"> #{userLogin,jdbcType=VARCHAR},</if>
+		<if test="null != userName"> #{userName,jdbcType=VARCHAR},</if>
+		<if test="null != userPwd"> #{userPwd,jdbcType=VARCHAR},</if>
+		<if test="null != userNickname"> #{userNickname,jdbcType=VARCHAR},</if>
+		<if test="null != userSex"> #{userSex,jdbcType=TINYINT},</if>
+		<if test="null != userBirthday"> #{userBirthday,jdbcType=CHAR},</if>
+		<if test="null != userPhone"> #{userPhone,jdbcType=VARCHAR},</if>
+		<if test="null != userMail"> #{userMail,jdbcType=VARCHAR},</if>
+		<if test="null != userGrade"> #{userGrade,jdbcType=CHAR},</if>
+		<if test="null != userStatus"> #{userStatus,jdbcType=TINYINT},</if>
+		<if test="null != schoolId"> #{schoolId,jdbcType=BIGINT},</if>
+		<if test="null != schoolName"> #{schoolName,jdbcType=VARCHAR},</if>
+		<if test="null != collegeId"> #{collegeId,jdbcType=BIGINT},</if>
+		<if test="null != collegeName"> #{collegeName,jdbcType=VARCHAR},</if>
+		<if test="null != majorId"> #{majorId,jdbcType=BIGINT},</if>
+		<if test="null != majorName"> #{majorName,jdbcType=VARCHAR},</if>
+		<if test="null != classId"> #{classId,jdbcType=BIGINT},</if>
+		<if test="null != className"> #{className,jdbcType=VARCHAR},</if>
+		<if test="null != individualityId"> #{individualityId,jdbcType=BIGINT},</if>
+		<if test="null != createClassPermission"> #{createClassPermission,jdbcType=TINYINT},</if>
+		<if test="null != createUserId"> #{createUserId,jdbcType=BIGINT},</if>
+		<if test="null != createTime"> #{createTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != modifyUserId"> #{modifyUserId,jdbcType=BIGINT},</if>
+		<if test="null != modifyTime"> #{modifyTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != delFlag"> #{delFlag,jdbcType=TINYINT},</if>
+	</trim>
+  </insert>
+  <delete id="batchDeleteByArray">
+    delete from sys_user where user_id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="batchDeleteByList">
+    delete from sys_user where user_id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <select id="getList" parameterType="cn.netinnet.educationcenter.domain.SysUser" resultMap="BaseResultMap">
+     select user_id,user_type, role_code, user_login, user_name, user_pwd, user_nickname, user_sex, user_birthday, user_phone, user_mail, user_grade, user_status, school_id, school_name, college_id, college_name, major_id, major_name, class_id, class_name, individuality_id, create_class_permission, create_user_id, create_time, modify_user_id, modify_time, del_flag from sys_user
+    <include refid="sql_where" />
+  </select>
+
+    <!-- 查询某个角色编码拥有的权限 -->
+    <select id="queryUserRoleByUserId" resultType="java.lang.String">
+        select
+            role_code
+        from sys_user
+        where user_id = #{userId}
+          and del_flag = 0
+    </select>
+
+    <!-- 根据用户名查询用户信息 -->
+    <select id="queryUserByLogin" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where user_login = #{login} and del_flag = 0
+    </select>
+
+    <!-- 根据用户id查询密码 -->
+    <select id="queryPwdById" resultType="java.lang.String">
+        select
+            user_pwd
+        from sys_user
+        where user_id = #{userId}
+          and del_flag = 0
+    </select>
+
+    <!-- 根据用户id修改密码 -->
+    <update id="updatePwdById">
+        update
+            sys_user
+        set user_pwd = #{userPwd}
+        where user_id = #{userId}
+          and del_flag = 0
+    </update>
+
+    <!-- 查询用户信息 -->
+    <select id="queryList" parameterType="cn.netinnet.educationcenter.domain.SysUser" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        <where>
+            <if test="null != userType">
+                and user_type = #{userType}
+            </if>
+            <if test="null != userStatus">
+                and user_status = #{userStatus}
+            </if>
+            <if test="null != collegeId">
+                and college_id = #{collegeId}
+            </if>
+            <if test="null != majorId">
+                and major_id = #{majorId}
+            </if>
+            <if test="null != classId">
+                and class_id = #{classId}
+            </if>
+            <if test="null != schoolId">
+                and school_id = #{schoolId}
+            </if>
+            <if test="null != userLogin and  '' != userLogin">
+                and user_login like #{userLogin}
+            </if>
+            <if test="null != userName and  '' != userName">
+                and user_name like #{userName}
+            </if>
+            <if test="null != userMail and  '' != userMail">
+                and user_mail like #{userMail}
+            </if>
+            and del_flag = 0
+        </where>
+    </select>
+
+    <!-- 统计有效记录数 -->
+    <select id="countNumByCondition" resultType="java.lang.Integer">
+        select
+        count(1)
+        from sys_user
+        where del_flag = 0
+        <if test="login != null">
+            and user_login = #{login}
+        </if>
+        <if test="classId != null">
+            and class_id = #{classId}
+        </if>
+    </select>
+
+    <!-- 传入login列表查询其中已存在的login -->
+    <select id="checkLoginsExist" resultType="java.lang.String">
+        select user_login from sys_user
+        <where>
+            user_login in
+            <foreach close=")" collection="list" index="index" item="login" open="(" separator=",">
+                #{login}
+            </foreach>
+            and del_flag = 0
+        </where>
+    </select>
+
+    <!-- 根据账号修改密码和用户名 -->
+    <update id="updatePwdAndNameByLogin">
+        update sys_user
+        set user_pwd = #{userPwd},
+            user_name = #{userName}
+        where user_login = #{userLogin}
+          and del_flag = 0
+    </update>
+
+    <!-- 根据账号修改用户名 -->
+    <update id="updateNameByLogin">
+        update sys_user
+        set user_name = #{userName}
+        where user_login = #{userLogin}
+          and del_flag = 0
+    </update>
+
+    <!-- 根据用户类型, 学校id, 组织id, 查询用户idList -->
+    <select id="queryIdListByUserSchoolOrg" parameterType="cn.netinnet.educationcenter.domain.SysUser" resultType="java.lang.Long">
+        select user_id AS userId
+        from sys_user
+        <where>
+            user_type = #{userType}
+            <if test="null != schoolId">
+                and school_id = #{schoolId}
+            </if>
+            and del_flag = 0
+            <if test="null != collegeId">
+                and college_id = #{collegeId}
+            </if>
+            <if test="null != majorId">
+                and major_id = #{majorId}
+            </if>
+            <if test="null != classId">
+                and class_id = #{classId}
+            </if>
+        </where>
+    </select>
+
+    <!-- 根据schoolId, userType获取userId -->
+    <select id="queryUserIdsBySchoolId" resultType="java.lang.Long">
+        select user_id
+        from sys_user
+        where school_id = #{schoolId}
+        and user_type = #{userType}
+    </select>
+
+    <!-- 获取已经被删除的学生 Id-->
+    <select id="queryDeletedStudentIds" resultType="java.lang.Long">
+        select  user_id
+        from   sys_user
+        where user_type = '3'
+        and   del_flag = '1'
+        and   modify_time <![CDATA[<=]]> #{endDate}
+    </select>
+
+    <!-- 获取对应组织下的学生id -->
+    <select id="queryStudentIdsByOrgId" resultType="java.lang.Long">
+        select   user_id
+        from     sys_user
+        where    user_type = '3'
+        and      ${column} = #{schoolOrgId}
+    </select>
+
+    <!-- 查询 学生用户信息 -->
+    <select id="queryUserInfo" resultType="cn.netinnet.educationcenter.domain.SysUser">
+        select
+          class_id,class_name,user_id,user_name,individuality_id
+        from  sys_user
+        <where>
+        school_id = #{schoolId}
+        and   user_type = 3
+        and   del_flag = 0
+        <if test="className !='' and className!=null">
+        and   class_name like #{className}
+        </if>
+        <if test="studentIds.size>0">
+            and user_id not in
+            <foreach collection="studentIds" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+            </foreach>
+        </if>
+        <if test="userId != null">
+            and create_user_id = #{userId}
+        </if>
+        </where>
+    </select>
+
+    <!--插入或更新用户-->
+    <insert id="insertOrUpdate">
+        insert ignore into sys_user (user_id,user_type,role_code,user_login,user_name,user_pwd,school_id,create_user_id,modify_user_id) values
+        (#{userId}, #{userType}, #{roleCode}, #{userLogin}, #{userName}, #{userPwd}, #{schoolId}, #{createUserId} ,#{createUserId})
+        on DUPLICATE KEY UPDATE
+        user_type = #{userType}, role_code = #{roleCode}, user_login = #{userLogin}, user_name = #{userName}, school_id = #{schoolId}, modify_user_id = #{createUserId}
+    </insert>
+
+    <!-- 批量逻辑删除学生 -->
+    <update id="batchLogicalDelete">
+        update sys_user
+        set    del_flag = 1
+        where  user_id  in
+        <foreach collection="studentIds" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 获取存在的用户 -->
+    <select id="queryExistUser" resultType="java.lang.Long">
+        select   user_id
+        from     sys_user
+        where    user_id   in
+        <foreach collection="userIds" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+    <!-- 查询用户名 -->
+    <select id="queryUserName" resultType="cn.netinnet.educationcenter.domain.SysUser">
+        select user_id, user_name, user_login from sys_user
+        where    user_id   in
+        <foreach collection="userIds" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!--通过第三方id更新用户状态-->
+    <update id="changeUserStatusByIndividualityId">
+        update sys_user set user_status = #{userStatus} where individuality_id in
+        <foreach collection="individualityIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+        and and del_flag = 0
+    </update>
+
+    <!--通过第三方关字段查询用户关系-->
+    <select id="queryRelByIndividualityKey" resultMap="BaseResultMap">
+        select user_id,individuality_id,class_name  from sys_user
+        <where>
+            del_flag = 0
+            <if test="schoolId != null"> and school_id = #{schoolId}</if>
+            <if test="classId != null">  and class_id = #{classId}</if>
+            <if test="individualityIds != null and individualityIds.size > 0">
+                and individuality_id in <foreach collection="individualityIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+            </if>
+        </where>
+    </select>
+
+    <!--更新学校名或者班级名-->
+    <update id="updateSchoolAndClassName">
+        update sys_user
+        <set>
+            <if test="schoolName!= null and schoolName != '' ">
+                school_name = #{schoolName},
+            </if>
+            <if test="className!= null and className!= '' ">
+                class_name = #{className},
+            </if>
+        </set>
+        where user_id in
+        <foreach collection="userIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+        and del_flag = 0
+    </update>
+
+    <!--通过第三方id查询用户-->
+    <select id="queryUserIdByIndividualityId" resultType="java.lang.Long">
+        select user_id from sys_user where individuality_id = #{individualityId} and del_flag = 0
+    </select>
+
+    <!--通过第三方id查询用户-->
+    <select id="queryUserIdByIndividualityIds" resultType="long">
+        select user_id from sys_user where individuality_id in
+        <foreach collection="individualityIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+        and del_flag = 0
+    </select>
+
+    <!-- 查询 学生用户信息 -->
+    <select id="queryUserInfoByIndividual" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from  sys_user
+        <where>
+            school_id = #{schoolId}
+            and   user_type = 3
+            and   del_flag = 0
+            <if test="className !='' and className!=null">
+                and   class_name like #{className}
+            </if>
+            <if test="individualIds.size>0">
+                and individuality_id not in
+                <foreach collection="individualIds" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+</mapper>

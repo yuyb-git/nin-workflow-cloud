@@ -47,9 +47,9 @@ public class ShiroConfig {
 
         filterChainDefinitionMap.put("/api/**", "anon");
         filterChainDefinitionMap.put("/sysPermission/**", "anon");
-        filterChainDefinitionMap.put("/user-center/login", "anon");
-        filterChainDefinitionMap.put("/user-center/logout", "anon");
-        filterChainDefinitionMap.put("/user-center/changePwd", "anon");
+        filterChainDefinitionMap.put("/nin-zuul/login", "anon");
+        filterChainDefinitionMap.put("/nin-zuul/logout", "anon");
+        filterChainDefinitionMap.put("/nin-zuul/changePwd", "anon");
         filterChainDefinitionMap.put("/assist/**", "anon");
         filterChainDefinitionMap.put("/", "anon");
         // 配置退出过滤器，其中具体的退出代码Shiro已经替我们实现了
