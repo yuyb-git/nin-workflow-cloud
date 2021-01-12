@@ -63,5 +63,14 @@ public class UserUtil {
         return examInfo;
     }
 
-
+    /**
+     * 获取用户的批次或者考试信息
+     * @param session
+     * @author ousp
+     * @date 2020/8/10
+     * @return cn.netinnet.workflow.sys.domain.dto.ExamInfo
+     */
+    public static ExamInfo getExamInfoWithOutCheck(HttpSession session) {
+        return (ExamInfo) SessionUtil.getSessionAttr(session, GlobalConstant.SESSION_EXAM, new ExamInfo());
+    }
 }

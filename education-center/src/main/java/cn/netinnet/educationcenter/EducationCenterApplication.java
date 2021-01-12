@@ -22,7 +22,6 @@ public class EducationCenterApplication {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
 }

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.netinnet.educationcenter.dao.SysExamQuestionMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.educationcenter.domain.SysExamQuestion">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="session_id" jdbcType="BIGINT" property="sessionId" />
+    <result column="qustion_id" jdbcType="BIGINT" property="qustionId" />
+    <result column="score_value" jdbcType="TINYINT" property="scoreValue" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, session_id, qustion_id, score_value, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_exam_question
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_exam_question
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.educationcenter.domain.SysExamQuestion">
+    update sys_exam_question
+    <set>
+      <if test="sessionId != null">
+        session_id = #{sessionId,jdbcType=BIGINT},
+      </if>
+      <if test="qustionId != null">
+        qustion_id = #{qustionId,jdbcType=BIGINT},
+      </if>
+      <if test="scoreValue != null">
+        score_value = #{scoreValue,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="sql_columns">
+    insert into sys_exam_question
+	<trim prefix="(" suffix=") values" suffixOverrides=",">
+		id,session_id,qustion_id,score_value,
+	</trim>
+  </sql>
+  <sql id="sql_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		, #{item.id}
+		, #{item.sessionId}
+		, #{item.qustionId}
+		, #{item.scoreValue}
+		, #{item.createTime}
+		, #{item.modifyTime}
+	</trim>
+  </sql>
+  <sql id="sql_where">
+    <where>
+		<if test="null != item.id">and id = #{item.id}</if>
+		<if test="null != item.sessionId">and session_id = #{item.sessionId}</if>
+		<if test="null != item.qustionId">and qustion_id = #{item.qustionId}</if>
+		<if test="null != item.scoreValue">and score_value = #{item.scoreValue}</if>
+		<if test="null != item.createTime">and create_time = #{item.createTime}</if>
+		<if test="null != item.modifyTime">and modify_time = #{item.modifyTime}</if>
+	</where>
+  </sql>
+  <sql id="sql_update">
+    update sys_exam_question set
+	<trim prefix="" suffix="" prefixOverrides=",">
+		<if test="null != item.id">, id = #{item.id}</if>
+		<if test="null != item.sessionId">, session_id = #{item.sessionId}</if>
+		<if test="null != item.qustionId">, qustion_id = #{item.qustionId}</if>
+		<if test="null != item.scoreValue">, score_value = #{item.scoreValue}</if>
+		<if test="null != item.createTime">, create_time = #{item.createTime}</if>
+		<if test="null != item.modifyTime">, modify_time = #{item.modifyTime}</if>
+	</trim>
+	where  id = #{item.id}
+  </sql>
+  <sql id="sql_save_columns">
+    insert into sys_exam_question
+	<trim prefix="(" suffix=") values" prefixOverrides=",">
+		<if test="null != list[0].id">, id</if>
+		<if test="null != list[0].sessionId">, session_id</if>
+		<if test="null != list[0].qustionId">, qustion_id</if>
+		<if test="null != list[0].scoreValue">, score_value</if>
+		<if test="null != list[0].createTime">, create_time</if>
+		<if test="null != list[0].modifyTime">, modify_time</if>
+	</trim>
+  </sql>
+  <sql id="sql_save_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		<if test="null != item.id">, #{item.id}</if>
+		<if test="null != item.sessionId">, #{item.sessionId}</if>
+		<if test="null != item.qustionId">, #{item.qustionId}</if>
+		<if test="null != item.scoreValue">, #{item.scoreValue}</if>
+		<if test="null != item.createTime">, #{item.createTime}</if>
+		<if test="null != item.modifyTime">, #{item.modifyTime}</if>
+	</trim>
+  </sql>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <include refid="sql_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_values" />
+	</foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    <include refid="sql_save_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_save_values" />
+	</foreach>
+  </insert>
+  <update id="batchUpdateByPrimaryKey">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <insert id="insertSelective" parameterType="cn.netinnet.educationcenter.domain.SysExamQuestion">
+    insert into sys_exam_question
+	<trim prefix="(" suffix=") " suffixOverrides=",">
+		<if test="null != id"> id,</if>
+		<if test="null != sessionId"> session_id,</if>
+		<if test="null != qustionId"> qustion_id,</if>
+		<if test="null != scoreValue"> score_value,</if>
+		<if test="null != createTime"> create_time,</if>
+		<if test="null != modifyTime"> modify_time,</if>
+	</trim>
+	 <trim prefix=" values(" suffix=")" suffixOverrides=",">
+		<if test="null != id"> #{id,jdbcType=BIGINT},</if>
+		<if test="null != sessionId"> #{sessionId,jdbcType=BIGINT},</if>
+		<if test="null != qustionId"> #{qustionId,jdbcType=BIGINT},</if>
+		<if test="null != scoreValue"> #{scoreValue,jdbcType=TINYINT},</if>
+		<if test="null != createTime"> #{createTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != modifyTime"> #{modifyTime,jdbcType=TIMESTAMP},</if>
+	</trim>
+  </insert>
+  <delete id="batchDeleteByArray">
+    delete from sys_exam_question where id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="batchDeleteByList">
+    delete from sys_exam_question where id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <select id="getList" parameterType="cn.netinnet.educationcenter.domain.SysExamQuestion" resultMap="BaseResultMap">
+     select id,session_id, qustion_id, score_value, create_time, modify_time from sys_exam_question
+    <include refid="sql_where" />
+  </select>
+
+    <!-- 查询考试已添加的试题信息 -->
+    <select id="getExamQuestionList" resultType="cn.netinnet.educationcenter.domain.dto.ExamQuestion">
+        select seq.id,
+        sq.question_id,sq.question_title,sq.question_category,
+        sq.question_type,wc.company_name,
+        sq.attach_count,seq.score_value
+        from sys_question sq
+        inner join sys_exam_question seq
+        on seq.qustion_id = sq.question_id
+        left join wf_company wc
+        on wc.company_id = sq.company_id and wc.del_flag = 0
+        where seq.session_id = #{sessionId}
+        <if test="questionTitle != null and questionTitle != ''">
+            and sq.question_title like #{questionTitle}
+        </if>
+        order by sq.question_category,sq.create_time
+    </select>
+
+    <!-- 查询未被考试试用的试题信息 -->
+    <select id="getExamQuestionListNotAdd" resultType="cn.netinnet.educationcenter.domain.dto.ExamQuestion">
+        SELECT
+        sq.question_id,
+        sq.question_title,
+        sq.question_type,
+        sq.question_category,
+        wc.company_name
+        FROM sys_question sq
+        left JOIN wf_company wc
+        ON wc.company_id = sq.company_id and wc.del_flag = 0
+        WHERE sq.question_status = 0
+        <if test="questionIds != null and questionIds.size()>0">
+            and sq.question_id NOT IN
+            <foreach collection="questionIds" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+        </if>
+        <if test="questionTitle != null and questionTitle != ''">
+            and sq.question_title like #{questionTitle}
+        </if>
+        <choose>
+            <when test="userType == 2">
+               and ((question_category = 0 and open_source = 1) or sq.create_user_id = #{userId})
+            </when>
+            <otherwise>
+               and question_category = 0
+            </otherwise>
+        </choose>
+        order by sq.question_category,sq.create_time desc
+    </select>
+
+    <!-- 查询场次试题信息 -->
+    <select id="getExamQuestionBySessionId" resultMap="BaseResultMap">
+        select session_id, qustion_id from sys_exam_question where session_id = #{sessionId}
+    </select>
+
+    <!--通过sessionId查询场次信息-->
+    <select id="queryExamInfo" resultType="cn.netinnet.educationcenter.domain.SysExamQuestion">
+        select session_id, qustion_id from sys_exam_question where session_id in
+        <foreach collection="sessionIds" item="item" close=")" open="(" separator=",">#{item}</foreach>
+    </select>
+
+    <!-- 通过sessionId删除 -->
+    <delete id="delBySessionIds">
+        delete from sys_exam_question where session_id in
+        <foreach collection="sessionIds" item="item" close=")" open="(" separator=",">#{item}</foreach>
+    </delete>
+
+    <!-- 获取已经被使用的题目ID -->
+    <select id="queryUsedQuestionIds" resultType="java.lang.Long">
+        select  qustion_id
+        from    sys_exam_question
+        where   qustion_id    in
+        <foreach collection="questionIds" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!-- 查询考试场次的题目id -->
+    <select id="getQuestionIdsBySessionId" resultType="long">
+        select  qustion_id
+        from    sys_exam_question
+        where session_id = #{sessionId}
+    </select>
+
+    <!-- 根据题目id查询主键id -->
+    <select id="getIdsByQuestionIds" resultType="long">
+        select  id
+        from    sys_exam_question
+        where   qustion_id    in
+        <foreach collection="questionIds" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and session_id = #{sessionId}
+    </select>
+
+    <!-- 查询场次下的题目 -->
+    <select id="getQuestionsBySessionId" resultType="java.lang.Long">
+        select qustion_id from sys_exam_question where session_id = #{sessionId}
+    </select>
+
+    <!-- 获取考试题目信息 -->
+    <select id="queryExamQuestionBySessionId" resultType="cn.netinnet.educationcenter.domain.SysExamQuestion">
+        select   id, session_id, qustion_id, create_time, modify_time
+        from    sys_exam_question
+        where   session_id = #{sessionId}
+    </select>
+
+    <!-- 查询考试单个题目 -->
+    <select id="getExamQuestionBySessionQuesId" resultMap="BaseResultMap">
+        select   id, session_id, qustion_id, create_time, modify_time
+        from    sys_exam_question
+        where   session_id = #{sessionId}
+          and qustion_id = #{questionId}
+    </select>
+
+    <!--查询场次下题目信息-->
+    <select id="queryQuestionDetail" resultType="map">
+        select
+            sq.question_id as questionId,
+            seq.create_time as createTime,
+            sq.question_title as questionTitle,
+            seq.score_value as score
+        from sys_exam_question seq
+            inner join sys_question sq on seq.qustion_id = sq.question_id
+        where seq.session_id = #{sessionId}
+        order by sq.question_category,sq.create_time
+    </select>
+
+    <!--查询场次下题目计数-分组-->
+    <select id="countBySessionId" resultType="map">
+        select session_id as sessionId,count(1) as num from sys_exam_question
+        where session_id in
+        <foreach collection="sessionIds" item="item" close=")" open="(" separator=",">#{item}</foreach>
+        group by session_id
+    </select>
+
+    <!--查询场次下题目分数-->
+    <select id="getAllQuestionScore" resultMap="BaseResultMap">
+        select qustion_id, score_value from sys_exam_question where session_id = #{sessionId}
+    </select>
+
+    <!--查询题目分数-->
+    <select id="queryQuestionScore" resultType="java.lang.Integer">
+        select score_value from sys_exam_question where session_id = #{sessionId} and qustion_id = #{questionId}
+    </select>
+</mapper>

@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.netinnet.educationcenter.dao.SysExamUserMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.educationcenter.domain.SysExamUser">
+    <id column="exam_id" jdbcType="BIGINT" property="examId" />
+    <result column="session_id" jdbcType="BIGINT" property="sessionId" />
+    <result column="batch_id" jdbcType="BIGINT" property="batchId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="submit_state" jdbcType="TINYINT" property="submitState" />
+    <result column="total_score" jdbcType="DECIMAL" property="totalScore" />
+    <result column="extra_end_time" jdbcType="TIMESTAMP" property="extraEndTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    exam_id, session_id, batch_id, user_id, submit_state, total_score, extra_end_time,
+    create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_exam_user
+    where exam_id = #{examId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_exam_user
+    where exam_id = #{examId,jdbcType=BIGINT}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.educationcenter.domain.SysExamUser">
+    update sys_exam_user
+    <set>
+      <if test="sessionId != null">
+        session_id = #{sessionId,jdbcType=BIGINT},
+      </if>
+      <if test="batchId != null">
+        batch_id = #{batchId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="submitState != null">
+        submit_state = #{submitState,jdbcType=TINYINT},
+      </if>
+      <if test="totalScore != null">
+        total_score = #{totalScore,jdbcType=DECIMAL},
+      </if>
+      <if test="extraEndTime != null">
+        extra_end_time = #{extraEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where exam_id = #{examId,jdbcType=BIGINT}
+  </update>
+  <sql id="sql_columns">
+    insert into sys_exam_user
+	<trim prefix="(" suffix=") values" suffixOverrides=",">
+		exam_id,session_id,batch_id,user_id,submit_state,total_score,extra_end_time,
+	</trim>
+  </sql>
+  <sql id="sql_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		, #{item.examId}
+		, #{item.sessionId}
+		, #{item.batchId}
+		, #{item.userId}
+		, #{item.submitState}
+		, #{item.totalScore}
+		, #{item.extraEndTime}
+		, #{item.createTime}
+		, #{item.modifyTime}
+	</trim>
+  </sql>
+  <sql id="sql_where">
+    <where>
+		<if test="null != item.examId">and exam_id = #{item.examId}</if>
+		<if test="null != item.sessionId">and session_id = #{item.sessionId}</if>
+		<if test="null != item.batchId">and batch_id = #{item.batchId}</if>
+		<if test="null != item.userId">and user_id = #{item.userId}</if>
+		<if test="null != item.submitState">and submit_state = #{item.submitState}</if>
+		<if test="null != item.totalScore">and total_score = #{item.totalScore}</if>
+		<if test="null != item.extraEndTime">and extra_end_time = #{item.extraEndTime}</if>
+		<if test="null != item.createTime">and create_time = #{item.createTime}</if>
+		<if test="null != item.modifyTime">and modify_time = #{item.modifyTime}</if>
+	</where>
+  </sql>
+  <sql id="sql_update">
+    update sys_exam_user set
+	<trim prefix="" suffix="" prefixOverrides=",">
+		<if test="null != item.examId">, exam_id = #{item.examId}</if>
+		<if test="null != item.sessionId">, session_id = #{item.sessionId}</if>
+		<if test="null != item.batchId">, batch_id = #{item.batchId}</if>
+		<if test="null != item.userId">, user_id = #{item.userId}</if>
+		<if test="null != item.submitState">, submit_state = #{item.submitState}</if>
+		<if test="null != item.totalScore">, total_score = #{item.totalScore}</if>
+		<if test="null != item.extraEndTime">, extra_end_time = #{item.extraEndTime}</if>
+		<if test="null != item.createTime">, create_time = #{item.createTime}</if>
+		<if test="null != item.modifyTime">, modify_time = #{item.modifyTime}</if>
+	</trim>
+	where  exam_id = #{item.examId}
+  </sql>
+  <sql id="sql_save_columns">
+    insert into sys_exam_user
+	<trim prefix="(" suffix=") values" prefixOverrides=",">
+		<if test="null != list[0].examId">, exam_id</if>
+		<if test="null != list[0].sessionId">, session_id</if>
+		<if test="null != list[0].batchId">, batch_id</if>
+		<if test="null != list[0].userId">, user_id</if>
+		<if test="null != list[0].submitState">, submit_state</if>
+		<if test="null != list[0].totalScore">, total_score</if>
+		<if test="null != list[0].extraEndTime">, extra_end_time</if>
+		<if test="null != list[0].createTime">, create_time</if>
+		<if test="null != list[0].modifyTime">, modify_time</if>
+	</trim>
+  </sql>
+  <sql id="sql_save_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		<if test="null != item.examId">, #{item.examId}</if>
+		<if test="null != item.sessionId">, #{item.sessionId}</if>
+		<if test="null != item.batchId">, #{item.batchId}</if>
+		<if test="null != item.userId">, #{item.userId}</if>
+		<if test="null != item.submitState">, #{item.submitState}</if>
+		<if test="null != item.totalScore">, #{item.totalScore}</if>
+		<if test="null != item.extraEndTime">, #{item.extraEndTime}</if>
+		<if test="null != item.createTime">, #{item.createTime}</if>
+		<if test="null != item.modifyTime">, #{item.modifyTime}</if>
+	</trim>
+  </sql>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <include refid="sql_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_values" />
+	</foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    <include refid="sql_save_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_save_values" />
+	</foreach>
+  </insert>
+  <update id="batchUpdateByPrimaryKey">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <insert id="insertSelective" parameterType="cn.netinnet.educationcenter.domain.SysExamUser">
+    insert into sys_exam_user
+	<trim prefix="(" suffix=") " suffixOverrides=",">
+		<if test="null != examId"> exam_id,</if>
+		<if test="null != sessionId"> session_id,</if>
+		<if test="null != batchId"> batch_id,</if>
+		<if test="null != userId"> user_id,</if>
+		<if test="null != submitState"> submit_state,</if>
+		<if test="null != totalScore"> total_score,</if>
+		<if test="null != extraEndTime"> extra_end_time,</if>
+		<if test="null != createTime"> create_time,</if>
+		<if test="null != modifyTime"> modify_time,</if>
+	</trim>
+	 <trim prefix=" values(" suffix=")" suffixOverrides=",">
+		<if test="null != examId"> #{examId,jdbcType=BIGINT},</if>
+		<if test="null != sessionId"> #{sessionId,jdbcType=BIGINT},</if>
+		<if test="null != batchId"> #{batchId,jdbcType=BIGINT},</if>
+		<if test="null != userId"> #{userId,jdbcType=BIGINT},</if>
+		<if test="null != submitState"> #{submitState,jdbcType=TINYINT},</if>
+		<if test="null != totalScore"> #{totalScore,jdbcType=DECIMAL},</if>
+		<if test="null != extraEndTime"> #{extraEndTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != createTime"> #{createTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != modifyTime"> #{modifyTime,jdbcType=TIMESTAMP},</if>
+	</trim>
+  </insert>
+  <delete id="batchDeleteByArray">
+    delete from sys_exam_user where exam_id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="batchDeleteByList">
+    delete from sys_exam_user where exam_id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <select id="getList" parameterType="cn.netinnet.educationcenter.domain.SysExamUser" resultMap="BaseResultMap">
+     select exam_id,session_id, batch_id, user_id, submit_state, total_score, extra_end_time, create_time, modify_time from sys_exam_user
+    <include refid="sql_where" />
+  </select>
+
+    <!--查询考试用户信息-->
+    <select id="queryUserInfo" resultMap="BaseResultMap">
+        select session_id,user_id from sys_exam_user where (session_id,user_id) in
+        <foreach collection="userList" item="item" close=")" open="(" separator=",">
+            (${item.sessionId}, ${item.userId})
+        </foreach>
+    </select>
+
+    <!--更新提交状态-->
+    <update id="updateSubmitState">
+        update sys_exam_user set submit_state = #{submitState} where session_id = #{sessionId} and user_id in
+        <foreach collection="userIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+    </update>
+
+    <!--重置考试-->
+    <update id="resetExam">
+        <if test="examIds != null and examIds.size > 0">
+            update sys_exam_user set submit_state = 0, total_score = 0 where exam_id in
+            <foreach collection="examIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+        </if>;
+        <if test="scoreList != null and scoreList.size > 0">
+            update sys_exam_score set score = 0, org_score = 0, position_score = 0,proc_design_score = 0, proc_run_score = 0, question_state = 0 where id in
+            <foreach collection="scoreList" separator="," open="(" close=")" item="item">#{item}</foreach>
+        </if>
+    </update>
+
+    <!--删除用户信息-->
+    <delete id="delExamUser">
+        <if test="examIds != null and examIds.size > 0">
+            delete from sys_exam_user where exam_id in
+            <foreach collection="examIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+        </if>;
+
+        <if test="scoreList != null and scoreList.size > 0">
+            delete from sys_exam_score where id in
+            <foreach collection="scoreList" separator="," open="(" close=")" item="item">#{item}</foreach>
+        </if>
+    </delete>
+
+    <!-- 查询考试用户信息 -->
+    <select id="queryBySessionIdAndUserId" resultMap="BaseResultMap">
+        select exam_id,session_id,batch_id,submit_state,extra_end_time
+        from sys_exam_user
+        where session_id = #{sessionId}
+          and user_id = #{userId}
+    </select>
+
+    <!--获取考试用户-->
+    <select id="querySessionIdAndUserId" resultType="cn.netinnet.educationcenter.domain.SysExamUser">
+        select exam_id, session_id, user_id from sys_exam_user where session_id in
+        <foreach collection="sessionIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+    </select>
+
+    <!-- 获取考试或者批次用户的examId -->
+    <select id="getExamUser" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from   sys_exam_user
+        where user_id = #{userId}
+        <if test="sessionId != null">and session_id = #{sessionId}</if>
+        <if test="batchId != null">and batch_id = #{batchId}</if>
+    </select>
+
+    <!-- 更新成绩 -->
+    <update id="updateScoreAndstate">
+        update sys_exam_user set total_score = #{score}
+        <if test="state != null">, submit_state = #{state}</if>
+         where exam_id = #{examId}
+    </update>
+
+    <!-- 查询场次下是否有学生 -->
+    <select id="existUserBySessionId" resultType="java.lang.Integer">
+        select 1 from sys_exam_user where session_id = #{sessionId} limit 1
+    </select>
+
+    <!-- 查询考试下的学生id -->
+    <select id="queryUserIdBySessionId" resultType="long">
+        select user_id from sys_exam_user where session_id = #{sessionId}
+    </select>
+
+    <!-- 根据考试用户id查询用户id -->
+    <select id="queryExamUserByExamUserId" resultMap="BaseResultMap">
+        select exam_id, session_id,user_id from sys_exam_user where exam_id in
+        <foreach collection="examUserIdList" separator="," open="(" close=")" item="item">#{item}</foreach>
+    </select>
+
+    <!--获取考试学生列表-->
+    <select id="queryExamStudentList" resultType="java.util.Map">
+        SELECT
+            a.exam_id AS examStudentId,
+            a.session_id AS sessionId,
+            a.user_id AS userId,
+            (CASE WHEN b.del_flag>0 THEN CONCAT(b.user_name,'(已删除)') ELSE b.user_name END) AS userName,
+            a.create_time AS createTime,
+            b.user_login AS userLogin
+        FROM sys_exam_user a
+        INNER JOIN sys_user b ON (a.user_id = b.user_id)
+        <where>
+            a.session_id = #{sessionId}
+            <if test="userLogin != null and '' != userLogin">
+                AND b.user_login LIKE #{userLogin}
+            </if>
+            <if test="userName != null and '' != userName">
+                AND b.user_name LIKE #{userName}
+            </if>
+        </where>
+    </select>
+
+    <!-- 获取存在的考试用户 -->
+    <select id="queryExistExamUser" resultType="java.lang.Long">
+        select   user_id
+        from     sys_exam_user
+        where    user_id   in
+        <foreach collection="userIds" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and session_id = #{sessionId}
+    </select>
+
+    <!-- 获取考试用户成绩 -->
+    <select id="queryExamUsersBySessionId" resultType="java.util.Map">
+        select   user_id   as   studentId,
+                 total_score  as  score,
+                 modify_time as submitTime,
+                 submit_state as submitState
+        from     sys_exam_user
+        where    session_id   =  #{sessionId}
+    </select>
+
+    <!-- 根据sessionId获取examId -->
+    <select id="queryExamUserBySessionIds" resultType="java.lang.Long">
+        select  exam_id
+        from    sys_exam_user
+        where   session_id  in
+        <foreach collection="sessionIds" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!-- 更新提交状态 -->
+    <update id="updateSubmitStateByIds">
+        <if test="examIds != null and examIds.size > 0">
+            update sys_exam_user set submit_state = #{state} where exam_id in
+            <foreach collection="examIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+        </if>;
+    </update>
+
+    <!--查询examid-->
+    <select id="queryIdBySessionIdAndUser" resultMap="BaseResultMap">
+        select   exam_id, session_id,user_id from sys_exam_user
+        where session_id = #{sessionId}
+        and user_id in
+        <foreach collection="userIds" item="item" close=")" open="(" separator=",">#{item}</foreach>
+    </select>
+
+    <!-- 获取examId -->
+    <select id="queryExamUserByBatchId" resultMap="BaseResultMap">
+        select  exam_id, session_id,user_id from sys_exam_user
+        where batch_id = #{batchId}
+    </select>
+
+    <!-- 通过 批次学生获取examId -->
+    <select id="queryExamUserByBatchStudent" resultMap="BaseResultMap">
+        select exam_id,session_id,user_id  from sys_exam_user where (batch_id,user_id) in
+        <foreach collection="studentList" item="item" close=")" open="(" separator=",">
+            (${item.batchId}, ${item.userId})
+        </foreach>
+    </select>
+
+    <!--重置考试-->
+    <update id="batchResetUserExam">
+        <if test="examUserIds != null and examUserIds.size > 0">
+            update sys_exam_user set submit_state = 0, total_score = 0 where exam_id in
+            <foreach collection="examUserIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+        </if>;
+        update sys_exam_score set score = 0, org_score = 0, position_score = 0,proc_design_score = 0, proc_run_score = 0, question_state = 0 where session_id = #{sessionId}
+        <if test="userIds != null and userIds.size > 0">
+           and user_id in <foreach collection="userIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+        </if>
+    </update>
+
+    <!-- 查询用户数据 -->
+    <select id="queryUserExamData" resultType="cn.netinnet.educationcenter.domain.SysExamUser">
+        select session_id, submit_state, total_score
+        from sys_exam_user
+        where user_id = #{userId} and batch_id = #{batchId} and session_id in
+        <foreach collection="sessionIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+    </select>
+
+    <!-- 查询开始、作业、练习下用户的考试情况 -->
+    <select id="getSessionUserDeatil" resultType="cn.netinnet.educationcenter.domain.dto.SessionCompleteDetail">
+        select
+               seu.session_id as sessionId, seu.submit_state as submitState,
+               seu.total_score as score, su.class_name as className,
+               ses.question_id as questionId, seu.modify_time as submitTime,
+               su.user_id as userId, su.user_name as userName
+        FROM
+        sys_batch_student sbs
+        LEFT JOIN  sys_exam_user seu ON sbs.user_id = seu.user_id  AND seu.session_id = #{sessionId}
+        INNER JOIN sys_user su
+        ON su.user_id = sbs.user_id
+        LEFT JOIN sys_exam_session ses
+        ON ses.session_id = seu.session_id
+        WHERE  sbs.batch_id = #{batchId}
+        <if test="classId != null">
+            and su.class_id = #{classId}
+        </if>
+        <if test="submitStatus != null">
+            and ifnull(seu.submit_state,0) = #{submitStatus}
+        </if>
+        <if test="userName != null and userName != ''">
+            and su.user_name like #{userName}
+        </if>
+        and sbs.del_flag = 0
+    </select>
+
+    <!-- 获取提交状态为未提交的考试学生 -->
+    <select id="querySessionUser" resultType="cn.netinnet.educationcenter.domain.SysExamUser">
+        select   exam_id , user_id, batch_id
+        from     sys_exam_user
+        where    session_id  = #{sessionId}
+    </select>
+
+    <!--查询用户是否提交-->
+    <select id="getUserSubmitList" resultType="long">
+        SELECT seu.session_id FROM sys_exam_user seu INNER JOIN sys_batch_student sbs ON seu.batch_id = sbs.batch_id AND seu.user_id = sbs.user_id
+        WHERE sbs.del_flag = 0 AND seu.session_id IN
+        <foreach collection="sessionIds" item="item" close=")" open="(" separator=",">
+            #{item}
+        </foreach>
+        and submit_state = 1
+    </select>
+
+    <!-- 查询examId-->
+    <select id="getExamId" resultType="long">
+        select exam_id
+        from sys_exam_user
+        where session_id = #{sessionId}
+          and user_id = #{userId}
+    </select>
+
+    <!--取消考试提交-->
+    <update id="cancelSubmitExam">
+        update sys_exam_user set submit_state = 0 where exam_id = #{examId}
+    </update>
+
+    <!-- 延时 -->
+    <update id="addExtraTime">
+        update sys_exam_user set submit_state = #{submitState}, extra_end_time = #{extraEndTime}, modify_time = modify_time where session_id = #{sessionId} and user_id in
+        <foreach collection="userIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+    </update>
+
+    <!-- 取消延时 -->
+    <update id="delExtraTime">
+        update sys_exam_user set extra_end_time = null, modify_time = modify_time where session_id = #{sessionId} and user_id in
+        <foreach collection="userIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+    </update>
+
+    <!-- 查询学生延时 -->
+    <select id="queryExtraTimeById" resultType="java.util.Date">
+        select extra_end_time from sys_exam_user where exam_id = #{examId}
+    </select>
+
+    <!-- 查询提交状态 -->
+    <select id="getSubmitStateById" resultType="java.lang.Integer">
+        select submit_state from sys_exam_user where exam_id = #{examId}
+    </select>
+
+    <!--查询考试学生-->
+    <select id="queryAllByUserId" resultType="java.lang.Long">
+        select exam_id from sys_exam_user where user_id = #{userId}
+    </select>
+</mapper>

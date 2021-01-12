@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.netinnet.educationcenter.dao.SysExamScoreMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.educationcenter.domain.SysExamScore">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="session_id" jdbcType="BIGINT" property="sessionId" />
+    <result column="qustion_id" jdbcType="BIGINT" property="qustionId" />
+    <result column="question_state" jdbcType="TINYINT" property="questionState" />
+    <result column="proc_run_score" jdbcType="DECIMAL" property="procRunScore" />
+    <result column="proc_design_score" jdbcType="DECIMAL" property="procDesignScore" />
+    <result column="position_score" jdbcType="DECIMAL" property="positionScore" />
+    <result column="org_score" jdbcType="DECIMAL" property="orgScore" />
+    <result column="score" jdbcType="DECIMAL" property="score" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, session_id, qustion_id, question_state, proc_run_score, proc_design_score, position_score,
+    org_score, score, user_id, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_exam_score
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_exam_score
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.educationcenter.domain.SysExamScore">
+    update sys_exam_score
+    <set>
+      <if test="sessionId != null">
+        session_id = #{sessionId,jdbcType=BIGINT},
+      </if>
+      <if test="qustionId != null">
+        qustion_id = #{qustionId,jdbcType=BIGINT},
+      </if>
+      <if test="questionState != null">
+        question_state = #{questionState,jdbcType=TINYINT},
+      </if>
+      <if test="procRunScore != null">
+        proc_run_score = #{procRunScore,jdbcType=DECIMAL},
+      </if>
+      <if test="procDesignScore != null">
+        proc_design_score = #{procDesignScore,jdbcType=DECIMAL},
+      </if>
+      <if test="positionScore != null">
+        position_score = #{positionScore,jdbcType=DECIMAL},
+      </if>
+      <if test="orgScore != null">
+        org_score = #{orgScore,jdbcType=DECIMAL},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="sql_columns">
+    insert into sys_exam_score
+	<trim prefix="(" suffix=") values" suffixOverrides=",">
+		id,session_id,qustion_id,question_state,proc_run_score,proc_design_score,position_score,org_score,score,user_id,
+	</trim>
+  </sql>
+  <sql id="sql_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		, #{item.id}
+		, #{item.sessionId}
+		, #{item.qustionId}
+		, #{item.questionState}
+		, #{item.procRunScore}
+		, #{item.procDesignScore}
+		, #{item.positionScore}
+		, #{item.orgScore}
+		, #{item.score}
+		, #{item.userId}
+		, #{item.createTime}
+		, #{item.modifyTime}
+	</trim>
+  </sql>
+  <sql id="sql_where">
+    <where>
+		<if test="null != item.id">and id = #{item.id}</if>
+		<if test="null != item.sessionId">and session_id = #{item.sessionId}</if>
+		<if test="null != item.qustionId">and qustion_id = #{item.qustionId}</if>
+		<if test="null != item.questionState">and question_state = #{item.questionState}</if>
+		<if test="null != item.procRunScore">and proc_run_score = #{item.procRunScore}</if>
+		<if test="null != item.procDesignScore">and proc_design_score = #{item.procDesignScore}</if>
+		<if test="null != item.positionScore">and position_score = #{item.positionScore}</if>
+		<if test="null != item.orgScore">and org_score = #{item.orgScore}</if>
+		<if test="null != item.score">and score = #{item.score}</if>
+		<if test="null != item.userId">and user_id = #{item.userId}</if>
+		<if test="null != item.createTime">and create_time = #{item.createTime}</if>
+		<if test="null != item.modifyTime">and modify_time = #{item.modifyTime}</if>
+	</where>
+  </sql>
+  <sql id="sql_update">
+    update sys_exam_score set
+	<trim prefix="" suffix="" prefixOverrides=",">
+		<if test="null != item.id">, id = #{item.id}</if>
+		<if test="null != item.sessionId">, session_id = #{item.sessionId}</if>
+		<if test="null != item.qustionId">, qustion_id = #{item.qustionId}</if>
+		<if test="null != item.questionState">, question_state = #{item.questionState}</if>
+		<if test="null != item.procRunScore">, proc_run_score = #{item.procRunScore}</if>
+		<if test="null != item.procDesignScore">, proc_design_score = #{item.procDesignScore}</if>
+		<if test="null != item.positionScore">, position_score = #{item.positionScore}</if>
+		<if test="null != item.orgScore">, org_score = #{item.orgScore}</if>
+		<if test="null != item.score">, score = #{item.score}</if>
+		<if test="null != item.userId">, user_id = #{item.userId}</if>
+		<if test="null != item.createTime">, create_time = #{item.createTime}</if>
+		<if test="null != item.modifyTime">, modify_time = #{item.modifyTime}</if>
+	</trim>
+	where  id = #{item.id}
+  </sql>
+  <sql id="sql_save_columns">
+    insert into sys_exam_score
+	<trim prefix="(" suffix=") values" prefixOverrides=",">
+		<if test="null != list[0].id">, id</if>
+		<if test="null != list[0].sessionId">, session_id</if>
+		<if test="null != list[0].qustionId">, qustion_id</if>
+		<if test="null != list[0].questionState">, question_state</if>
+		<if test="null != list[0].procRunScore">, proc_run_score</if>
+		<if test="null != list[0].procDesignScore">, proc_design_score</if>
+		<if test="null != list[0].positionScore">, position_score</if>
+		<if test="null != list[0].orgScore">, org_score</if>
+		<if test="null != list[0].score">, score</if>
+		<if test="null != list[0].userId">, user_id</if>
+		<if test="null != list[0].createTime">, create_time</if>
+		<if test="null != list[0].modifyTime">, modify_time</if>
+	</trim>
+  </sql>
+  <sql id="sql_save_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		<if test="null != item.id">, #{item.id}</if>
+		<if test="null != item.sessionId">, #{item.sessionId}</if>
+		<if test="null != item.qustionId">, #{item.qustionId}</if>
+		<if test="null != item.questionState">, #{item.questionState}</if>
+		<if test="null != item.procRunScore">, #{item.procRunScore}</if>
+		<if test="null != item.procDesignScore">, #{item.procDesignScore}</if>
+		<if test="null != item.positionScore">, #{item.positionScore}</if>
+		<if test="null != item.orgScore">, #{item.orgScore}</if>
+		<if test="null != item.score">, #{item.score}</if>
+		<if test="null != item.userId">, #{item.userId}</if>
+		<if test="null != item.createTime">, #{item.createTime}</if>
+		<if test="null != item.modifyTime">, #{item.modifyTime}</if>
+	</trim>
+  </sql>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <include refid="sql_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_values" />
+	</foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    <include refid="sql_save_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_save_values" />
+	</foreach>
+  </insert>
+  <update id="batchUpdateByPrimaryKey">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <insert id="insertSelective" parameterType="cn.netinnet.educationcenter.domain.SysExamScore">
+    insert into sys_exam_score
+	<trim prefix="(" suffix=") " suffixOverrides=",">
+		<if test="null != id"> id,</if>
+		<if test="null != sessionId"> session_id,</if>
+		<if test="null != qustionId"> qustion_id,</if>
+		<if test="null != questionState"> question_state,</if>
+		<if test="null != procRunScore"> proc_run_score,</if>
+		<if test="null != procDesignScore"> proc_design_score,</if>
+		<if test="null != positionScore"> position_score,</if>
+		<if test="null != orgScore"> org_score,</if>
+		<if test="null != score"> score,</if>
+		<if test="null != userId"> user_id,</if>
+		<if test="null != createTime"> create_time,</if>
+		<if test="null != modifyTime"> modify_time,</if>
+	</trim>
+	 <trim prefix=" values(" suffix=")" suffixOverrides=",">
+		<if test="null != id"> #{id,jdbcType=BIGINT},</if>
+		<if test="null != sessionId"> #{sessionId,jdbcType=BIGINT},</if>
+		<if test="null != qustionId"> #{qustionId,jdbcType=BIGINT},</if>
+		<if test="null != questionState"> #{questionState,jdbcType=TINYINT},</if>
+		<if test="null != procRunScore"> #{procRunScore,jdbcType=DECIMAL},</if>
+		<if test="null != procDesignScore"> #{procDesignScore,jdbcType=DECIMAL},</if>
+		<if test="null != positionScore"> #{positionScore,jdbcType=DECIMAL},</if>
+		<if test="null != orgScore"> #{orgScore,jdbcType=DECIMAL},</if>
+		<if test="null != score"> #{score,jdbcType=DECIMAL},</if>
+		<if test="null != userId"> #{userId,jdbcType=BIGINT},</if>
+		<if test="null != createTime"> #{createTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != modifyTime"> #{modifyTime,jdbcType=TIMESTAMP},</if>
+	</trim>
+  </insert>
+  <delete id="batchDeleteByArray">
+    delete from sys_exam_score where id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="batchDeleteByList">
+    delete from sys_exam_score where id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <select id="getList" parameterType="cn.netinnet.educationcenter.domain.SysExamScore" resultMap="BaseResultMap">
+     select id,session_id, qustion_id, question_state, proc_run_score, proc_design_score, position_score, org_score, score, user_id, create_time, modify_time from sys_exam_score
+    <include refid="sql_where" />
+  </select>
+
+	<!--查询用户成绩-->
+	<select id="queryUserSocre" resultMap="BaseResultMap">
+		select qustion_id, score, user_id from sys_exam_score where session_id = #{sessionId} and user_id in
+		<foreach collection="userIds" item="item" close=")" open="(" separator=",">#{item}</foreach>
+	</select>
+
+	<!--查询用户题目id-->
+	<select id="queryUserBySessions" resultMap="BaseResultMap">
+		select id,user_id, session_id from sys_exam_score where session_id in
+		<foreach collection="sessionIds" item="item" close=")" open="(" separator=",">
+			#{item}
+		</foreach>
+	</select>
+
+	<!--更新用户成绩-->
+	<update id="updateScoreAndState">
+		update sys_exam_score set score = #{score}, org_score = #{orgSocre}, position_score = #{positionSocre},
+								  proc_design_score = #{procDefSocre}, proc_run_score = #{procRunScore}, question_state = #{state}
+		where session_id = #{sessionId} and qustion_id = #{qustionId} and user_id = #{userId}
+	</update>
+
+	<!-- 删除场次下指定用户的成绩记录 -->
+	<delete id="delBySessionAndUser">
+		delete from sys_exam_score
+		where session_id = #{sessionId}
+		and user_id in
+		<foreach collection="userIds" item="item" close=")" open="(" separator=",">#{item}</foreach>
+	</delete>
+
+	<!-- 查询场次成绩 -->
+	<select id="getResultsList" resultType="map">
+		SELECT
+		a.id AS examScoreId,
+		a.session_id AS sessionId,
+		a.user_id AS userId,
+		c.user_name AS userName,
+		c.user_login AS userLogin,
+		a.qustion_id AS questionId,
+		b.question_title AS questionTitle,
+		a.score AS score,
+		a.org_score as orgScore,
+		a.position_score as positionScore,
+		a.proc_design_score as procDesignScore,
+		a.proc_run_score as procRunScore,
+		b.org_score_rate as orgScoreRate,
+		b.position_score_rate as positionScoreRate,
+		b.proc_design_score_rate as procDesignScoreRate,
+		b.proc_run_score_rate as procRunScoreRate,
+		d.submit_state as submitState,
+		d.modify_time as submitTime
+		FROM
+		sys_exam_score a
+		inner join sys_question b on a.qustion_id=b.question_id
+		inner join sys_user c on a.user_id=c.user_id
+		inner join sys_exam_user d on a.user_id=d.user_id and d.session_id = #{sessionId}
+		<where>
+			a.session_id = #{sessionId}
+			<if test="null != userName and ''!= userName">
+				and c.user_name like #{userName}
+			</if>
+			<if test="null != userLogin and ''!= userLogin">
+				and c.user_login like #{userLogin}
+			</if>
+		</where>
+		order by submitState desc, submitTime asc
+	</select>
+
+	<!-- 获取场次成绩 -->
+	<select id="queryExamScoreBySessionId" resultType="cn.netinnet.educationcenter.domain.SysExamScore">
+		select
+			id, session_id, qustion_id, proc_run_score, proc_design_score,
+			position_score, org_score, score, user_id, create_time
+		from     sys_exam_score
+		where    session_id = #{sessionId}
+	</select>
+
+	<!-- 查询成绩明细 -->
+	<select id="queryQuestionScoreDetail" resultMap="BaseResultMap">
+		select
+			id, session_id, qustion_id, proc_run_score, proc_design_score,
+			position_score, org_score, score
+		from     sys_exam_score
+		where session_id = #{sessionId} and qustion_id = #{questionId} and user_id = #{userId}
+	</select>
+
+	<!--查询题目状态-->
+	<select id="queryQuestionState" resultMap="BaseResultMap">
+		select qustion_id,question_state from sys_exam_score where session_id = #{sessionId} and user_id = #{userId}
+	</select>
+
+	<!--查询做题情况-->
+	<select id="userExamDetail" resultType="cn.netinnet.educationcenter.domain.dto.QuestionDoneDetail">
+		select
+		sq.question_id as questionId,
+		seq.create_time as createTime,
+		sq.question_title as questionTitle,
+		score_value as questionSocre,
+		question_state as questionState,
+		ses.score,
+		proc_run_score as procRunScore,
+		proc_design_score as procDesignScore,
+		position_score as positionScore,
+		org_score as orgScore,
+		sq.org_score_rate as sysOrgScore,
+		sq.position_score_rate as sysPositionScore,
+		sq.proc_design_score_rate as sysProcDesignScore,
+		sq.proc_run_score_rate as sysProcRunScore
+        from sys_exam_question seq
+        inner join sys_question sq on seq.qustion_id = sq.question_id
+        inner join sys_exam_score ses on seq.qustion_id = ses.qustion_id and ses.user_id = #{userId} AND ses.session_id = #{sessionId}
+        where seq.session_id = #{sessionId}
+        <if test="state != null">
+			and ses.question_state = #{state}
+		</if>
+		<if test="questionTitle != null and questionTitle != ''">
+			and instr(sq.question_title, #{questionTitle}) > 0
+		</if>
+		order by createTime
+	</select>
+
+	<!-- 查询用户做题情况 -->
+	<select id="queryUserQuestionStateAndScore" resultType="cn.netinnet.educationcenter.domain.SysExamScore">
+		select id,qustion_id,question_state, score from sys_exam_score where session_id = #{sessionId} and user_id = #{userId}
+	</select>
+
+	<!-- 查询场次下某道题是不是已经被初始化做题 -->
+	<select id="existQuestionId" resultType="java.lang.Integer">
+		select 1 from sys_exam_score where session_id = #{sessionId} and qustion_id = #{questionId} limit 1
+	</select>
+
+	<!--获取考试结果-->
+	<select id="getExamResultsList" resultType="java.util.Map">
+		SELECT
+		a.exam_id as examId,
+		a.session_id as sessionId,
+		a.user_id as userId,
+		a.submit_state as submitState,
+		a.total_score as score,
+		c.user_name AS userName,
+		c.user_login AS userLogin,
+		a.submit_state AS submitState,
+		a.modify_time AS submitTime
+		FROM
+		sys_exam_user a
+		inner join sys_user c on a.user_id=c.user_id
+		<where>
+			a.session_id = #{sessionId}
+			<if test="null != userName and ''!= userName">
+				and c.user_name like #{userName}
+			</if>
+			<if test="null != userLogin and ''!= userLogin">
+				and c.user_login like #{userLogin}
+			</if>
+		</where>
+		order by submitState desc, submitTime asc
+	</select>
+
+    <!--重置成绩和状态-->
+	<update id="resetExamQuestion">
+		update sys_exam_score set score = 0, org_score = 0, position_score = 0, proc_design_score = 0, proc_run_score = 0, question_state = 0 where id = #{examSocreId};
+		update sys_exam_user set total_score = total_score - #{singleSocre}, submit_state = 0 where exam_id = #{examId}
+	</update>
+
+	<!-- 查询题目提交状态 -->
+	<select id="queryQestionState" resultType="java.lang.Integer">
+		select question_state from sys_exam_score where session_id = #{sessionId} and qustion_id = #{questionId} and user_id = #{userId}
+	</select>
+
+	<!--更新题目提交状态-->
+	<update id="updateQuestionState">
+		update sys_exam_score set question_state = #{state} where session_id = #{sessionId} and qustion_id = #{questionId} and user_id = #{userId}
+	</update>
+
+	<!-- 某道题是否被学生答题 -->
+	<select id="ifQuestionUsed" resultType="java.lang.Integer">
+		select 1 from sys_exam_score where qustion_id = #{questionId} limit 1
+	</select>
+
+	<!--查询丢失sys_exam_score的记录-->
+	<select id="getexamScoreMissList" resultMap="BaseResultMap">
+        SELECT seu.session_id, seu.user_id FROM sys_exam_user seu
+        LEFT JOIN sys_exam_score ses ON seu.session_id = ses.session_id AND seu.user_id = ses.user_id where ses.qustion_id is null
+    </select>
+
+	<!-- 查询考试学生-->
+    <select id="queryAllByUserId" resultType="java.lang.Long">
+		select id from sys_exam_score where user_id = #{userId}
+	</select>
+</mapper>

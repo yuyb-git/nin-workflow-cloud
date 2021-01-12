@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.netinnet.educationcenter.dao.SysQuestionMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.educationcenter.domain.SysQuestion">
+    <id column="question_id" jdbcType="BIGINT" property="questionId" />
+    <result column="question_title" jdbcType="VARCHAR" property="questionTitle" />
+    <result column="question_type" jdbcType="VARCHAR" property="questionType" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="question_label" jdbcType="VARCHAR" property="questionLabel" />
+    <result column="question_status" jdbcType="TINYINT" property="questionStatus" />
+    <result column="attach_count" jdbcType="TINYINT" property="attachCount" />
+    <result column="question_category" jdbcType="TINYINT" property="questionCategory" />
+    <result column="open_source" jdbcType="TINYINT" property="openSource" />
+    <result column="question_score" jdbcType="DECIMAL" property="questionScore" />
+    <result column="org_score_rate" jdbcType="TINYINT" property="orgScoreRate" />
+    <result column="position_score_rate" jdbcType="TINYINT" property="positionScoreRate" />
+    <result column="proc_design_score_rate" jdbcType="TINYINT" property="procDesignScoreRate" />
+    <result column="proc_run_score_rate" jdbcType="TINYINT" property="procRunScoreRate" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    question_id, question_title, question_type, company_id, question_label, question_status,
+    attach_count, question_category, open_source, question_score, org_score_rate, position_score_rate,
+    proc_design_score_rate, proc_run_score_rate, create_user_id, create_time, modify_user_id,
+    modify_time
+  </sql>
+  <sql id = "Common_Column_List">
+	question_id, question_title, question_type, company_id, question_label, question_status,
+    attach_count, question_category, open_source, question_score, org_score_rate, position_score_rate,
+    proc_design_score_rate, proc_run_score_rate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_question
+    where question_id = #{questionId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_question
+    where question_id = #{questionId,jdbcType=BIGINT}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.educationcenter.domain.SysQuestion">
+    update sys_question
+    <set>
+      <if test="questionTitle != null">
+        question_title = #{questionTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="questionType != null">
+        question_type = #{questionType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="questionLabel != null">
+        question_label = #{questionLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="questionStatus != null">
+        question_status = #{questionStatus,jdbcType=TINYINT},
+      </if>
+      <if test="attachCount != null">
+        attach_count = #{attachCount,jdbcType=TINYINT},
+      </if>
+      <if test="questionCategory != null">
+        question_category = #{questionCategory,jdbcType=TINYINT},
+      </if>
+      <if test="openSource != null">
+        open_source = #{openSource,jdbcType=TINYINT},
+      </if>
+      <if test="questionScore != null">
+        question_score = #{questionScore,jdbcType=DECIMAL},
+      </if>
+      <if test="orgScoreRate != null">
+        org_score_rate = #{orgScoreRate,jdbcType=TINYINT},
+      </if>
+      <if test="positionScoreRate != null">
+        position_score_rate = #{positionScoreRate,jdbcType=TINYINT},
+      </if>
+      <if test="procDesignScoreRate != null">
+        proc_design_score_rate = #{procDesignScoreRate,jdbcType=TINYINT},
+      </if>
+      <if test="procRunScoreRate != null">
+        proc_run_score_rate = #{procRunScoreRate,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where question_id = #{questionId,jdbcType=BIGINT}
+  </update>
+  <sql id="sql_columns">
+    insert into sys_question
+	<trim prefix="(" suffix=") values" suffixOverrides=",">
+		question_id,question_title,question_type,company_id,question_label,question_status,attach_count,question_category,open_source,question_score,org_score_rate,position_score_rate,proc_design_score_rate,proc_run_score_rate,create_user_id,modify_user_id,
+	</trim>
+  </sql>
+  <sql id="sql_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		, #{item.questionId}
+		, #{item.questionTitle}
+		, #{item.questionType}
+		, #{item.companyId}
+		, #{item.questionLabel}
+		, #{item.questionStatus}
+		, #{item.attachCount}
+		, #{item.questionCategory}
+		, #{item.openSource}
+		, #{item.questionScore}
+		, #{item.orgScoreRate}
+		, #{item.positionScoreRate}
+		, #{item.procDesignScoreRate}
+		, #{item.procRunScoreRate}
+		, #{item.createUserId}
+		, #{item.createTime}
+		, #{item.modifyUserId}
+		, #{item.modifyTime}
+	</trim>
+  </sql>
+  <sql id="sql_where">
+    <where>
+		<if test="null != item.questionId">and question_id = #{item.questionId}</if>
+		<if test="null != item.questionTitle">and question_title = #{item.questionTitle}</if>
+		<if test="null != item.questionType">and question_type = #{item.questionType}</if>
+		<if test="null != item.companyId">and company_id = #{item.companyId}</if>
+		<if test="null != item.questionLabel">and question_label = #{item.questionLabel}</if>
+		<if test="null != item.questionStatus">and question_status = #{item.questionStatus}</if>
+		<if test="null != item.attachCount">and attach_count = #{item.attachCount}</if>
+		<if test="null != item.questionCategory">and question_category = #{item.questionCategory}</if>
+		<if test="null != item.openSource">and open_source = #{item.openSource}</if>
+		<if test="null != item.questionScore">and question_score = #{item.questionScore}</if>
+		<if test="null != item.orgScoreRate">and org_score_rate = #{item.orgScoreRate}</if>
+		<if test="null != item.positionScoreRate">and position_score_rate = #{item.positionScoreRate}</if>
+		<if test="null != item.procDesignScoreRate">and proc_design_score_rate = #{item.procDesignScoreRate}</if>
+		<if test="null != item.procRunScoreRate">and proc_run_score_rate = #{item.procRunScoreRate}</if>
+		<if test="null != item.createUserId">and create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">and create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">and modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">and modify_time = #{item.modifyTime}</if>
+	</where>
+  </sql>
+  <sql id="sql_update">
+    update sys_question set
+	<trim prefix="" suffix="" prefixOverrides=",">
+		<if test="null != item.questionId">, question_id = #{item.questionId}</if>
+		<if test="null != item.questionTitle">, question_title = #{item.questionTitle}</if>
+		<if test="null != item.questionType">, question_type = #{item.questionType}</if>
+		<if test="null != item.companyId">, company_id = #{item.companyId}</if>
+		<if test="null != item.questionLabel">, question_label = #{item.questionLabel}</if>
+		<if test="null != item.questionStatus">, question_status = #{item.questionStatus}</if>
+		<if test="null != item.attachCount">, attach_count = #{item.attachCount}</if>
+		<if test="null != item.questionCategory">, question_category = #{item.questionCategory}</if>
+		<if test="null != item.openSource">, open_source = #{item.openSource}</if>
+		<if test="null != item.questionScore">, question_score = #{item.questionScore}</if>
+		<if test="null != item.orgScoreRate">, org_score_rate = #{item.orgScoreRate}</if>
+		<if test="null != item.positionScoreRate">, position_score_rate = #{item.positionScoreRate}</if>
+		<if test="null != item.procDesignScoreRate">, proc_design_score_rate = #{item.procDesignScoreRate}</if>
+		<if test="null != item.procRunScoreRate">, proc_run_score_rate = #{item.procRunScoreRate}</if>
+		<if test="null != item.createUserId">, create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">, create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, modify_time = #{item.modifyTime}</if>
+	</trim>
+	where  question_id = #{item.questionId}
+  </sql>
+  <sql id="sql_save_columns">
+    insert into sys_question
+	<trim prefix="(" suffix=") values" prefixOverrides=",">
+		<if test="null != list[0].questionId">, question_id</if>
+		<if test="null != list[0].questionTitle">, question_title</if>
+		<if test="null != list[0].questionType">, question_type</if>
+		<if test="null != list[0].companyId">, company_id</if>
+		<if test="null != list[0].questionLabel">, question_label</if>
+		<if test="null != list[0].questionStatus">, question_status</if>
+		<if test="null != list[0].attachCount">, attach_count</if>
+		<if test="null != list[0].questionCategory">, question_category</if>
+		<if test="null != list[0].openSource">, open_source</if>
+		<if test="null != list[0].questionScore">, question_score</if>
+		<if test="null != list[0].orgScoreRate">, org_score_rate</if>
+		<if test="null != list[0].positionScoreRate">, position_score_rate</if>
+		<if test="null != list[0].procDesignScoreRate">, proc_design_score_rate</if>
+		<if test="null != list[0].procRunScoreRate">, proc_run_score_rate</if>
+		<if test="null != list[0].createUserId">, create_user_id</if>
+		<if test="null != list[0].createTime">, create_time</if>
+		<if test="null != list[0].modifyUserId">, modify_user_id</if>
+		<if test="null != list[0].modifyTime">, modify_time</if>
+	</trim>
+  </sql>
+  <sql id="sql_save_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		<if test="null != item.questionId">, #{item.questionId}</if>
+		<if test="null != item.questionTitle">, #{item.questionTitle}</if>
+		<if test="null != item.questionType">, #{item.questionType}</if>
+		<if test="null != item.companyId">, #{item.companyId}</if>
+		<if test="null != item.questionLabel">, #{item.questionLabel}</if>
+		<if test="null != item.questionStatus">, #{item.questionStatus}</if>
+		<if test="null != item.attachCount">, #{item.attachCount}</if>
+		<if test="null != item.questionCategory">, #{item.questionCategory}</if>
+		<if test="null != item.openSource">, #{item.openSource}</if>
+		<if test="null != item.questionScore">, #{item.questionScore}</if>
+		<if test="null != item.orgScoreRate">, #{item.orgScoreRate}</if>
+		<if test="null != item.positionScoreRate">, #{item.positionScoreRate}</if>
+		<if test="null != item.procDesignScoreRate">, #{item.procDesignScoreRate}</if>
+		<if test="null != item.procRunScoreRate">, #{item.procRunScoreRate}</if>
+		<if test="null != item.createUserId">, #{item.createUserId}</if>
+		<if test="null != item.createTime">, #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, #{item.modifyTime}</if>
+	</trim>
+  </sql>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <include refid="sql_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_values" />
+	</foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    <include refid="sql_save_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_save_values" />
+	</foreach>
+  </insert>
+  <update id="batchUpdateByPrimaryKey">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <insert id="insertSelective" parameterType="cn.netinnet.educationcenter.domain.SysQuestion">
+    insert into sys_question
+	<trim prefix="(" suffix=") " suffixOverrides=",">
+		<if test="null != questionId"> question_id,</if>
+		<if test="null != questionTitle"> question_title,</if>
+		<if test="null != questionType"> question_type,</if>
+		<if test="null != companyId"> company_id,</if>
+		<if test="null != questionLabel"> question_label,</if>
+		<if test="null != questionStatus"> question_status,</if>
+		<if test="null != attachCount"> attach_count,</if>
+		<if test="null != questionCategory"> question_category,</if>
+		<if test="null != openSource"> open_source,</if>
+		<if test="null != questionScore"> question_score,</if>
+		<if test="null != orgScoreRate"> org_score_rate,</if>
+		<if test="null != positionScoreRate"> position_score_rate,</if>
+		<if test="null != procDesignScoreRate"> proc_design_score_rate,</if>
+		<if test="null != procRunScoreRate"> proc_run_score_rate,</if>
+		<if test="null != createUserId"> create_user_id,</if>
+		<if test="null != createTime"> create_time,</if>
+		<if test="null != modifyUserId"> modify_user_id,</if>
+		<if test="null != modifyTime"> modify_time,</if>
+	</trim>
+	 <trim prefix=" values(" suffix=")" suffixOverrides=",">
+		<if test="null != questionId"> #{questionId,jdbcType=BIGINT},</if>
+		<if test="null != questionTitle"> #{questionTitle,jdbcType=VARCHAR},</if>
+		<if test="null != questionType"> #{questionType,jdbcType=VARCHAR},</if>
+		<if test="null != companyId"> #{companyId,jdbcType=BIGINT},</if>
+		<if test="null != questionLabel"> #{questionLabel,jdbcType=VARCHAR},</if>
+		<if test="null != questionStatus"> #{questionStatus,jdbcType=TINYINT},</if>
+		<if test="null != attachCount"> #{attachCount,jdbcType=TINYINT},</if>
+		<if test="null != questionCategory"> #{questionCategory,jdbcType=TINYINT},</if>
+		<if test="null != openSource"> #{openSource,jdbcType=TINYINT},</if>
+		<if test="null != questionScore"> #{questionScore,jdbcType=DECIMAL},</if>
+		<if test="null != orgScoreRate"> #{orgScoreRate,jdbcType=TINYINT},</if>
+		<if test="null != positionScoreRate"> #{positionScoreRate,jdbcType=TINYINT},</if>
+		<if test="null != procDesignScoreRate"> #{procDesignScoreRate,jdbcType=TINYINT},</if>
+		<if test="null != procRunScoreRate"> #{procRunScoreRate,jdbcType=TINYINT},</if>
+		<if test="null != createUserId"> #{createUserId,jdbcType=BIGINT},</if>
+		<if test="null != createTime"> #{createTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != modifyUserId"> #{modifyUserId,jdbcType=BIGINT},</if>
+		<if test="null != modifyTime"> #{modifyTime,jdbcType=TIMESTAMP},</if>
+	</trim>
+  </insert>
+  <delete id="batchDeleteByArray">
+    delete from sys_question where question_id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="batchDeleteByList">
+    delete from sys_question where question_id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <select id="getList" parameterType="cn.netinnet.educationcenter.domain.SysQuestion" resultMap="BaseResultMap">
+     select question_id,question_title, question_type, company_id, question_label, question_status, attach_count, question_category, open_source, question_score, org_score_rate, position_score_rate, proc_design_score_rate, proc_run_score_rate, create_user_id, create_time, modify_user_id, modify_time from sys_question
+    <include refid="sql_where" />
+  </select>
+
+	<!-- 查询试题信息 -->
+	<select id="getQuestionByIds" resultMap="BaseResultMap">
+		select question_id,question_title,question_type,company_id from sys_question
+		where  question_id in
+		<foreach collection="questionIds" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<!-- 问题列表 -->
+	<select id="querySysQuestionList" resultType="map">
+		select
+		    question_id as questionId, question_title as questionTitle,
+		    question_type as questionType, wc.company_id as companyId,
+			question_label as questionLabel, question_status as questionStatus,
+		    attach_count as attachCount, question_category as questionCategory,
+			open_source as openSource, question_score as questionScore,
+		    org_score_rate as orgScoreRate, position_score_rate as positionScoreRate,
+			proc_design_score_rate as procDesignScoreRate, proc_run_score_rate as procRunScoreRate,
+		    wc.company_name as companyName
+		from sys_question sq left join wf_company wc on sq.company_id=wc.company_id and  wc.del_flag = 0
+		<where>
+			<if test = "questionStatus != null">
+				and   question_status = #{questionStatus}
+			</if>
+			<if test="questionType !=null and questionType != ''">
+				and question_type = #{questionType}
+			</if>
+			<if test="questionLabel !=null and questionLabel != ''">
+				and question_label like #{questionLabel}
+			</if>
+			<if test="questionTitle !=null and questionTitle != ''">
+				and question_title like #{questionTitle}
+			</if>
+			<choose>
+				<when test="userType != 2">
+					and question_category = 0
+				</when>
+				<otherwise>
+					and ((question_category = 0 and open_source = 1) or sq.create_user_id = #{userId})
+				</otherwise>
+			</choose>
+		</where>
+		order by question_category,create_time desc
+	</select>
+
+	<!-- 问题详情 -->
+	<select id="queryQuestionDetail" resultType="java.util.Map">
+		select  convert (question_id ,char) as questionId,
+				question_title as questionTitle,
+				question_type as questionType,
+				company_id as companyId,
+				question_label as questionLabel,
+				org_score_rate as orgScoreRate,
+				position_score_rate as positionScoreRate,
+				proc_design_score_rate as procDesignScoreRate,
+				proc_run_score_rate  as  procRunScoreRate,
+				attach_count as attachCount,
+				question_category as questionCategory,
+				open_source as openSource
+		from    sys_question
+		where    question_id = #{questionId}
+	</select>
+
+	<!-- 修改问题状态 -->
+	<update id="changeQuestionStatus">
+		update  sys_question
+		set     question_status = #{status}
+		where   question_id in
+		<foreach collection="questionIds" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+
+	<!-- 检查企业是否存在题目中 -->
+	<select id="checkCompanyInQuestion" resultType="java.lang.Long">
+		select distinct company_id from sys_question where company_id in
+		<foreach collection="companyIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+	</select>
+
+	<!-- 获取系统启用的题目 -->
+	<select id="queryCompanyId" resultType="long">
+		select company_id from sys_question where question_id = #{questionId}
+	</select>
+
+	<!-- 查询系统题目 -->
+	<select id="queryOnSysQuestions" resultType="java.util.Map">
+		select sy.question_id as taskId,question_title as taskName, question_type as questionType, question_label as questionLabel, attach_count as attachCount, wf.company_name as companyName
+		from sys_question sy
+		left join wf_company wf on sy.company_id = wf.company_id and wf.del_flag = 0
+		<where>
+			question_status = 0
+			<if test="questionTitle !=null and questionTitle != ''">
+				and question_title like #{questionTitle}
+			</if>
+			<if test="noTaskIds != null and noTaskIds.size() > 0">
+				and sy.question_id not in
+				<foreach collection="noTaskIds" separator="," close=")" open="(" item="item">
+					#{item}
+				</foreach>
+			</if>
+			and question_category = 0
+		</where>
+		order by sy.question_id
+	</select>
+
+	<select id="querySelectedCompanyQuestion" resultType="java.lang.Long">
+		select   question_id
+		from     sys_question
+		where    company_id !=0
+		and      question_id in
+		<foreach collection="questionIds" item = "item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<!-- 获取试题信息 -->
+	<select id="queryQuestionByQuestionIds" resultType="cn.netinnet.educationcenter.domain.SysQuestion">
+		select
+		<include refid="Base_Column_List"/>
+		from     sys_question
+		where    question_id   in
+		<foreach collection="questionIds" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<!-- 根据题目类型获取题目 -->
+	<select id="getQuestionByType" resultMap="BaseResultMap">
+		select distinct sy.create_user_id,question_category,question_type
+		from sys_question sy
+		inner join sys_data_item sdi
+		on sdi.item_name = sy.question_type
+		where sdi.item_id in
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+	</select>
+
+	<!-- 查询教师的类型是否在教师题目中使用 -->
+	<select id="isTeacherQuestinTypeUsed" resultType="long">
+		select question_id
+		from sys_question sy
+		inner join sys_data_item sdi
+		on sdi.item_name = sy.question_type
+		where sdi.item_id in
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+		and sy.create_user_id = #{userId}
+		limit 1
+	</select>
+
+	<!-- 检查是否包含系统题目 -->
+	<select id="containsSysQuestion" resultType="java.lang.Long">
+		select question_id from sys_question where question_category = 0 and question_id in
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+		limit 1
+	</select>
+</mapper>

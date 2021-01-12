@@ -1,5 +1,7 @@
 package cn.netinnet.educationcenter.controller;
 
+import cn.netinnet.cloudcommon.annotation.LogMark;
+import cn.netinnet.cloudcommon.annotation.PreventRepeatSubmit;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.constant.UserConstant;
 import cn.netinnet.cloudcommon.dto.ExamInfo;
@@ -12,6 +14,7 @@ import cn.netinnet.common.util.httpclient.SessionUtil;
 import cn.netinnet.educationcenter.constant.ParaConstant;
 import cn.netinnet.educationcenter.domain.SysBatch;
 import cn.netinnet.educationcenter.service.SysBatchService;
+import cn.netinnet.educationcenter.service.SysExamSessionService;
 import cn.netinnet.educationcenter.service.SysUserService;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
@@ -38,8 +41,8 @@ public class SysBatchController extends BaseController {
 
     @Resource
     SysBatchService sysBatchService;
-//    @Resource
-//    SysExamSessionService sysExamSessionService;
+    @Resource
+    SysExamSessionService sysExamSessionService;
     @Resource
     SysUserService sysUserService;
 
@@ -66,9 +69,9 @@ public class SysBatchController extends BaseController {
      * @Description 新增批次
      */
     @RequiresPermissions("sysBatch:add")
-//    @LogMark("新增批次")
+    @LogMark("新增批次")
     @PostMapping("/addBatch")
-//    @PreventRepeatSubmit
+    @PreventRepeatSubmit
     public HttpResultEntry addBatch(SysBatch sysBatch) {
         //id不为空/参数为空, 参数异常
         if (sysBatch.getBatchId() != null || StringUtils.isBlank(sysBatch.getBatchName())) {
@@ -84,9 +87,9 @@ public class SysBatchController extends BaseController {
     }
 
     @RequiresPermissions("sysBatch:edit")
-//    @LogMark("修改批次")
+    @LogMark("修改批次")
     @PostMapping("/editBatch")
-//    @PreventRepeatSubmit
+    @PreventRepeatSubmit
     public HttpResultEntry editBatch(SysBatch sysBatch) {
         //批次id为空时, 参数异常
         if (sysBatch.getBatchId() == null) {
@@ -102,9 +105,9 @@ public class SysBatchController extends BaseController {
     }
 
     @RequiresPermissions("sysBatch:delete")
-//    @LogMark("删除批次")
+    @LogMark("删除批次")
     @PostMapping("/deleteBatch")
-//    @PreventRepeatSubmit
+    @PreventRepeatSubmit
     public HttpResultEntry deleteBatch(Long batchId) {
         //批次id为空时, 参数异常
         if (batchId == null) {
@@ -120,9 +123,9 @@ public class SysBatchController extends BaseController {
      * @Description 开始批次
      */
     @RequiresPermissions("sysBatch:status")
-//    @LogMark("开始批次")
+    @LogMark("开始批次")
     @PostMapping("/startBatch")
-//    @PreventRepeatSubmit
+    @PreventRepeatSubmit
     public HttpResultEntry startBatch(Long batchId) {
         //批次id为空时, 参数异常
         if (batchId == null) {
@@ -138,9 +141,9 @@ public class SysBatchController extends BaseController {
      * @Description 暂停批次
      */
     @RequiresPermissions("sysBatch:status")
-//    @LogMark("暂停批次")
+    @LogMark("暂停批次")
     @PostMapping("/pauseBatch")
-//    @PreventRepeatSubmit
+    @PreventRepeatSubmit
     public HttpResultEntry pauseBatch(Long batchId) {
         //批次id为空时, 参数异常
         if (batchId == null) {
@@ -156,9 +159,9 @@ public class SysBatchController extends BaseController {
      * @Description 继续批次
      */
     @RequiresPermissions("sysBatch:status")
-//    @LogMark("继续批次")
+    @LogMark("继续批次")
     @PostMapping("/continueBatch")
-//    @PreventRepeatSubmit
+    @PreventRepeatSubmit
     public HttpResultEntry continueBatch(Long batchId) {
         //批次id为空时, 参数异常
         if (batchId == null) {
@@ -238,10 +241,9 @@ public class SysBatchController extends BaseController {
                                                 @RequestParam("userId") long userId,
                                                 @RequestParam(value = "sessionStatus", required = false) Integer sessionStatus,
                                                 @RequestParam(value = "sessionName", required = false) String sessionName) {
-//        todo
-//        PageInfo pageInfo = getPage(() -> sysExamSessionService.queryUserSessionList(sessionType, batchId, userId, sessionStatus, sessionName));
+        PageInfo pageInfo = getPage(() -> sysExamSessionService.queryUserSessionList(sessionType, batchId, userId, sessionStatus, sessionName));
         JSONObject result = new JSONObject();
-//        result.put("pageInfo", pageInfo);
+        result.put("pageInfo", pageInfo);
         result.put("now", new Date());
         return HttpResultEntry.ok(GlobalConstant.SUCCESS_MSG, result);
     }
@@ -278,14 +280,13 @@ public class SysBatchController extends BaseController {
     * @date 2020/10/22
     * @return cn.netinnet.workflow.common.global.HttpResultEntry
     */
-    // todo
-//    @GetMapping("/difStudentBatch")
-//    public HttpResultEntry difStudentBatch(@RequestParam(required = false)Integer batchStatus) {
-//        UserInfo userInfo = UserUtil.getUser();
-//        long individualityId = userInfo.getIndividualityId();
-//        long schoolId = userInfo.getSchoolId();
-//        return HttpResultEntry.ok(GlobalConstant.SUCCESS_MSG,sysBatchService.difStudentBatch(schoolId, individualityId, batchStatus));
-//    }
+    @GetMapping("/difStudentBatch")
+    public HttpResultEntry difStudentBatch(@RequestParam(required = false)Integer batchStatus) {
+        UserInfo userInfo = UserUtil.getUser();
+        long individualityId = userInfo.getIndividualityId();
+        long schoolId = userInfo.getSchoolId();
+        return HttpResultEntry.ok(GlobalConstant.SUCCESS_MSG,sysBatchService.difStudentBatch(schoolId, individualityId, batchStatus));
+    }
 
     /***
     * dif切换批次
@@ -293,26 +294,25 @@ public class SysBatchController extends BaseController {
     * @date 2020/10/22
     * @return cn.netinnet.workflow.common.global.HttpResultEntry
     */
-//    todo
-//    @PostMapping("/difChooseBatch")
-//    public HttpResultEntry difChooseBatch(@RequestParam("batchId") Long batchId, @RequestParam("userId") Long userId){
-//        SysBatch sysBatch = sysBatchService.selectByPrimaryKey(batchId);
-//        if(sysBatch.getBeginDate() == null && sysBatch.getBatchStatus() != 1){
-//            return HttpResultEntry.error("该批次未开始或已被暂停，请联系管理员！");
-//        }
-//        Date now = new Date();
-//        if(sysBatch.getBeginDate() != null && now.before(sysBatch.getBeginDate())){
-//            return HttpResultEntry.error("该批次尚未开始！");
-//        }
-//        if(sysBatch.getEndDate() != null && now.after(sysBatch.getEndDate())){
-//            return HttpResultEntry.error("该批次已结束！");
-//        }
-//        SessionUtil.setSession(GlobalConstant.SESSION_EXAM, new ExamInfo());
-//        UserInfo userInfo = UserUtil.getUser();
-//        userInfo.setUserId(userId);
-//        // 重新设置token
-//        return HttpResultEntry.ok(GlobalConstant.SUCCESS_MSG, sysUserService.userInfoSet(userInfo, false));
-//    }
+    @PostMapping("/difChooseBatch")
+    public HttpResultEntry difChooseBatch(@RequestParam("batchId") Long batchId, @RequestParam("userId") Long userId){
+        SysBatch sysBatch = sysBatchService.selectByPrimaryKey(batchId);
+        if(sysBatch.getBeginDate() == null && sysBatch.getBatchStatus() != 1){
+            return HttpResultEntry.error("该批次未开始或已被暂停，请联系管理员！");
+        }
+        Date now = new Date();
+        if(sysBatch.getBeginDate() != null && now.before(sysBatch.getBeginDate())){
+            return HttpResultEntry.error("该批次尚未开始！");
+        }
+        if(sysBatch.getEndDate() != null && now.after(sysBatch.getEndDate())){
+            return HttpResultEntry.error("该批次已结束！");
+        }
+        SessionUtil.setSession(GlobalConstant.SESSION_EXAM, new ExamInfo());
+        UserInfo userInfo = UserUtil.getUser();
+        userInfo.setUserId(userId);
+        // 重新设置token
+        return HttpResultEntry.ok(GlobalConstant.SUCCESS_MSG, sysUserService.userInfoSet(userInfo, false, null));
+    }
 }
 
 

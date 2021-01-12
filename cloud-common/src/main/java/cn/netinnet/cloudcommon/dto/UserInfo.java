@@ -1,5 +1,6 @@
 package cn.netinnet.cloudcommon.dto;
 
+
 import java.io.Serializable;
 
 /**
@@ -31,7 +32,6 @@ public class UserInfo implements Serializable {
      * 角色编码（学生/教师/管理员）
      */
     private String roleCode;
-
     /**
      * 学校id（学生/教师）
      */
@@ -48,6 +48,10 @@ public class UserInfo implements Serializable {
      * 班级名（学生）
      */
     private String className;
+    /**
+     * 第三方id
+     */
+    private Long individualityId;
 
     public UserInfo() {
     }
@@ -141,6 +145,14 @@ public class UserInfo implements Serializable {
         this.className = className;
     }
 
+    public Long getIndividualityId() {
+        return individualityId;
+    }
+
+    public void setIndividualityId(Long individualityId) {
+        this.individualityId = individualityId;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -149,6 +161,11 @@ public class UserInfo implements Serializable {
                 ", userType=" + userType +
                 ", userLogin='" + userLogin + '\'' +
                 ", roleCode='" + roleCode + '\'' +
+                ", schoolId=" + schoolId +
+                ", schoolName='" + schoolName + '\'' +
+                ", classId=" + classId +
+                ", className='" + className + '\'' +
+                ", individualityId=" + individualityId +
                 '}';
     }
 
