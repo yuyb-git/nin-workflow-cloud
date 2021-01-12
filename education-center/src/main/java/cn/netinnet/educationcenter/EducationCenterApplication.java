@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan({"cn.netinnet.educationcenter.dao"})
 @EnableTransactionManagement
 @EnableEurekaClient
-@EnableFeignClients
+@EnableFeignClients(basePackages  = "cn.netinnet")
 @EnableCircuitBreaker
 public class EducationCenterApplication {
 

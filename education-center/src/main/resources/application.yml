@@ -68,6 +68,9 @@ spring:
     producer:
       # 发生错误后，消息重发的次数。
       retries: 3
+  #允许存在多个Feign调用相同Service的接口
+  main:
+    allow-bean-definition-overriding: true
 
 ribbon:
   eager-load:

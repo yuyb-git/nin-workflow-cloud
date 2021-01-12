@@ -69,7 +69,7 @@ public class SysUserServiceImpl extends BaseService<SysUser> implements SysUserS
         if (checkResult.getCode() != GlobalConstant.SUCCESS) {
             return checkResult;
         }
-        UserInfo userInfo = new UserInfo(user.getUserId(), userLogin, user.getUserName(), user.getUserType(), user.getRoleCode());
+        UserInfo userInfo = new UserInfo(user.getUserId(), user.getSchoolId(), userLogin, user.getUserName(), user.getUserType(), user.getRoleCode());
         return HttpResultEntry.ok("登录成功", userInfoSet(userInfo, true, ip));
     }
 

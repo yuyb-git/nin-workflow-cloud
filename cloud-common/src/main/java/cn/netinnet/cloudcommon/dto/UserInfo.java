@@ -60,6 +60,15 @@ public class UserInfo implements Serializable {
         this.roleCode = roleCode;
     }
 
+    public UserInfo(long userId, long schoolId, String userLogin, String userName, Integer userType, String roleCode) {
+        this.userId = userId;
+        this.schoolId = schoolId;
+        this.userLogin = userLogin;
+        this.userName = userName;
+        this.userType = userType;
+        this.roleCode = roleCode;
+    }
+
     public Long getUserId() {
         return userId;
     }
