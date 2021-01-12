@@ -13,6 +13,7 @@
         <module>nin-zuul</module>
         <module>education-center</module>
         <module>process-center</module>
+        <module>generator-code</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -55,13 +56,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <!-- Mybatis Generator -->
-        <dependency>
-            <groupId>org.mybatis.generator</groupId>
-            <artifactId>mybatis-generator-core</artifactId>
-            <version>${plugin.mybatis.generator}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.kafka</groupId>
