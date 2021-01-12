@@ -1,0 +1,67 @@
+server:
+  port: 8774
+
+# 配置mybatis
+mybatis:
+  mapperLocations: classpath*:cn/netinnet/logcenter/dao/mapper/*Mapper.xml
+  configLocation: classpath:mybatis-config.xml
+  typeAliasesPackage: cn.netinnet.logcenter.domain
+
+spring:
+  application:
+    name: log-center
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/nin_workflow?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&nullCatalogMeansCurrent=true&useSSL=false&allowMultiQueries=true
+    username: root
+    password: 123456
+    #password: Netinnet.2011
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    #spring kafka配置
+  kafka:
+    bootstrap-servers: 172.16.39.13:9092
+    listener:
+      type: batch
+    consumer:
+      # 自动提交的时间间隔 在spring boot 2.X 版本中这里采用的是值的类型为Duration 需要符合特定的格式，如1S,1M,2H,5D
+      auto-commit-interval: 1000
+      # 该属性指定了消费者在读取一个没有偏移量的分区或者偏移量无效的情况下该作何处理：
+      # latest（默认值）在偏移量无效的情况下，消费者将从最新的记录开始读取数据（在消费者启动之后生成的记录）
+      # earliest ：在偏移量无效的情况下，消费者将从起始位置读取分区的记录
+      auto-offset-reset: earliest
+      max-poll-records: 1000
+      # 是否自动提交偏移量，默认值是true,为了避免出现重复数据和数据丢失，可以把它设置为false,然后手动提交偏移量
+      enable-auto-commit: false
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+app:
+  app_id: '@u'
+  license: db1c10320edf347c8dae208f1e7539cd
+  product: product
+  ignore_action:
+  cdn_static_url: cdn/static/
+  cdn_common_url: cdn/common/
+  #本地文件上传保存路径 localFileUtil下配置
+  upload_path: /cdn/data/
+  temp_path: /cdn/data/temp/
+  upload_class_name: cn.netinnet.common.util.file.LocalFileUtil
+  cdn_upload_url:
+
+kafka:
+  topic_name_producer: log
+  topic_name_consumer: log
+  #主平台消费者
+  consumer_group_id: log-center
+  kafkaTaskExcutor:
+    core_pool_size: 10
+    max_pool_size: 20
+    queue_capacity: 200
+    keep_alive_seconds: 60
+    thread_name_prefix: kafkaTaskExcutor-

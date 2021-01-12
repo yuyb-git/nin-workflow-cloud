@@ -1,5 +1,6 @@
 package cn.netinnet.educationcenter.controller;
 
+import cn.netinnet.cloudcommon.annotation.LogMark;
 import cn.netinnet.cloudcommon.annotation.PreventRepeatSubmit;
 import cn.netinnet.cloudcommon.constant.ErrorMsgConstant;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
@@ -45,6 +46,7 @@ public class LoginController extends BaseController {
      */
     @PostMapping(value="login")
     @PreventRepeatSubmit
+    @LogMark("登录")
     public HttpResultEntry login(@RequestParam("info") String info, HttpSession session, HttpServletRequest request) {
         if(StringUtils.isBlank(info) || info.length() < 4){
             return HttpResultEntry.customize(ResultEnum.R_PARAM);

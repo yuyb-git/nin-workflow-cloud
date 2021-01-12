@@ -61,6 +61,13 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
+  kafka:
+    bootstrap-servers: 172.16.39.13:9092
+    listener:
+      type: batch
+    producer:
+      # 发生错误后，消息重发的次数。
+      retries: 3
 
 ribbon:
   eager-load:
@@ -78,3 +85,8 @@ app:
   temp_path: /cdn/data/temp/
   upload_class_name: cn.netinnet.common.util.file.LocalFileUtil
   cdn_upload_url:
+  isOpenLog: true
+
+kafka:
+  topic_name_producer: log
+  consumer_group_id: log-center

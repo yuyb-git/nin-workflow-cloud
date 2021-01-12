@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.netinnet.logcenter.dao.SysLogMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.logcenter.domain.SysLog">
+    <id column="log_id" jdbcType="BIGINT" property="logId" />
+    <result column="user_type" jdbcType="TINYINT" property="userType" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="operation_name" jdbcType="VARCHAR" property="operationName" />
+    <result column="spend_time" jdbcType="BIGINT" property="spendTime" />
+    <result column="request_url" jdbcType="VARCHAR" property="requestUrl" />
+    <result column="request_params" jdbcType="VARCHAR" property="requestParams" />
+    <result column="request_ip" jdbcType="VARCHAR" property="requestIp" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    log_id, user_type, user_id, user_name, operation_name, spend_time, request_url, request_params, 
+    request_ip, create_time
+  </sql>
+ <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_log
+    where log_id = #{logId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_log
+    where log_id = #{logId,jdbcType=BIGINT}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.logcenter.domain.SysLog">
+    update sys_log
+    <set>
+      <if test="userType != null">
+        user_type = #{userType,jdbcType=TINYINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="operationName != null">
+        operation_name = #{operationName,jdbcType=VARCHAR},
+      </if>
+      <if test="spendTime != null">
+        spend_time = #{spendTime,jdbcType=BIGINT},
+      </if>
+      <if test="requestUrl != null">
+        request_url = #{requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="requestParams != null">
+        request_params = #{requestParams,jdbcType=VARCHAR},
+      </if>
+      <if test="requestIp != null">
+        request_ip = #{requestIp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where log_id = #{logId,jdbcType=BIGINT}
+  </update>
+  <sql id="sql_columns">
+    insert into sys_log
+	<trim prefix="(" suffix=") values" suffixOverrides=",">
+		log_id,user_type,user_id,user_name,operation_name,spend_time,request_url,request_params,request_ip,
+	</trim>
+  </sql>
+  <sql id="sql_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		, #{item.logId}
+		, #{item.userType}
+		, #{item.userId}
+		, #{item.userName}
+		, #{item.operationName}
+		, #{item.spendTime}
+		, #{item.requestUrl}
+		, #{item.requestParams}
+		, #{item.requestIp}
+		, #{item.createTime}
+	</trim>	
+  </sql>
+  <sql id="sql_where">
+    <where>
+		<if test="null != item.logId">and log_id = #{item.logId}</if>
+		<if test="null != item.userType">and user_type = #{item.userType}</if>
+		<if test="null != item.userId">and user_id = #{item.userId}</if>
+		<if test="null != item.userName">and user_name = #{item.userName}</if>
+		<if test="null != item.operationName">and operation_name = #{item.operationName}</if>
+		<if test="null != item.spendTime">and spend_time = #{item.spendTime}</if>
+		<if test="null != item.requestUrl">and request_url = #{item.requestUrl}</if>
+		<if test="null != item.requestParams">and request_params = #{item.requestParams}</if>
+		<if test="null != item.requestIp">and request_ip = #{item.requestIp}</if>
+		<if test="null != item.createTime">and create_time = #{item.createTime}</if>
+	</where>
+  </sql>
+  <sql id="sql_update">
+    update sys_log set 
+	<trim prefix="" suffix="" prefixOverrides=",">
+		<if test="null != item.logId">, log_id = #{item.logId}</if>
+		<if test="null != item.userType">, user_type = #{item.userType}</if>
+		<if test="null != item.userId">, user_id = #{item.userId}</if>
+		<if test="null != item.userName">, user_name = #{item.userName}</if>
+		<if test="null != item.operationName">, operation_name = #{item.operationName}</if>
+		<if test="null != item.spendTime">, spend_time = #{item.spendTime}</if>
+		<if test="null != item.requestUrl">, request_url = #{item.requestUrl}</if>
+		<if test="null != item.requestParams">, request_params = #{item.requestParams}</if>
+		<if test="null != item.requestIp">, request_ip = #{item.requestIp}</if>
+		<if test="null != item.createTime">, create_time = #{item.createTime}</if>
+	</trim>
+	where  log_id = #{item.logId}
+  </sql>
+  <sql id="sql_save_columns">
+    insert into sys_log
+	<trim prefix="(" suffix=") values" prefixOverrides=",">
+		<if test="null != list[0].logId">, log_id</if>
+		<if test="null != list[0].userType">, user_type</if>
+		<if test="null != list[0].userId">, user_id</if>
+		<if test="null != list[0].userName">, user_name</if>
+		<if test="null != list[0].operationName">, operation_name</if>
+		<if test="null != list[0].spendTime">, spend_time</if>
+		<if test="null != list[0].requestUrl">, request_url</if>
+		<if test="null != list[0].requestParams">, request_params</if>
+		<if test="null != list[0].requestIp">, request_ip</if>
+		<if test="null != list[0].createTime">, create_time</if>
+	</trim>	
+  </sql>
+  <sql id="sql_save_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		<if test="null != item.logId">, #{item.logId}</if>
+		<if test="null != item.userType">, #{item.userType}</if>
+		<if test="null != item.userId">, #{item.userId}</if>
+		<if test="null != item.userName">, #{item.userName}</if>
+		<if test="null != item.operationName">, #{item.operationName}</if>
+		<if test="null != item.spendTime">, #{item.spendTime}</if>
+		<if test="null != item.requestUrl">, #{item.requestUrl}</if>
+		<if test="null != item.requestParams">, #{item.requestParams}</if>
+		<if test="null != item.requestIp">, #{item.requestIp}</if>
+		<if test="null != item.createTime">, #{item.createTime}</if>
+	</trim>	
+  </sql>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <include refid="sql_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_values" />
+	</foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    <include refid="sql_save_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_save_values" />
+	</foreach>
+  </insert>
+  <update id="batchUpdateByPrimaryKey">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <insert id="insertSelective" parameterType="cn.netinnet.logcenter.domain.SysLog">
+    insert into sys_log
+	<trim prefix="(" suffix=") " suffixOverrides=",">
+		<if test="null != logId"> log_id,</if>
+		<if test="null != userType"> user_type,</if>
+		<if test="null != userId"> user_id,</if>
+		<if test="null != userName"> user_name,</if>
+		<if test="null != operationName"> operation_name,</if>
+		<if test="null != spendTime"> spend_time,</if>
+		<if test="null != requestUrl"> request_url,</if>
+		<if test="null != requestParams"> request_params,</if>
+		<if test="null != requestIp"> request_ip,</if>
+		<if test="null != createTime"> create_time,</if>
+	</trim>
+	 <trim prefix=" values(" suffix=")" suffixOverrides=",">
+		<if test="null != logId"> #{logId,jdbcType=BIGINT},</if>
+		<if test="null != userType"> #{userType,jdbcType=TINYINT},</if>
+		<if test="null != userId"> #{userId,jdbcType=BIGINT},</if>
+		<if test="null != userName"> #{userName,jdbcType=VARCHAR},</if>
+		<if test="null != operationName"> #{operationName,jdbcType=VARCHAR},</if>
+		<if test="null != spendTime"> #{spendTime,jdbcType=BIGINT},</if>
+		<if test="null != requestUrl"> #{requestUrl,jdbcType=VARCHAR},</if>
+		<if test="null != requestParams"> #{requestParams,jdbcType=VARCHAR},</if>
+		<if test="null != requestIp"> #{requestIp,jdbcType=VARCHAR},</if>
+		<if test="null != createTime"> #{createTime,jdbcType=TIMESTAMP},</if>
+	</trim>
+  </insert>
+  <delete id="batchDeleteByArray">
+    delete from sys_log where log_id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="batchDeleteByList">
+    delete from sys_log where log_id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <select id="getList" parameterType="cn.netinnet.logcenter.domain.SysLog" resultMap="BaseResultMap">
+     select log_id,user_type, user_id, user_name, operation_name, spend_time, request_url, request_params, request_ip, create_time from sys_log
+    <include refid="sql_where" />
+  </select>
+
+    <!-- 根据beginDate, endDate, userName查询系统日志列表 -->
+    <select id="queryList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        user_name,
+        operation_name,
+        spend_time,
+        create_time,
+        request_url,
+        request_params
+        from sys_log
+        <where>
+            <if test="null != beginDate">
+                and create_time <![CDATA[>=]]>  #{beginDate}
+            </if>
+            <if test="null != endDate">
+                and create_time <![CDATA[<=]]> #{endDate}
+            </if>
+            <if test="null != userName and  '' != userName">
+                and user_name like #{userName}
+            </if>
+            <if test="null != requestUrl and  '' != requestUrl">
+                and request_url = #{requestUrl}
+            </if>
+        </where>
+    </select>
+
+    <!-- 删除endDate之前的系统日志 -->
+    <delete id="delLogsByEndDate">
+        delete from sys_log where create_time <![CDATA[<=]]> #{endDate}
+    </delete>
+
+    <!-- 查询超过一定日期的系统日志数 -->
+    <select id="getDelLogCount" resultType="int">
+        select count(1) from sys_log where create_time <![CDATA[<=]]> #{endDate}
+    </select>
+
+    <select id="querySysParam" resultType="java.util.Map">
+        select ${columns} from sys_parameter
+    </select>
+
+</mapper>
