@@ -11,7 +11,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @SpringBootApplication(scanBasePackages={"cn.netinnet"})
 @EnableEurekaClient
-@EnableFeignClients
+@EnableFeignClients(basePackages  = "cn.netinnet")
 @MapperScan({"cn.netinnet.processcenter.dao"})
 public class ProcessCenterApplication {
 

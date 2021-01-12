@@ -63,6 +63,8 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
+  main:
+    allow-bean-definition-overriding: true
 
 ribbon:
   eager-load:
