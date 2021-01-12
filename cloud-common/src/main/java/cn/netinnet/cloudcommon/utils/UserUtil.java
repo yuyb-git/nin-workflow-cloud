@@ -1,11 +1,16 @@
 package cn.netinnet.cloudcommon.utils;
 
 
+import cn.netinnet.cloudcommon.constant.GlobalConstant;
+import cn.netinnet.cloudcommon.dto.ExamInfo;
 import cn.netinnet.cloudcommon.dto.UserInfo;
 import cn.netinnet.cloudcommon.exception.CustomException;
 import cn.netinnet.cloudcommon.feign.NinZuulFeign;
+import org.apache.shiro.authc.AuthenticationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -41,4 +46,22 @@ public class UserUtil {
         }
         return (UserInfo) user;
     }
+
+    /**  方法描述
+     * @Description 获取用户的批次或者考试信息
+     * @Author yuyb
+     * @Date 10:10 2020/6/16
+     * @param session
+     * @return cn.netinnet.workflow.sys.domain.dto.ExamInfo
+     **/
+    public static ExamInfo getExamInfo(HttpSession session){
+        ExamInfo examInfo = SessionUtil.getSessionAttr(session, GlobalConstant.SESSION_EXAM, new ExamInfo());
+        // 教师出题questionId不为0， 学生首页登录examId不为0， 学生考试平台跳转examId和questionId都不为0
+        if (examInfo.getExamId() == 0L && examInfo.getQuestionId() == 0L) {
+            throw new AuthenticationException("session过期!");
+        }
+        return examInfo;
+    }
+
+
 }

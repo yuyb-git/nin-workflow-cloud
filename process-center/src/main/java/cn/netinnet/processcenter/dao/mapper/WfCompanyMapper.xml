@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.netinnet.processcenter.dao.WfCompanyMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.processcenter.domain.WfCompany">
+    <id column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="exam_id" jdbcType="BIGINT" property="examId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="company_category" jdbcType="TINYINT" property="companyCategory" />
+    <result column="industry" jdbcType="BIGINT" property="industry" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="company_status" jdbcType="TINYINT" property="companyStatus" />
+    <result column="template_id" jdbcType="BIGINT" property="templateId" />
+    <result column="del_flag" jdbcType="BIGINT" property="delFlag" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, exam_id, company_name, company_category, industry, remarks, company_status, 
+    template_id, del_flag, create_user_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wf_company
+    where company_id = #{companyId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from wf_company
+    where company_id = #{companyId,jdbcType=BIGINT}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.processcenter.domain.WfCompany">
+    update wf_company
+    <set>
+      <if test="examId != null">
+        exam_id = #{examId,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCategory != null">
+        company_category = #{companyCategory,jdbcType=TINYINT},
+      </if>
+      <if test="industry != null">
+        industry = #{industry,jdbcType=BIGINT},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="companyStatus != null">
+        company_status = #{companyStatus,jdbcType=TINYINT},
+      </if>
+      <if test="templateId != null">
+        template_id = #{templateId,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=BIGINT}
+  </update>
+  <sql id="sql_columns">
+    insert into wf_company
+	<trim prefix="(" suffix=") values" suffixOverrides=",">
+		company_id,exam_id,company_name,company_category,industry,remarks,company_status,template_id,del_flag,create_user_id,
+	</trim>
+  </sql>
+  <sql id="sql_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		, #{item.companyId}
+		, #{item.examId}
+		, #{item.companyName}
+		, #{item.companyCategory}
+		, #{item.industry}
+		, #{item.remarks}
+		, #{item.companyStatus}
+		, #{item.templateId}
+		, #{item.delFlag}
+		, #{item.createUserId}
+		, #{item.modifyTime}
+	</trim>	
+  </sql>
+  <sql id="sql_where">
+    <where>
+		<if test="null != item.companyId">and company_id = #{item.companyId}</if>
+		<if test="null != item.examId">and exam_id = #{item.examId}</if>
+		<if test="null != item.companyName">and company_name = #{item.companyName}</if>
+		<if test="null != item.companyCategory">and company_category = #{item.companyCategory}</if>
+		<if test="null != item.industry">and industry = #{item.industry}</if>
+		<if test="null != item.remarks">and remarks = #{item.remarks}</if>
+		<if test="null != item.companyStatus">and company_status = #{item.companyStatus}</if>
+		<if test="null != item.templateId">and template_id = #{item.templateId}</if>
+		<if test="null != item.delFlag">and del_flag = #{item.delFlag}</if>
+		<if test="null != item.createUserId">and create_user_id = #{item.createUserId}</if>
+		<if test="null != item.modifyTime">and modify_time = #{item.modifyTime}</if>
+	</where>
+  </sql>
+  <sql id="sql_update">
+    update wf_company set 
+	<trim prefix="" suffix="" prefixOverrides=",">
+		<if test="null != item.companyId">, company_id = #{item.companyId}</if>
+		<if test="null != item.examId">, exam_id = #{item.examId}</if>
+		<if test="null != item.companyName">, company_name = #{item.companyName}</if>
+		<if test="null != item.companyCategory">, company_category = #{item.companyCategory}</if>
+		<if test="null != item.industry">, industry = #{item.industry}</if>
+		<if test="null != item.remarks">, remarks = #{item.remarks}</if>
+		<if test="null != item.companyStatus">, company_status = #{item.companyStatus}</if>
+		<if test="null != item.templateId">, template_id = #{item.templateId}</if>
+		<if test="null != item.delFlag">, del_flag = #{item.delFlag}</if>
+		<if test="null != item.createUserId">, create_user_id = #{item.createUserId}</if>
+		<if test="null != item.modifyTime">, modify_time = #{item.modifyTime}</if>
+	</trim>
+	where  company_id = #{item.companyId}
+  </sql>
+  <sql id="sql_save_columns">
+    insert into wf_company
+	<trim prefix="(" suffix=") values" prefixOverrides=",">
+		<if test="null != list[0].companyId">, company_id</if>
+		<if test="null != list[0].examId">, exam_id</if>
+		<if test="null != list[0].companyName">, company_name</if>
+		<if test="null != list[0].companyCategory">, company_category</if>
+		<if test="null != list[0].industry">, industry</if>
+		<if test="null != list[0].remarks">, remarks</if>
+		<if test="null != list[0].companyStatus">, company_status</if>
+		<if test="null != list[0].templateId">, template_id</if>
+		<if test="null != list[0].delFlag">, del_flag</if>
+		<if test="null != list[0].createUserId">, create_user_id</if>
+		<if test="null != list[0].modifyTime">, modify_time</if>
+	</trim>	
+  </sql>
+  <sql id="sql_save_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		<if test="null != item.companyId">, #{item.companyId}</if>
+		<if test="null != item.examId">, #{item.examId}</if>
+		<if test="null != item.companyName">, #{item.companyName}</if>
+		<if test="null != item.companyCategory">, #{item.companyCategory}</if>
+		<if test="null != item.industry">, #{item.industry}</if>
+		<if test="null != item.remarks">, #{item.remarks}</if>
+		<if test="null != item.companyStatus">, #{item.companyStatus}</if>
+		<if test="null != item.templateId">, #{item.templateId}</if>
+		<if test="null != item.delFlag">, #{item.delFlag}</if>
+		<if test="null != item.createUserId">, #{item.createUserId}</if>
+		<if test="null != item.modifyTime">, #{item.modifyTime}</if>
+	</trim>	
+  </sql>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <include refid="sql_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_values" />
+	</foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    <include refid="sql_save_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_save_values" />
+	</foreach>
+  </insert>
+  <update id="batchUpdateByPrimaryKey">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <insert id="insertSelective" parameterType="cn.netinnet.processcenter.domain.WfCompany">
+    insert into wf_company
+	<trim prefix="(" suffix=") " suffixOverrides=",">
+		<if test="null != companyId"> company_id,</if>
+		<if test="null != examId"> exam_id,</if>
+		<if test="null != companyName"> company_name,</if>
+		<if test="null != companyCategory"> company_category,</if>
+		<if test="null != industry"> industry,</if>
+		<if test="null != remarks"> remarks,</if>
+		<if test="null != companyStatus"> company_status,</if>
+		<if test="null != templateId"> template_id,</if>
+		<if test="null != delFlag"> del_flag,</if>
+		<if test="null != createUserId"> create_user_id,</if>
+		<if test="null != modifyTime"> modify_time,</if>
+	</trim>
+	 <trim prefix=" values(" suffix=")" suffixOverrides=",">
+		<if test="null != companyId"> #{companyId,jdbcType=BIGINT},</if>
+		<if test="null != examId"> #{examId,jdbcType=BIGINT},</if>
+		<if test="null != companyName"> #{companyName,jdbcType=VARCHAR},</if>
+		<if test="null != companyCategory"> #{companyCategory,jdbcType=TINYINT},</if>
+		<if test="null != industry"> #{industry,jdbcType=BIGINT},</if>
+		<if test="null != remarks"> #{remarks,jdbcType=VARCHAR},</if>
+		<if test="null != companyStatus"> #{companyStatus,jdbcType=TINYINT},</if>
+		<if test="null != templateId"> #{templateId,jdbcType=BIGINT},</if>
+		<if test="null != delFlag"> #{delFlag,jdbcType=BIGINT},</if>
+		<if test="null != createUserId"> #{createUserId,jdbcType=BIGINT},</if>
+		<if test="null != modifyTime"> #{modifyTime,jdbcType=TIMESTAMP},</if>
+	</trim>
+  </insert>
+  <delete id="batchDeleteByArray">
+    delete from wf_company where company_id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="batchDeleteByList">
+    delete from wf_company where company_id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <select id="getList" parameterType="cn.netinnet.processcenter.domain.WfCompany" resultMap="BaseResultMap">
+     select company_id,exam_id, company_name, company_category, industry, remarks, company_status, template_id, del_flag, create_user_id, modify_time from wf_company
+    <include refid="sql_where" />
+  </select>
+
+    <!-- 查询指定的字段 -->
+    <select id="selectColumnsById" resultMap="BaseResultMap">
+        select ${columns} from wf_company where company_id = #{companyId}
+    </select>
+
+    <!-- 搜索企业 -->
+    <select id="seachCompanyList" resultMap="BaseResultMap">
+        select company_id,company_name,company_category,company_status,template_id,remarks from wf_company
+        <where>
+            <choose>
+                <when test="examId != null and examId != 0">
+                    company_status = #{enable}
+                    <choose>
+                        <!-- 学生自建企业 -->
+                        <when test="companyCategory == 1">
+                            and company_category = #{companyCategory} and exam_id = #{examId}
+                        </when>
+                        <!-- 系统企业、答案自建企业 -->
+                        <otherwise>
+                            and company_category = #{companyCategory}
+                        </otherwise>
+                    </choose>
+                </when>
+                <otherwise>
+                    company_category = #{companyCategory}
+                    <if test="enable != null">
+                        and company_status = #{enable}
+                    </if>
+                </otherwise>
+            </choose>
+            <if test="companyName != null and companyName != ''">
+                and company_name like #{companyName}
+            </if>
+            and del_flag = 0
+        </where>
+        order by company_id desc
+    </select>
+
+    <!-- 查询教师企业 -->
+    <select id="seachTeacherCompanyList" resultMap="BaseResultMap">
+        select company_id,company_name,company_category,company_status,template_id,remarks
+        from wf_company
+        where company_category = 3
+        and create_user_id = #{userId}
+        <if test="companyName != null and companyName != ''">
+            and company_name like #{companyName}
+        </if>
+        and del_flag = 0
+    </select>
+
+    <!-- 查询我的企业列表 -->
+    <select id="getMyCompanyList" resultMap="BaseResultMap">
+        select company_id,company_name
+        from wf_company
+        where exam_id = #{examId}
+          and company_status = 0
+          and del_flag = 0
+    </select>
+
+    <!-- 检查是否存在相同的企业名 -->
+    <select id="checkExist" resultType="java.lang.Integer">
+        select 1
+        from wf_company
+        where binary company_name = #{companyName}
+        <if test = "companyId != null">
+            and company_id != #{companyId}
+        </if>
+        <choose>
+            <when test="examId != null and examId != 0"> and exam_id = #{examId}</when>
+            <otherwise> and company_category = #{companyCategory} </otherwise>
+        </choose>
+        and del_flag = 0
+        limit 1
+    </select>
+
+    <!-- 查询教师企业是否存在同名的 -->
+    <select id="checkTeacherCompanyExist" resultType="java.lang.Integer">
+        select 1
+        from wf_company
+        where binary company_name = #{companyName}
+        <if test = "companyId != null">
+            and company_id != #{companyId}
+        </if>
+        and company_category = #{companyCategory}
+        and create_user_id = #{userId}
+        and del_flag = 0
+        limit 1
+    </select>
+
+    <!--教师单道题目内，企业名称不重复-->
+    <select id="checkSingleQuestionExist" resultType="java.lang.Integer">
+        SELECT 1 FROM wf_company wf
+            INNER JOIN sys_question_company sqc
+            ON wf.company_id = sqc.company_id
+        WHERE sqc.question_id= #{questionId}
+          and wf.company_category = #{companyCategory}
+          and wf.del_flag = 0
+    </select>
+
+    <!--查询学生自荐企业是否存在-->
+    <select id="checkUserQuesCompExist" resultType="java.lang.Integer">
+        SELECT 1 FROM wf_company wf
+            INNER JOIN sys_question_company sqc
+            ON wf.company_id = sqc.company_id
+        WHERE sqc.exam_id = #{examId}
+          AND sqc.question_id= #{questionId}
+          and wf.company_category = #{companyCategory}
+          and del_flag = 0
+        limit 1
+    </select>
+
+    <!-- 获取企业下拉框的数据 -->
+    <select id="queryCompanyOptions" resultType="cn.netinnet.processcenter.domain.WfCompany">
+        select company_id,
+        company_name
+        from   wf_company
+        <!-- 查询系统企业 -->
+        where company_status = 0
+        and del_flag = 0
+        <choose>
+            <when test="questionCategory == 0">
+                and company_category = 0
+            </when>
+            <otherwise>
+                and company_category = 3
+                and create_user_id = #{userId}
+            </otherwise>
+        </choose>
+        order by company_id desc
+    </select>
+
+    <!-- 启用（禁用）公司 -->
+    <update id="changeCompanyStatus">
+        update wf_company
+        set    company_status = #{status}
+        where company_id in
+        <foreach collection="companyIds" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--  根据userId获取companyId -->
+    <select id="queryCompanyIdsByUserId" resultType="java.lang.Long">
+        select   company_id
+        from     wf_company
+        where    create_user_id = #{userId}
+          and    company_category = '1'
+          and del_flag = 0
+    </select>
+
+    <!--查询企业名称-->
+    <select id="queryCompanyNames" resultType="java.lang.String">
+        select company_name from wf_company where company_id in
+        <foreach collection="companyIds" item="item" close=")" open="(" separator=",">#{item}</foreach>
+    </select>
+
+    <!--查询题目下的企业-->
+    <select id="seachCompanyListInQuestion" resultMap="BaseResultMap">
+        select wf.company_name, wf.company_id
+        from wf_company wf
+        inner join sys_question_company sqc
+        on wf.company_id = sqc.company_id
+        where sqc.question_id = #{questionId}
+        <choose>
+            <!--学生做题必然有examId-->
+            <when test="examId != null and examId != 0">
+                and sqc.exam_id = #{examId}
+            </when>
+            <!--查询答案自建类型企业=2-->
+            <otherwise> and sqc.company_category = 2 </otherwise>
+        </choose>
+        <if test="companyName != null and companyName != ''">
+            and wf.company_name like #{companyName}
+        </if>
+        and wf.del_flag = 0
+        order by wf.company_id desc
+    </select>
+
+    <!-- 查询表单模板是否被使用 -->
+    <select id="queryFormTemplateUsedCompany" resultType="java.lang.Integer">
+        select   1
+        from    wf_company
+        where   template_id = #{templateId}
+        and del_flag = 0
+        limit    1
+    </select>
+
+    <!-- 查询被使用的表单模板 -->
+    <select id="queryUsedFormTemplate" resultType="java.lang.Long">
+        select     template_id
+        from       wf_company
+        where      template_id   in
+        <foreach collection="templateIds" index = "index" item = "item"  open = "(" close=")" separator="," >
+            #{item}
+        </foreach>
+        and del_flag = 0
+    </select>
+
+    <!-- 通过examId获取companyId -->
+    <select id="queryCompanyIdByExamId" resultType="java.lang.Long">
+        select company_id
+        from   wf_company
+        where  exam_id = #{examId}
+        and del_flag = 0
+    </select>
+
+    <!-- 获取企业信息 -->
+    <select id="queryCompanyByCompanyIds" resultType="cn.netinnet.processcenter.domain.WfCompany">
+        select
+        <include refid="Base_Column_List"/>
+        from   wf_company
+        where  company_id in
+        <foreach collection="companyIds" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!-- 根据答案企业名称查询对应的学生企业id -->
+    <select id="getStuCompanyIdByAnswer" resultType="long">
+        SELECT sqc.company_id FROM sys_question_company sqc
+        INNER JOIN wf_company wc ON wc.company_id = sqc.company_id and wc.del_flag = 0
+        WHERE sqc.exam_id = #{examId} AND sqc.question_id = #{questionId}
+          AND wc.company_name = #{companyName}
+          limit 1
+    </select>
+
+    <!-- 查询不指定企业的试题的答案企业列表 -->
+    <select id="getAnswerCompanys" resultMap="BaseResultMap">
+        select wf.company_name, wf.company_id
+        from wf_company wf
+        inner join sys_question_company sqc
+            on wf.company_id = sqc.company_id
+        where sqc.question_id = #{questionId}
+          and sqc.company_category = 2
+          and wf.del_flag = 0
+    </select>
+
+    <!-- 逻辑删除 -->
+    <update id="logicalDeleteById">
+        update wf_company set del_flag = 1 where company_id = #{companyId}
+    </update>
+
+    <!-- 批量逻辑删除 -->
+    <update id="logicalDeleteByIdList">
+        update wf_company set del_flag = 1 where company_id in
+        <foreach collection="companyIds" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 查询已删除的企业id -->
+    <select id="getCompanyIdsByDefFlag" resultType="long">
+        select company_id from wf_company
+        where modify_time <![CDATA[<=]]> #{endDate}
+          and del_flag = 1
+    </select>
+</mapper>

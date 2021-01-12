@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.netinnet.processcenter.dao.WfDeptMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.processcenter.domain.WfDept">
+    <id column="dept_id" jdbcType="BIGINT" property="deptId" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="parent" jdbcType="BIGINT" property="parent" />
+    <result column="level" jdbcType="TINYINT" property="level" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    dept_id, dept_name, parent, level, company_id, user_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wf_dept
+    where dept_id = #{deptId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from wf_dept
+    where dept_id = #{deptId,jdbcType=BIGINT}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.processcenter.domain.WfDept">
+    update wf_dept
+    <set>
+      <if test="deptName != null">
+        dept_name = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="parent != null">
+        parent = #{parent,jdbcType=BIGINT},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where dept_id = #{deptId,jdbcType=BIGINT}
+  </update>
+  <sql id="sql_columns">
+    insert into wf_dept
+	<trim prefix="(" suffix=") values" suffixOverrides=",">
+		dept_id,dept_name,parent,level,company_id,user_id,
+	</trim>
+  </sql>
+  <sql id="sql_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		, #{item.deptId}
+		, #{item.deptName}
+		, #{item.parent}
+		, #{item.level}
+		, #{item.companyId}
+		, #{item.userId}
+		, #{item.modifyTime}
+	</trim>	
+  </sql>
+  <sql id="sql_where">
+    <where>
+		<if test="null != item.deptId">and dept_id = #{item.deptId}</if>
+		<if test="null != item.deptName">and dept_name = #{item.deptName}</if>
+		<if test="null != item.parent">and parent = #{item.parent}</if>
+		<if test="null != item.level">and level = #{item.level}</if>
+		<if test="null != item.companyId">and company_id = #{item.companyId}</if>
+		<if test="null != item.userId">and user_id = #{item.userId}</if>
+		<if test="null != item.modifyTime">and modify_time = #{item.modifyTime}</if>
+	</where>
+  </sql>
+  <sql id="sql_update">
+    update wf_dept set 
+	<trim prefix="" suffix="" prefixOverrides=",">
+		<if test="null != item.deptId">, dept_id = #{item.deptId}</if>
+		<if test="null != item.deptName">, dept_name = #{item.deptName}</if>
+		<if test="null != item.parent">, parent = #{item.parent}</if>
+		<if test="null != item.level">, level = #{item.level}</if>
+		<if test="null != item.companyId">, company_id = #{item.companyId}</if>
+		<if test="null != item.userId">, user_id = #{item.userId}</if>
+		<if test="null != item.modifyTime">, modify_time = #{item.modifyTime}</if>
+	</trim>
+	where  dept_id = #{item.deptId}
+  </sql>
+  <sql id="sql_save_columns">
+    insert into wf_dept
+	<trim prefix="(" suffix=") values" prefixOverrides=",">
+		<if test="null != list[0].deptId">, dept_id</if>
+		<if test="null != list[0].deptName">, dept_name</if>
+		<if test="null != list[0].parent">, parent</if>
+		<if test="null != list[0].level">, level</if>
+		<if test="null != list[0].companyId">, company_id</if>
+		<if test="null != list[0].userId">, user_id</if>
+		<if test="null != list[0].modifyTime">, modify_time</if>
+	</trim>	
+  </sql>
+  <sql id="sql_save_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		<if test="null != item.deptId">, #{item.deptId}</if>
+		<if test="null != item.deptName">, #{item.deptName}</if>
+		<if test="null != item.parent">, #{item.parent}</if>
+		<if test="null != item.level">, #{item.level}</if>
+		<if test="null != item.companyId">, #{item.companyId}</if>
+		<if test="null != item.userId">, #{item.userId}</if>
+		<if test="null != item.modifyTime">, #{item.modifyTime}</if>
+	</trim>	
+  </sql>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <include refid="sql_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_values" />
+	</foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    <include refid="sql_save_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_save_values" />
+	</foreach>
+  </insert>
+  <update id="batchUpdateByPrimaryKey">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <insert id="insertSelective" parameterType="cn.netinnet.processcenter.domain.WfDept">
+    insert into wf_dept
+	<trim prefix="(" suffix=") " suffixOverrides=",">
+		<if test="null != deptId"> dept_id,</if>
+		<if test="null != deptName"> dept_name,</if>
+		<if test="null != parent"> parent,</if>
+		<if test="null != level"> level,</if>
+		<if test="null != companyId"> company_id,</if>
+		<if test="null != userId"> user_id,</if>
+		<if test="null != modifyTime"> modify_time,</if>
+	</trim>
+	 <trim prefix=" values(" suffix=")" suffixOverrides=",">
+		<if test="null != deptId"> #{deptId,jdbcType=BIGINT},</if>
+		<if test="null != deptName"> #{deptName,jdbcType=VARCHAR},</if>
+		<if test="null != parent"> #{parent,jdbcType=BIGINT},</if>
+		<if test="null != level"> #{level,jdbcType=TINYINT},</if>
+		<if test="null != companyId"> #{companyId,jdbcType=BIGINT},</if>
+		<if test="null != userId"> #{userId,jdbcType=BIGINT},</if>
+		<if test="null != modifyTime"> #{modifyTime,jdbcType=TIMESTAMP},</if>
+	</trim>
+  </insert>
+  <delete id="batchDeleteByArray">
+    delete from wf_dept where dept_id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="batchDeleteByList">
+    delete from wf_dept where dept_id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <select id="getList" parameterType="cn.netinnet.processcenter.domain.WfDept" resultMap="BaseResultMap">
+     select dept_id,dept_name, parent, level, company_id, user_id, modify_time from wf_dept
+    <include refid="sql_where" />
+  </select>
+
+    <!-- 根据企业ID获取企业下所有部门 -->
+    <select id="getAllDeptByCompanyId" resultType="cn.netinnet.processcenter.domain.WfDept">
+        select
+        dept_id, dept_name, parent, level, company_id
+        from  wf_dept
+        where  company_id = #{companyId}
+    </select>
+
+    <!--根据父部门id获取子部门 -->
+    <select id="getChildrenDept" resultType="cn.netinnet.processcenter.domain.WfDept">
+        select dept_id,dept_name,parent,level
+        from wf_dept
+        where  parent = #{parent}
+    </select>
+
+    <!--根据企业id查询-->
+    <select id="queryDeptByCompanyIds" resultType="cn.netinnet.processcenter.domain.WfDept">
+        select dept_id, dept_name,parent, level, company_id from wf_dept where company_id in
+        <foreach collection="companyIds" item="item" close=")" open="(" separator=",">#{item}</foreach>
+        order by dept_id
+    </select>
+
+    <!-- 查询部门名称 -->
+    <select id="getDeptNameById" resultType="string">
+        select dept_name from wf_dept where dept_id = #{deptId}
+    </select>
+
+    <!-- 根据企业Id获取部门Id -->
+    <select id="queryDeptIdsByCompanyId" resultType="java.lang.Long">
+        select dept_id
+        from   wf_dept
+        where  company_id = #{companyId}
+        order by level
+    </select>
+
+    <!-- 查询是否存在同一企业同级同名部门 -->
+    <select id="countDeptExist" resultType="java.lang.Integer">
+        select   1
+        from    wf_dept
+        where  company_id = #{companyId}
+        <if test = "deptId != null">
+            and  dept_id != #{deptId}
+        </if>
+        and binary dept_name = #{deptName}
+        and   parent = #{parent}
+        limit  1
+    </select>
+
+    <!--查询企业下的所有部门并取别名-->
+    <select id="getAllDeptByCompanyIdUseAlias" resultType="map">
+        select
+        dept_id as itemId, dept_name as itemName, parent as parentId, level
+        from  wf_dept
+        where  company_id = #{companyId}
+        order by itemId
+    </select>
+
+    <!-- 查询当前企业的部门 -->
+    <select id="getParentDept" resultMap="BaseResultMap">
+        select dept_id,parent from wf_dept where company_id = #{companyId}
+    </select>
+
+    <!-- 获取企业下的部门 -->
+    <select id="queryDeptInfoByCompanyIds" resultType="cn.netinnet.processcenter.domain.WfDept">
+        select
+        <include refid="Base_Column_List"/>
+        from   wf_dept
+        where  company_id  in
+        <foreach collection="companyIds" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+</mapper>

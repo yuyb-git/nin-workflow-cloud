@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.netinnet.processcenter.dao.WfStaffMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.processcenter.domain.WfStaff">
+    <id column="staff_id" jdbcType="BIGINT" property="staffId" />
+    <result column="staff_name" jdbcType="VARCHAR" property="staffName" />
+    <result column="job_number" jdbcType="VARCHAR" property="jobNumber" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="dept_id" jdbcType="BIGINT" property="deptId" />
+    <result column="position_id" jdbcType="BIGINT" property="positionId" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="enable" jdbcType="TINYINT" property="enable" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    staff_id, staff_name, job_number, account, password, company_id, dept_id, position_id, 
+    tel, email, enable, create_user_id, create_time, modify_user_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wf_staff
+    where staff_id = #{staffId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from wf_staff
+    where staff_id = #{staffId,jdbcType=BIGINT}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.processcenter.domain.WfStaff">
+    update wf_staff
+    <set>
+      <if test="staffName != null">
+        staff_name = #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobNumber != null">
+        job_number = #{jobNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="deptId != null">
+        dept_id = #{deptId,jdbcType=BIGINT},
+      </if>
+      <if test="positionId != null">
+        position_id = #{positionId,jdbcType=BIGINT},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null">
+        enable = #{enable,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where staff_id = #{staffId,jdbcType=BIGINT}
+  </update>
+  <sql id="sql_columns">
+    insert into wf_staff
+	<trim prefix="(" suffix=") values" suffixOverrides=",">
+		staff_id,staff_name,job_number,account,password,company_id,dept_id,position_id,tel,email,enable,create_user_id,modify_user_id,
+	</trim>
+  </sql>
+  <sql id="sql_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		, #{item.staffId}
+		, #{item.staffName}
+		, #{item.jobNumber}
+		, #{item.account}
+		, #{item.password}
+		, #{item.companyId}
+		, #{item.deptId}
+		, #{item.positionId}
+		, #{item.tel}
+		, #{item.email}
+		, #{item.enable}
+		, #{item.createUserId}
+		, #{item.createTime}
+		, #{item.modifyUserId}
+		, #{item.modifyTime}
+	</trim>	
+  </sql>
+  <sql id="sql_where">
+    <where>
+		<if test="null != item.staffId">and staff_id = #{item.staffId}</if>
+		<if test="null != item.staffName">and staff_name = #{item.staffName}</if>
+		<if test="null != item.jobNumber">and job_number = #{item.jobNumber}</if>
+		<if test="null != item.account">and account = #{item.account}</if>
+		<if test="null != item.password">and password = #{item.password}</if>
+		<if test="null != item.companyId">and company_id = #{item.companyId}</if>
+		<if test="null != item.deptId">and dept_id = #{item.deptId}</if>
+		<if test="null != item.positionId">and position_id = #{item.positionId}</if>
+		<if test="null != item.tel">and tel = #{item.tel}</if>
+		<if test="null != item.email">and email = #{item.email}</if>
+		<if test="null != item.enable">and enable = #{item.enable}</if>
+		<if test="null != item.createUserId">and create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">and create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">and modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">and modify_time = #{item.modifyTime}</if>
+	</where>
+  </sql>
+  <sql id="sql_update">
+    update wf_staff set 
+	<trim prefix="" suffix="" prefixOverrides=",">
+		<if test="null != item.staffId">, staff_id = #{item.staffId}</if>
+		<if test="null != item.staffName">, staff_name = #{item.staffName}</if>
+		<if test="null != item.jobNumber">, job_number = #{item.jobNumber}</if>
+		<if test="null != item.account">, account = #{item.account}</if>
+		<if test="null != item.password">, password = #{item.password}</if>
+		<if test="null != item.companyId">, company_id = #{item.companyId}</if>
+		<if test="null != item.deptId">, dept_id = #{item.deptId}</if>
+		<if test="null != item.positionId">, position_id = #{item.positionId}</if>
+		<if test="null != item.tel">, tel = #{item.tel}</if>
+		<if test="null != item.email">, email = #{item.email}</if>
+		<if test="null != item.enable">, enable = #{item.enable}</if>
+		<if test="null != item.createUserId">, create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">, create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, modify_time = #{item.modifyTime}</if>
+	</trim>
+	where  staff_id = #{item.staffId}
+  </sql>
+  <sql id="sql_save_columns">
+    insert into wf_staff
+	<trim prefix="(" suffix=") values" prefixOverrides=",">
+		<if test="null != list[0].staffId">, staff_id</if>
+		<if test="null != list[0].staffName">, staff_name</if>
+		<if test="null != list[0].jobNumber">, job_number</if>
+		<if test="null != list[0].account">, account</if>
+		<if test="null != list[0].password">, password</if>
+		<if test="null != list[0].companyId">, company_id</if>
+		<if test="null != list[0].deptId">, dept_id</if>
+		<if test="null != list[0].positionId">, position_id</if>
+		<if test="null != list[0].tel">, tel</if>
+		<if test="null != list[0].email">, email</if>
+		<if test="null != list[0].enable">, enable</if>
+		<if test="null != list[0].createUserId">, create_user_id</if>
+		<if test="null != list[0].createTime">, create_time</if>
+		<if test="null != list[0].modifyUserId">, modify_user_id</if>
+		<if test="null != list[0].modifyTime">, modify_time</if>
+	</trim>	
+  </sql>
+  <sql id="sql_save_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		<if test="null != item.staffId">, #{item.staffId}</if>
+		<if test="null != item.staffName">, #{item.staffName}</if>
+		<if test="null != item.jobNumber">, #{item.jobNumber}</if>
+		<if test="null != item.account">, #{item.account}</if>
+		<if test="null != item.password">, #{item.password}</if>
+		<if test="null != item.companyId">, #{item.companyId}</if>
+		<if test="null != item.deptId">, #{item.deptId}</if>
+		<if test="null != item.positionId">, #{item.positionId}</if>
+		<if test="null != item.tel">, #{item.tel}</if>
+		<if test="null != item.email">, #{item.email}</if>
+		<if test="null != item.enable">, #{item.enable}</if>
+		<if test="null != item.createUserId">, #{item.createUserId}</if>
+		<if test="null != item.createTime">, #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, #{item.modifyTime}</if>
+	</trim>	
+  </sql>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <include refid="sql_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_values" />
+	</foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    <include refid="sql_save_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_save_values" />
+	</foreach>
+  </insert>
+  <update id="batchUpdateByPrimaryKey">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <insert id="insertSelective" parameterType="cn.netinnet.processcenter.domain.WfStaff">
+    insert into wf_staff
+	<trim prefix="(" suffix=") " suffixOverrides=",">
+		<if test="null != staffId"> staff_id,</if>
+		<if test="null != staffName"> staff_name,</if>
+		<if test="null != jobNumber"> job_number,</if>
+		<if test="null != account"> account,</if>
+		<if test="null != password"> password,</if>
+		<if test="null != companyId"> company_id,</if>
+		<if test="null != deptId"> dept_id,</if>
+		<if test="null != positionId"> position_id,</if>
+		<if test="null != tel"> tel,</if>
+		<if test="null != email"> email,</if>
+		<if test="null != enable"> enable,</if>
+		<if test="null != createUserId"> create_user_id,</if>
+		<if test="null != createTime"> create_time,</if>
+		<if test="null != modifyUserId"> modify_user_id,</if>
+		<if test="null != modifyTime"> modify_time,</if>
+	</trim>
+	 <trim prefix=" values(" suffix=")" suffixOverrides=",">
+		<if test="null != staffId"> #{staffId,jdbcType=BIGINT},</if>
+		<if test="null != staffName"> #{staffName,jdbcType=VARCHAR},</if>
+		<if test="null != jobNumber"> #{jobNumber,jdbcType=VARCHAR},</if>
+		<if test="null != account"> #{account,jdbcType=VARCHAR},</if>
+		<if test="null != password"> #{password,jdbcType=VARCHAR},</if>
+		<if test="null != companyId"> #{companyId,jdbcType=BIGINT},</if>
+		<if test="null != deptId"> #{deptId,jdbcType=BIGINT},</if>
+		<if test="null != positionId"> #{positionId,jdbcType=BIGINT},</if>
+		<if test="null != tel"> #{tel,jdbcType=VARCHAR},</if>
+		<if test="null != email"> #{email,jdbcType=VARCHAR},</if>
+		<if test="null != enable"> #{enable,jdbcType=TINYINT},</if>
+		<if test="null != createUserId"> #{createUserId,jdbcType=BIGINT},</if>
+		<if test="null != createTime"> #{createTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != modifyUserId"> #{modifyUserId,jdbcType=BIGINT},</if>
+		<if test="null != modifyTime"> #{modifyTime,jdbcType=TIMESTAMP},</if>
+	</trim>
+  </insert>
+  <delete id="batchDeleteByArray">
+    delete from wf_staff where staff_id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="batchDeleteByList">
+    delete from wf_staff where staff_id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <select id="getList" parameterType="cn.netinnet.processcenter.domain.WfStaff" resultMap="BaseResultMap">
+     select staff_id,staff_name, job_number, account, password, company_id, dept_id, position_id, tel, email, enable, create_user_id, create_time, modify_user_id, modify_time from wf_staff
+    <include refid="sql_where" />
+  </select>
+
+	<!-- 查询部门员工 -->
+	<select id="staffList" resultType="java.util.Map">
+		select ws.staff_id as  staffId,
+			   ws.job_number as jobNumber,
+			   ws.staff_name as staffName,
+			   ws.position_id as positionId,
+			   wp.position_name as positionName
+		from wf_staff ws, wf_position wp
+		where ws.position_id = wp.position_id
+		  and   ws.dept_id = #{deptId}
+	</select>
+
+	<!-- 分页查询员工列表 -->
+	<select id="queryStaffList" resultType="java.util.Map">
+		select  CONVERT(ws.staff_id, CHAR)  as  staffId,
+		ws.job_number as jobNumber,
+		ws.staff_name as staffName,
+		ws.tel  as  tel,
+		ws.email as email,
+		ws.enable as enable,
+		CONVERT(ws.position_id, CHAR) as positionId,
+		wp.position_name as positionName
+		from wf_staff ws, wf_position wp
+		<where>
+			ws.position_id = wp.position_id
+			<if test="deptId !=null">
+				and   ws.dept_id = #{deptId}
+			</if>
+			<if test="searchItem!='' and searchItem !=null">
+				and  ( ws.staff_name like #{searchItem}
+				or    wp.position_name like #{searchItem}
+				or    ws.tel like #{searchItem}
+				or    ws.email like #{searchItem})
+			</if>
+		</where>
+	</select>
+
+	<!-- 修改员工状态 -->
+	<update id="changeStaffEnableStatus">
+		update  wf_staff
+		set     enable = #{enable}
+		where   staff_id = #{staffId}
+	</update>
+
+	<!-- 查询岗位下的所有员工 -->
+	<select id="getStaffByPositionId" resultMap="BaseResultMap">
+		select staff_id,dept_id from wf_staff where position_id = #{positionId} and enable = 1
+	</select>
+
+	<!-- 查询某个岗位id下的所有员工id -->
+	<select id="getStaffIdListByPositionId" resultType="java.lang.Long">
+		select staff_id
+		from wf_staff
+		where position_id in
+		<foreach collection="positionIds" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		<if test="null != enable">
+			and enable = #{enable}
+		</if>
+	</select>
+
+	<!-- 查询部门=deptId岗位=id下的所有员工id -->
+	<select id="getStaffIdListByDeptAndPositionId" resultType="java.lang.Long">
+		select staff_id
+		from wf_staff
+		where dept_id in
+		<foreach collection="deptIds" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		  and position_id = #{positionId}
+		  and enable = 1
+	</select>
+
+	<!-- 查询员工的岗位id -->
+	<select id="getPositionIdByStaff" resultType="java.lang.Long">
+		select position_id from wf_staff where staff_id = #{staffId}
+	</select>
+
+	<!-- 查询员工必要信息 -->
+	<select id="getStaffById" resultMap="BaseResultMap">
+		select staff_id,staff_name, job_number,company_id, dept_id, position_id,enable
+		from wf_staff
+		where staff_id = #{staffId}
+	</select>
+
+	<!-- 查询用户名和工号 -->
+	<select id="queryStaffNameAndJobNum" resultMap="BaseResultMap">
+		select staff_name,staff_id,job_number,company_id
+		from wf_staff
+		where staff_id in
+		<foreach collection="staffIds" item="staffId" open="(" separator="," close=")">#{staffId}</foreach>
+	</select>
+
+	<!-- 获取公司下的所有员工 -->
+	<select id="getAllStaffByCompanyId" resultType="cn.netinnet.processcenter.domain.WfStaff">
+		select
+		staff_id, staff_name, job_number, dept_id, position_id
+		from  wf_staff
+		where company_id = #{companyId}
+		and   enable = 1
+	</select>
+
+	<!-- 查询企业下的员工 -->
+	<select id="queryStaffByCompanyIds" resultType="cn.netinnet.processcenter.domain.WfStaff">
+		select staff_id, staff_name, job_number,position_id, dept_id, company_id, job_number from wf_staff where company_id in
+		<foreach collection="companyIds" item="item" close=")" open="(" separator=",">#{item}</foreach>
+	</select>
+
+	<!-- 获取某个部门下的员工id -->
+	<select id="queryStaffIdsByDeptId" resultType="java.lang.Long">
+		select  staff_id
+		from    wf_staff
+		where   dept_id = #{deptId}
+	</select>
+
+	<!-- 根据企业id获取员工id -->
+	<select id="queryStaffIdsByCompanyId" resultType="java.lang.Long">
+		select  staff_id
+		from    wf_staff
+		where   company_id = #{companyId}
+	</select>
+
+	<!-- 获取企业中存在的相同工号 -->
+    <select id="checkJobNumberExist" resultType="java.lang.String">
+		select job_number
+		from   wf_staff
+		where
+		company_id = #{companyId}
+		and job_number in
+		<foreach collection="jobNumberList" index = "index" item = "item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<!-- 查询同名的员工 -->
+	<select id="queryExistStaff" resultType="java.lang.Integer">
+		select 1
+		from  wf_staff
+		<where>
+			binary job_number = #{jobNumber}
+			and company_id = #{companyId}
+			<if test = "staffId!=null">
+				and staff_id != #{staffId}
+			</if>
+		</where>
+		limit 1
+	</select>
+
+	<!--查询企业下的所有员工并取别名-->
+	<select id="getAllStaffByCompanyIdUseAlias" resultType="map">
+		select
+		staff_id as itemId, staff_name as itemName, job_number as jobNumber, dept_id as deptId, position_id as position
+		from  wf_staff
+		where company_id = #{companyId}
+		and   enable = 1
+	</select>
+	<!-- 查询企业下员工个数 -->
+	<select id="queryStaffCount" resultType="java.lang.Integer">
+		select count(1) from wf_staff where company_id = #{companyId}
+	</select>
+
+	<!-- 获取企业下的员工信息 -->
+	<select id="queryStaffInfoByCompanyIds" resultType="cn.netinnet.processcenter.domain.WfStaff">
+		select
+		<include refid="Base_Column_List"/>
+		from  wf_staff
+		where  company_id in
+		<foreach collection="companyIds" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+</mapper>

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.netinnet.processcenter.dao.WfPositionMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.processcenter.domain.WfPosition">
+    <id column="position_id" jdbcType="BIGINT" property="positionId" />
+    <result column="position_name" jdbcType="VARCHAR" property="positionName" />
+    <result column="position_code" jdbcType="VARCHAR" property="positionCode" />
+    <result column="parent" jdbcType="BIGINT" property="parent" />
+    <result column="level" jdbcType="TINYINT" property="level" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    position_id, position_name, position_code, parent, level, company_id, user_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wf_position
+    where position_id = #{positionId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from wf_position
+    where position_id = #{positionId,jdbcType=BIGINT}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.processcenter.domain.WfPosition">
+    update wf_position
+    <set>
+      <if test="positionName != null">
+        position_name = #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionCode != null">
+        position_code = #{positionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parent != null">
+        parent = #{parent,jdbcType=BIGINT},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where position_id = #{positionId,jdbcType=BIGINT}
+  </update>
+  <sql id="sql_columns">
+    insert into wf_position
+	<trim prefix="(" suffix=") values" suffixOverrides=",">
+		position_id,position_name,position_code,parent,level,company_id,user_id,
+	</trim>
+  </sql>
+  <sql id="sql_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		, #{item.positionId}
+		, #{item.positionName}
+		, #{item.positionCode}
+		, #{item.parent}
+		, #{item.level}
+		, #{item.companyId}
+		, #{item.userId}
+		, #{item.modifyTime}
+	</trim>	
+  </sql>
+  <sql id="sql_where">
+    <where>
+		<if test="null != item.positionId">and position_id = #{item.positionId}</if>
+		<if test="null != item.positionName">and position_name = #{item.positionName}</if>
+		<if test="null != item.positionCode">and position_code = #{item.positionCode}</if>
+		<if test="null != item.parent">and parent = #{item.parent}</if>
+		<if test="null != item.level">and level = #{item.level}</if>
+		<if test="null != item.companyId">and company_id = #{item.companyId}</if>
+		<if test="null != item.userId">and user_id = #{item.userId}</if>
+		<if test="null != item.modifyTime">and modify_time = #{item.modifyTime}</if>
+	</where>
+  </sql>
+  <sql id="sql_update">
+    update wf_position set 
+	<trim prefix="" suffix="" prefixOverrides=",">
+		<if test="null != item.positionId">, position_id = #{item.positionId}</if>
+		<if test="null != item.positionName">, position_name = #{item.positionName}</if>
+		<if test="null != item.positionCode">, position_code = #{item.positionCode}</if>
+		<if test="null != item.parent">, parent = #{item.parent}</if>
+		<if test="null != item.level">, level = #{item.level}</if>
+		<if test="null != item.companyId">, company_id = #{item.companyId}</if>
+		<if test="null != item.userId">, user_id = #{item.userId}</if>
+		<if test="null != item.modifyTime">, modify_time = #{item.modifyTime}</if>
+	</trim>
+	where  position_id = #{item.positionId}
+  </sql>
+  <sql id="sql_save_columns">
+    insert into wf_position
+	<trim prefix="(" suffix=") values" prefixOverrides=",">
+		<if test="null != list[0].positionId">, position_id</if>
+		<if test="null != list[0].positionName">, position_name</if>
+		<if test="null != list[0].positionCode">, position_code</if>
+		<if test="null != list[0].parent">, parent</if>
+		<if test="null != list[0].level">, level</if>
+		<if test="null != list[0].companyId">, company_id</if>
+		<if test="null != list[0].userId">, user_id</if>
+		<if test="null != list[0].modifyTime">, modify_time</if>
+	</trim>	
+  </sql>
+  <sql id="sql_save_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		<if test="null != item.positionId">, #{item.positionId}</if>
+		<if test="null != item.positionName">, #{item.positionName}</if>
+		<if test="null != item.positionCode">, #{item.positionCode}</if>
+		<if test="null != item.parent">, #{item.parent}</if>
+		<if test="null != item.level">, #{item.level}</if>
+		<if test="null != item.companyId">, #{item.companyId}</if>
+		<if test="null != item.userId">, #{item.userId}</if>
+		<if test="null != item.modifyTime">, #{item.modifyTime}</if>
+	</trim>	
+  </sql>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <include refid="sql_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_values" />
+	</foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    <include refid="sql_save_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_save_values" />
+	</foreach>
+  </insert>
+  <update id="batchUpdateByPrimaryKey">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <insert id="insertSelective" parameterType="cn.netinnet.processcenter.domain.WfPosition">
+    insert into wf_position
+	<trim prefix="(" suffix=") " suffixOverrides=",">
+		<if test="null != positionId"> position_id,</if>
+		<if test="null != positionName"> position_name,</if>
+		<if test="null != positionCode"> position_code,</if>
+		<if test="null != parent"> parent,</if>
+		<if test="null != level"> level,</if>
+		<if test="null != companyId"> company_id,</if>
+		<if test="null != userId"> user_id,</if>
+		<if test="null != modifyTime"> modify_time,</if>
+	</trim>
+	 <trim prefix=" values(" suffix=")" suffixOverrides=",">
+		<if test="null != positionId"> #{positionId,jdbcType=BIGINT},</if>
+		<if test="null != positionName"> #{positionName,jdbcType=VARCHAR},</if>
+		<if test="null != positionCode"> #{positionCode,jdbcType=VARCHAR},</if>
+		<if test="null != parent"> #{parent,jdbcType=BIGINT},</if>
+		<if test="null != level"> #{level,jdbcType=TINYINT},</if>
+		<if test="null != companyId"> #{companyId,jdbcType=BIGINT},</if>
+		<if test="null != userId"> #{userId,jdbcType=BIGINT},</if>
+		<if test="null != modifyTime"> #{modifyTime,jdbcType=TIMESTAMP},</if>
+	</trim>
+  </insert>
+  <delete id="batchDeleteByArray">
+    delete from wf_position where position_id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="batchDeleteByList">
+    delete from wf_position where position_id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <select id="getList" parameterType="cn.netinnet.processcenter.domain.WfPosition" resultMap="BaseResultMap">
+     select position_id,position_name, position_code, parent, level, company_id, user_id, modify_time from wf_position
+    <include refid="sql_where" />
+  </select>
+
+    <!-- 查询指定字段 -->
+    <select id="selectColumnsById" resultMap="BaseResultMap">
+        select ${columns} from wf_position where position_id = #{positionId}
+    </select>
+
+    <!-- 根据企业id获取所有岗位名称 -->
+    <select id="getPositionNameByCompanyId" resultType="java.lang.String">
+        select position_name
+        from   wf_position
+        where  company_id = #{companyId}
+        order by level
+    </select>
+
+    <!-- 根据企业id获取第一级岗位 -->
+    <select id="getRootPostion" resultType="cn.netinnet.processcenter.domain.WfPosition">
+        select
+        <include refid="Base_Column_List"/>
+        from    wf_position
+        where company_id = #{companyId}
+        and parent = '0'
+    </select>
+
+    <!-- 根据当前岗位id获取父岗位id -->
+    <select id="getParentPositionId" resultType="java.lang.Long">
+        select parent from wf_position where position_id = #{positionId}
+    </select>
+
+    <!-- 根据父岗位id获取子岗位id -->
+    <select id="getPositionIdByParent" resultType="java.lang.Long">
+        select position_id from wf_position where parent = #{parent}
+    </select>
+
+    <!-- 根据企业id获取企业下所有岗位 -->
+    <select id="getAllPositionByCompanyId" resultType="cn.netinnet.processcenter.domain.WfPosition">
+        select
+        <include refid="Base_Column_List"/>
+        from  wf_position
+        where company_id = #{companyId}
+    </select>
+
+    <!--通过企业id查询-->
+    <select id="queryByCompanyIds" resultMap="BaseResultMap">
+        select position_id,position_name,parent,level,company_id from wf_position where company_id in
+        <foreach collection="companyIds" separator="," open="(" close=")" item="item">#{item}</foreach>
+        order by position_id
+    </select>
+
+    <!-- 查询岗位名称 -->
+    <select id="getPositionName" resultType="string">
+        select position_name from wf_position where position_id = #{positionId}
+    </select>
+
+    <!-- 根据companyId获取positionId -->
+    <select id="queryPositionIdsByCompanyId" resultType="java.lang.Long">
+        select position_id
+        from   wf_position
+        where  company_id = #{companyId}
+    </select>
+
+    <!--获取企业下相同岗位编码岗位个数 -->
+    <select id="countPositionCodeExist" resultType="java.lang.Integer">
+        select 1
+        from   wf_position
+        where  company_id = #{companyId}
+        and    position_code = #{positionCode}
+        <if test="positionId!=null">
+            and position_id != #{positionId}
+        </if>
+        limit 1
+    </select>
+
+    <!--获取企业下一级岗位个数 -->
+    <select id="countFirstPositionExist" resultType="java.lang.Integer">
+        select count(1)
+        from   wf_position
+        where  company_id = #{companyId}
+          and    parent = '0'
+          and    level = '1'
+    </select>
+
+    <!--获取企业下同名岗位个数-->
+    <select id="countPositionNameExist" resultType="java.lang.Integer">
+        select 1
+        from   wf_position
+        where  company_id = #{companyId}
+        and  binary  position_name = #{positionName}
+        <if test="positionId!=null">
+            and position_id != #{positionId}
+        </if>
+        limit 1
+    </select>
+
+    <!-- 获取企业下的岗位 -->
+    <select id="queryPositionInfoByCompanyIds" resultType="cn.netinnet.processcenter.domain.WfPosition">
+        select
+        <include refid="Base_Column_List"/>
+        from    wf_position
+        where   company_id  in
+        <foreach collection="companyIds" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+    <!-- 查询岗位名称 -->
+    <select id="queryPositionNameByIds" resultType="cn.netinnet.processcenter.domain.WfPosition">
+        select position_id,position_name,company_id from wf_position where position_id in
+        <foreach collection="ids" item="item" open="(" separator="," close=")">#{item}</foreach>
+    </select>
+    <!-- 查询岗位个数 -->
+    <select id="queryPositionCount" resultType="java.lang.Integer">
+		select count(1) from wf_position where company_id = #{companyId}
+	</select>
+</mapper>
