@@ -1,8 +1,8 @@
 package cn.netinnet.ninzuul.authentication.cache;
 
 import cn.netinnet.cloudcommon.constant.CacheConstant;
+import cn.netinnet.cloudcommon.dto.UserInfo;
 import cn.netinnet.cloudcommon.utils.RedisUtil;
-import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
@@ -33,7 +33,8 @@ public class ShiroRedisCache<K, V> implements Cache<K, V> {
             Object primaryPrincipal = ((PrincipalCollection) principal).getPrimaryPrincipal();
             // 存在shiro主体 且 主体的类型为UserInfo, 则可取得缓存Key
             if (primaryPrincipal != null) {
-                Long userId = ((JSONObject) primaryPrincipal).getLong("userId");
+
+                Long userId = ((UserInfo) primaryPrincipal).getUserId();
                 return RedisUtil.getKey(CacheConstant.R_SHIRO_CACHE, userId);
             }
         }

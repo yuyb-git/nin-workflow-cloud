@@ -98,6 +98,7 @@ public class LogAspect {
             logInfo.setSpendTime(spendTime);
             logInfo.setRequestUrl(url);
             logInfo.setRequestParams(params);
+            logInfo.setMsgType(1);
 
             kafkaProducer.sendMsg(topicName, logInfo);
         }

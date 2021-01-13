@@ -46,12 +46,10 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/login", "anon");
 
         filterChainDefinitionMap.put("/api/**", "anon");
-        filterChainDefinitionMap.put("/nin-zuul/redis/setUser", "anon");
-        filterChainDefinitionMap.put("/redis/**", "anon");
-        filterChainDefinitionMap.put("/sysPermission/**", "anon");
-        filterChainDefinitionMap.put("/nin-zuul/login", "anon");
-        filterChainDefinitionMap.put("/nin-zuul/logout", "anon");
-        filterChainDefinitionMap.put("/nin-zuul/changePwd", "anon");
+        filterChainDefinitionMap.put("/sysPermission/getPermissionByRoleCode", "anon");
+        filterChainDefinitionMap.put("/education/login", "anon");
+        filterChainDefinitionMap.put("/education/logout", "anon");
+        filterChainDefinitionMap.put("/education/changePwd", "anon");
         filterChainDefinitionMap.put("/assist/**", "anon");
         filterChainDefinitionMap.put("/server/getCurrUser", "anon");
         filterChainDefinitionMap.put("/", "anon");

@@ -10,11 +10,9 @@ import cn.netinnet.common.base.BaseService;
 import cn.netinnet.common.util.DateUtil;
 import cn.netinnet.common.util.Md5EncryptUtil;
 import cn.netinnet.common.util.StringUtil;
-import cn.netinnet.common.util.httpclient.RequestUtil;
 import cn.netinnet.educationcenter.dao.SysBatchStudentMapper;
 import cn.netinnet.educationcenter.dao.SysSchoolMapper;
 import cn.netinnet.educationcenter.dao.SysUserMapper;
-import cn.netinnet.educationcenter.domain.SysLoginLog;
 import cn.netinnet.educationcenter.domain.SysUser;
 import cn.netinnet.educationcenter.feign.NinZuulClient;
 import cn.netinnet.educationcenter.service.SysUserService;
@@ -26,7 +24,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -103,15 +100,13 @@ public class SysUserServiceImpl extends BaseService<SysUser> implements SysUserS
         String beforeUserId = String.valueOf(userInfo.getUserId());
         String encryUserId = Md5EncryptUtil.getMD5Str(Md5EncryptUtil.getMD5Str(beforeUserId)).substring(8, 24);
         if (doLog) {
-            // 进行登录日志记录
-            SysLoginLog loginLog = new SysLoginLog();
-            loginLog.setLogId(DateUtil.getUID());
-            loginLog.setUserId(userInfo.getUserId());
-            loginLog.setUserName(userInfo.getUserName());
-            loginLog.setSchoolId(userInfo.getSchoolId());
-            loginLog.setLoginTime(new Date());
-            loginLog.setLoginIp(ip);
-            kafkaProducer.sendMsg(topicName, loginLog);
+            JSONObject data = new JSONObject();
+            data.put("msgType", 0);
+            data.put("userId", userInfo.getUserId());
+            data.put("userName", userInfo.getUserName());
+            data.put("schoolId", userInfo.getSchoolId());
+            data.put("ip", ip);
+            kafkaProducer.sendMsg(topicName, data);
         }
         // 获取用户对应的权限集
         List<String> rolePermission = ninZuulClient.getPermissionByRoleCode(userInfo.getRoleCode());

@@ -76,14 +76,10 @@ eureka:
 
 zuul:
   routes:
-    process-center:
-      path: /nin-zuul/**
-      serviceId: process-center
-    education-center:
-      path: /nin-zuul/**
-      serviceId: education-center
+    process-center: /process/**
+    education-center: /education/**
   # 忽略匹配，不允许访问通过
-  # ignored-patterns: /*-center/**
+  ignored-patterns: /*-center/**
   host:
     connect-timeout-millis: 15000
     socket-timeout-millis: 60000   #socket超时
@@ -100,8 +96,8 @@ ninzuul:
   shiro:
     # 后端免认证接口 url
     #  /ue/uploadimage, /tGameStudent/importGameStudent, /student/importStudent, /tCourse/importTest, （上传接口）
-    anonUrl: /, /index, /nin-zuul/login, /nin-zuul/logout, /refreshToken, /error/**, /test/**,
-      /fdata/**, /fchart/**, /UEditor/**, /ue/**,/api/**,/nin-zuul/sysPermission/**,/nin-zuul/redis/**
+    anonUrl: /, /index, /education/login, /education/logout, /refreshToken, /error/**, /test/**,
+      /fdata/**, /fchart/**, /UEditor/**, /ue/**,/api/**,/sysPermission/getPermissionByRoleCode
 
 app:
   app_id: '@u'

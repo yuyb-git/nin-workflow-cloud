@@ -1,14 +1,14 @@
 package cn.netinnet.ninzuul.controller;
 
-import cn.netinnet.ninzuul.dao.SysPermissionMapper;
-import cn.netinnet.ninzuul.dao.SysRolePermissionMapper;
-import cn.netinnet.ninzuul.domain.SysPermission;
-import cn.netinnet.ninzuul.service.SysPermissionService;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.dto.UserInfo;
 import cn.netinnet.cloudcommon.globol.HttpResultEntry;
 import cn.netinnet.cloudcommon.globol.ResultEnum;
 import cn.netinnet.cloudcommon.utils.UserUtil;
+import cn.netinnet.ninzuul.dao.SysPermissionMapper;
+import cn.netinnet.ninzuul.dao.SysRolePermissionMapper;
+import cn.netinnet.ninzuul.domain.SysPermission;
+import cn.netinnet.ninzuul.service.SysPermissionService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;

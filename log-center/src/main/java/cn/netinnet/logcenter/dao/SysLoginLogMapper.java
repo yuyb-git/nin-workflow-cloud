@@ -4,10 +4,10 @@
  * All right reserved.
  * 2020-06-19 Created
  */
-package cn.netinnet.educationcenter.dao;
+package cn.netinnet.logcenter.dao;
 
 import cn.netinnet.common.base.BaseMapper;
-import cn.netinnet.educationcenter.domain.SysLoginLog;
+import cn.netinnet.logcenter.domain.SysLoginLog;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

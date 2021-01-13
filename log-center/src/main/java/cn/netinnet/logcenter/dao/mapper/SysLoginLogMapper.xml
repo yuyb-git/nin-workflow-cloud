@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.netinnet.educationcenter.dao.SysLoginLogMapper">
-  <resultMap id="BaseResultMap" type="cn.netinnet.educationcenter.domain.SysLoginLog">
+<mapper namespace="cn.netinnet.logcenter.dao.SysLoginLogMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.logcenter.domain.SysLoginLog">
     <id column="log_id" jdbcType="BIGINT" property="logId" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
@@ -13,7 +13,7 @@
     log_id, user_id, user_name, school_id, login_ip, login_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select
+    select 
     <include refid="Base_Column_List" />
     from sys_login_log
     where log_id = #{logId,jdbcType=BIGINT}
@@ -22,7 +22,7 @@
     delete from sys_login_log
     where log_id = #{logId,jdbcType=BIGINT}
   </delete>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.educationcenter.domain.SysLoginLog">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.logcenter.domain.SysLoginLog">
     update sys_login_log
     <set>
       <if test="userId != null">
@@ -57,7 +57,7 @@
 		, #{item.schoolId}
 		, #{item.loginIp}
 		, #{item.loginTime}
-	</trim>
+	</trim>	
   </sql>
   <sql id="sql_where">
     <where>
@@ -70,7 +70,7 @@
 	</where>
   </sql>
   <sql id="sql_update">
-    update sys_login_log set
+    update sys_login_log set 
 	<trim prefix="" suffix="" prefixOverrides=",">
 		<if test="null != item.logId">, log_id = #{item.logId}</if>
 		<if test="null != item.userId">, user_id = #{item.userId}</if>
@@ -90,7 +90,7 @@
 		<if test="null != list[0].schoolId">, school_id</if>
 		<if test="null != list[0].loginIp">, login_ip</if>
 		<if test="null != list[0].loginTime">, login_time</if>
-	</trim>
+	</trim>	
   </sql>
   <sql id="sql_save_values">
     <trim prefix="(" suffix=")" prefixOverrides=",">
@@ -100,7 +100,7 @@
 		<if test="null != item.schoolId">, #{item.schoolId}</if>
 		<if test="null != item.loginIp">, #{item.loginIp}</if>
 		<if test="null != item.loginTime">, #{item.loginTime}</if>
-	</trim>
+	</trim>	
   </sql>
   <insert id="batchInsert" parameterType="java.util.List">
     <include refid="sql_columns" />
@@ -119,7 +119,7 @@
 	  <include refid="sql_update" />
 	</foreach>
   </update>
-  <insert id="insertSelective" parameterType="cn.netinnet.educationcenter.domain.SysLoginLog">
+  <insert id="insertSelective" parameterType="cn.netinnet.logcenter.domain.SysLoginLog">
     insert into sys_login_log
 	<trim prefix="(" suffix=") " suffixOverrides=",">
 		<if test="null != logId"> log_id,</if>
@@ -146,7 +146,7 @@
     delete from sys_login_log where log_id in
 	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
   </delete>
-  <select id="getList" parameterType="cn.netinnet.educationcenter.domain.SysLoginLog" resultMap="BaseResultMap">
+  <select id="getList" parameterType="cn.netinnet.logcenter.domain.SysLoginLog" resultMap="BaseResultMap">
      select log_id,user_id, user_name, school_id, login_ip, login_time from sys_login_log
     <include refid="sql_where" />
   </select>

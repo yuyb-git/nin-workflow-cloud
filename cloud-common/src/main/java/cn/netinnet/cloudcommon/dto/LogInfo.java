@@ -55,6 +55,8 @@ public class LogInfo implements Serializable {
      */
     private String requestIp;
 
+    private Integer msgType;
+
     public Long getLogId() {
         return logId;
     }
@@ -125,5 +127,13 @@ public class LogInfo implements Serializable {
 
     public void setRequestIp(String requestIp) {
         this.requestIp = requestIp;
+    }
+
+    public Integer getMsgType() {
+        return msgType;
+    }
+
+    public void setMsgType(Integer msgType) {
+        this.msgType = msgType;
     }
 }

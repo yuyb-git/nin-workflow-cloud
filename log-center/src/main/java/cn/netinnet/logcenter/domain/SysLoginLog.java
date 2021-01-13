@@ -4,7 +4,7 @@
  * All right reserved.
  * 2020-06-19 Created
  */
-package cn.netinnet.educationcenter.domain;
+package cn.netinnet.logcenter.domain;
 
 import java.io.Serializable;
 import java.util.Date;
