@@ -1,5 +1,6 @@
 package cn.netinnet.ninauthorization.controller;
 
+import cn.netinnet.cloudcommon.annotation.RequiresPermission;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.dto.UserInfo;
 import cn.netinnet.cloudcommon.globol.HttpResultEntry;
@@ -118,7 +119,7 @@ public class SysPermissionController{
      * @Date 2019/10/15 9:34
      * @Description 删除权限(逻辑删除)
      */
-    @RequiresPermissions("permission:delete")
+    @RequiresPermission("permission:delete")
     @PostMapping("/deletePermission")
     public HttpResultEntry deletePermission(Long permissionId) {
         // id不可为空
