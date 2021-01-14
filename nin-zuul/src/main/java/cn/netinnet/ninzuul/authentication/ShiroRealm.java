@@ -6,21 +6,13 @@ import cn.netinnet.cloudcommon.dto.UserInfo;
 import cn.netinnet.cloudcommon.exception.ExpiredAccountException;
 import cn.netinnet.cloudcommon.utils.JWTUtil;
 import cn.netinnet.cloudcommon.utils.RedisUtil;
-import cn.netinnet.ninzuul.dao.SysRolePermissionMapper;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.annotation.Resource;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @Author Linjj
@@ -30,9 +22,6 @@ import java.util.stream.Collectors;
 public class ShiroRealm extends AuthorizingRealm {
 
     private final static Logger LOG = LoggerFactory.getLogger(ShiroRealm.class);
-
-    @Resource
-    private SysRolePermissionMapper sysRolePermissionMapper;
 
     @Override
     public boolean supports(AuthenticationToken token) {
@@ -90,21 +79,6 @@ public class ShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principal) {
-        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-
-        UserInfo userInfo = (UserInfo) principal.getPrimaryPrincipal();
-        String roleCode = userInfo.getRoleCode();
-        // 获取用户角色集(本项目用户和角色是一对一，所以就不去数据库查询了)
-        Set<String> roleSet = new HashSet<>();
-        roleSet.add(roleCode);
-        simpleAuthorizationInfo.setRoles(roleSet);
-        // 获取用户权限集(查询角色权限表)
-        List<String> rolePermission = sysRolePermissionMapper.queryPermissionByRoleCode(roleCode);
-        Set<String> permissionSet = rolePermission.stream()
-                // 过滤空字符的权限
-                .filter(StringUtils :: isNotBlank)
-                .collect(Collectors.toSet());
-        simpleAuthorizationInfo.setStringPermissions(permissionSet);
-        return simpleAuthorizationInfo;
+        return null;
     }
 }
