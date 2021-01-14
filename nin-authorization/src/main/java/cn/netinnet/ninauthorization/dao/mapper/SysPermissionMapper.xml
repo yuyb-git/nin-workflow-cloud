@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.netinnet.ninauthorization.dao.SysPermissionMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.ninauthorization.domain.SysPermission">
+    <id column="permission_id" jdbcType="BIGINT" property="permissionId" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="permission_type" jdbcType="TINYINT" property="permissionType" />
+    <result column="permission_code" jdbcType="VARCHAR" property="permissionCode" />
+    <result column="permission_name" jdbcType="VARCHAR" property="permissionName" />
+    <result column="permission_seq" jdbcType="TINYINT" property="permissionSeq" />
+    <result column="router_name" jdbcType="VARCHAR" property="routerName" />
+    <result column="router_path" jdbcType="VARCHAR" property="routerPath" />
+    <result column="router_component" jdbcType="VARCHAR" property="routerComponent" />
+    <result column="router_meta" jdbcType="VARCHAR" property="routerMeta" />
+    <result column="router_redirect" jdbcType="VARCHAR" property="routerRedirect" />
+    <result column="self_layout" jdbcType="VARCHAR" property="selfLayout" />
+    <result column="router_hidden" jdbcType="TINYINT" property="routerHidden" />
+    <result column="router_top" jdbcType="TINYINT" property="routerTop" />
+    <result column="project_type" jdbcType="TINYINT" property="projectType" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    permission_id, parent_id, permission_type, permission_code, permission_name, permission_seq, 
+    router_name, router_path, router_component, router_meta, router_redirect, self_layout, 
+    router_hidden, router_top, project_type, create_user_id, create_time, modify_user_id, 
+    modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_permission
+    where permission_id = #{permissionId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_permission
+    where permission_id = #{permissionId,jdbcType=BIGINT}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.ninauthorization.domain.SysPermission">
+    update sys_permission
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="permissionType != null">
+        permission_type = #{permissionType,jdbcType=TINYINT},
+      </if>
+      <if test="permissionCode != null">
+        permission_code = #{permissionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionName != null">
+        permission_name = #{permissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionSeq != null">
+        permission_seq = #{permissionSeq,jdbcType=TINYINT},
+      </if>
+      <if test="routerName != null">
+        router_name = #{routerName,jdbcType=VARCHAR},
+      </if>
+      <if test="routerPath != null">
+        router_path = #{routerPath,jdbcType=VARCHAR},
+      </if>
+      <if test="routerComponent != null">
+        router_component = #{routerComponent,jdbcType=VARCHAR},
+      </if>
+      <if test="routerMeta != null">
+        router_meta = #{routerMeta,jdbcType=VARCHAR},
+      </if>
+      <if test="routerRedirect != null">
+        router_redirect = #{routerRedirect,jdbcType=VARCHAR},
+      </if>
+      <if test="selfLayout != null">
+        self_layout = #{selfLayout,jdbcType=VARCHAR},
+      </if>
+      <if test="routerHidden != null">
+        router_hidden = #{routerHidden,jdbcType=TINYINT},
+      </if>
+      <if test="routerTop != null">
+        router_top = #{routerTop,jdbcType=TINYINT},
+      </if>
+      <if test="projectType != null">
+        project_type = #{projectType,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where permission_id = #{permissionId,jdbcType=BIGINT}
+  </update>
+  <sql id="sql_columns">
+    insert into sys_permission
+	<trim prefix="(" suffix=") values" suffixOverrides=",">
+		permission_id,parent_id,permission_type,permission_code,permission_name,permission_seq,router_name,router_path,router_component,router_meta,router_redirect,self_layout,router_hidden,router_top,project_type,create_user_id,modify_user_id,
+	</trim>
+  </sql>
+  <sql id="sql_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		, #{item.permissionId}
+		, #{item.parentId}
+		, #{item.permissionType}
+		, #{item.permissionCode}
+		, #{item.permissionName}
+		, #{item.permissionSeq}
+		, #{item.routerName}
+		, #{item.routerPath}
+		, #{item.routerComponent}
+		, #{item.routerMeta}
+		, #{item.routerRedirect}
+		, #{item.selfLayout}
+		, #{item.routerHidden}
+		, #{item.routerTop}
+		, #{item.projectType}
+		, #{item.createUserId}
+		, #{item.createTime}
+		, #{item.modifyUserId}
+		, #{item.modifyTime}
+	</trim>	
+  </sql>
+  <sql id="sql_where">
+    <where>
+		<if test="null != item.permissionId">and permission_id = #{item.permissionId}</if>
+		<if test="null != item.parentId">and parent_id = #{item.parentId}</if>
+		<if test="null != item.permissionType">and permission_type = #{item.permissionType}</if>
+		<if test="null != item.permissionCode">and permission_code = #{item.permissionCode}</if>
+		<if test="null != item.permissionName">and permission_name = #{item.permissionName}</if>
+		<if test="null != item.permissionSeq">and permission_seq = #{item.permissionSeq}</if>
+		<if test="null != item.routerName">and router_name = #{item.routerName}</if>
+		<if test="null != item.routerPath">and router_path = #{item.routerPath}</if>
+		<if test="null != item.routerComponent">and router_component = #{item.routerComponent}</if>
+		<if test="null != item.routerMeta">and router_meta = #{item.routerMeta}</if>
+		<if test="null != item.routerRedirect">and router_redirect = #{item.routerRedirect}</if>
+		<if test="null != item.selfLayout">and self_layout = #{item.selfLayout}</if>
+		<if test="null != item.routerHidden">and router_hidden = #{item.routerHidden}</if>
+		<if test="null != item.routerTop">and router_top = #{item.routerTop}</if>
+		<if test="null != item.projectType">and project_type = #{item.projectType}</if>
+		<if test="null != item.createUserId">and create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">and create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">and modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">and modify_time = #{item.modifyTime}</if>
+	</where>
+  </sql>
+  <sql id="sql_update">
+    update sys_permission set 
+	<trim prefix="" suffix="" prefixOverrides=",">
+		<if test="null != item.permissionId">, permission_id = #{item.permissionId}</if>
+		<if test="null != item.parentId">, parent_id = #{item.parentId}</if>
+		<if test="null != item.permissionType">, permission_type = #{item.permissionType}</if>
+		<if test="null != item.permissionCode">, permission_code = #{item.permissionCode}</if>
+		<if test="null != item.permissionName">, permission_name = #{item.permissionName}</if>
+		<if test="null != item.permissionSeq">, permission_seq = #{item.permissionSeq}</if>
+		<if test="null != item.routerName">, router_name = #{item.routerName}</if>
+		<if test="null != item.routerPath">, router_path = #{item.routerPath}</if>
+		<if test="null != item.routerComponent">, router_component = #{item.routerComponent}</if>
+		<if test="null != item.routerMeta">, router_meta = #{item.routerMeta}</if>
+		<if test="null != item.routerRedirect">, router_redirect = #{item.routerRedirect}</if>
+		<if test="null != item.selfLayout">, self_layout = #{item.selfLayout}</if>
+		<if test="null != item.routerHidden">, router_hidden = #{item.routerHidden}</if>
+		<if test="null != item.routerTop">, router_top = #{item.routerTop}</if>
+		<if test="null != item.projectType">, project_type = #{item.projectType}</if>
+		<if test="null != item.createUserId">, create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">, create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, modify_time = #{item.modifyTime}</if>
+	</trim>
+	where  permission_id = #{item.permissionId}
+  </sql>
+  <sql id="sql_save_columns">
+    insert into sys_permission
+	<trim prefix="(" suffix=") values" prefixOverrides=",">
+		<if test="null != list[0].permissionId">, permission_id</if>
+		<if test="null != list[0].parentId">, parent_id</if>
+		<if test="null != list[0].permissionType">, permission_type</if>
+		<if test="null != list[0].permissionCode">, permission_code</if>
+		<if test="null != list[0].permissionName">, permission_name</if>
+		<if test="null != list[0].permissionSeq">, permission_seq</if>
+		<if test="null != list[0].routerName">, router_name</if>
+		<if test="null != list[0].routerPath">, router_path</if>
+		<if test="null != list[0].routerComponent">, router_component</if>
+		<if test="null != list[0].routerMeta">, router_meta</if>
+		<if test="null != list[0].routerRedirect">, router_redirect</if>
+		<if test="null != list[0].selfLayout">, self_layout</if>
+		<if test="null != list[0].routerHidden">, router_hidden</if>
+		<if test="null != list[0].routerTop">, router_top</if>
+		<if test="null != list[0].projectType">, project_type</if>
+		<if test="null != list[0].createUserId">, create_user_id</if>
+		<if test="null != list[0].createTime">, create_time</if>
+		<if test="null != list[0].modifyUserId">, modify_user_id</if>
+		<if test="null != list[0].modifyTime">, modify_time</if>
+	</trim>	
+  </sql>
+  <sql id="sql_save_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		<if test="null != item.permissionId">, #{item.permissionId}</if>
+		<if test="null != item.parentId">, #{item.parentId}</if>
+		<if test="null != item.permissionType">, #{item.permissionType}</if>
+		<if test="null != item.permissionCode">, #{item.permissionCode}</if>
+		<if test="null != item.permissionName">, #{item.permissionName}</if>
+		<if test="null != item.permissionSeq">, #{item.permissionSeq}</if>
+		<if test="null != item.routerName">, #{item.routerName}</if>
+		<if test="null != item.routerPath">, #{item.routerPath}</if>
+		<if test="null != item.routerComponent">, #{item.routerComponent}</if>
+		<if test="null != item.routerMeta">, #{item.routerMeta}</if>
+		<if test="null != item.routerRedirect">, #{item.routerRedirect}</if>
+		<if test="null != item.selfLayout">, #{item.selfLayout}</if>
+		<if test="null != item.routerHidden">, #{item.routerHidden}</if>
+		<if test="null != item.routerTop">, #{item.routerTop}</if>
+		<if test="null != item.projectType">, #{item.projectType}</if>
+		<if test="null != item.createUserId">, #{item.createUserId}</if>
+		<if test="null != item.createTime">, #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, #{item.modifyTime}</if>
+	</trim>	
+  </sql>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <include refid="sql_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_values" />
+	</foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    <include refid="sql_save_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_save_values" />
+	</foreach>
+  </insert>
+  <update id="batchUpdateByPrimaryKey">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <insert id="insertSelective" parameterType="cn.netinnet.ninauthorization.domain.SysPermission">
+    insert into sys_permission
+	<trim prefix="(" suffix=") " suffixOverrides=",">
+		<if test="null != permissionId"> permission_id,</if>
+		<if test="null != parentId"> parent_id,</if>
+		<if test="null != permissionType"> permission_type,</if>
+		<if test="null != permissionCode"> permission_code,</if>
+		<if test="null != permissionName"> permission_name,</if>
+		<if test="null != permissionSeq"> permission_seq,</if>
+		<if test="null != routerName"> router_name,</if>
+		<if test="null != routerPath"> router_path,</if>
+		<if test="null != routerComponent"> router_component,</if>
+		<if test="null != routerMeta"> router_meta,</if>
+		<if test="null != routerRedirect"> router_redirect,</if>
+		<if test="null != selfLayout"> self_layout,</if>
+		<if test="null != routerHidden"> router_hidden,</if>
+		<if test="null != routerTop"> router_top,</if>
+		<if test="null != projectType"> project_type,</if>
+		<if test="null != createUserId"> create_user_id,</if>
+		<if test="null != createTime"> create_time,</if>
+		<if test="null != modifyUserId"> modify_user_id,</if>
+		<if test="null != modifyTime"> modify_time,</if>
+	</trim>
+	 <trim prefix=" values(" suffix=")" suffixOverrides=",">
+		<if test="null != permissionId"> #{permissionId,jdbcType=BIGINT},</if>
+		<if test="null != parentId"> #{parentId,jdbcType=BIGINT},</if>
+		<if test="null != permissionType"> #{permissionType,jdbcType=TINYINT},</if>
+		<if test="null != permissionCode"> #{permissionCode,jdbcType=VARCHAR},</if>
+		<if test="null != permissionName"> #{permissionName,jdbcType=VARCHAR},</if>
+		<if test="null != permissionSeq"> #{permissionSeq,jdbcType=TINYINT},</if>
+		<if test="null != routerName"> #{routerName,jdbcType=VARCHAR},</if>
+		<if test="null != routerPath"> #{routerPath,jdbcType=VARCHAR},</if>
+		<if test="null != routerComponent"> #{routerComponent,jdbcType=VARCHAR},</if>
+		<if test="null != routerMeta"> #{routerMeta,jdbcType=VARCHAR},</if>
+		<if test="null != routerRedirect"> #{routerRedirect,jdbcType=VARCHAR},</if>
+		<if test="null != selfLayout"> #{selfLayout,jdbcType=VARCHAR},</if>
+		<if test="null != routerHidden"> #{routerHidden,jdbcType=TINYINT},</if>
+		<if test="null != routerTop"> #{routerTop,jdbcType=TINYINT},</if>
+		<if test="null != projectType"> #{projectType,jdbcType=TINYINT},</if>
+		<if test="null != createUserId"> #{createUserId,jdbcType=BIGINT},</if>
+		<if test="null != createTime"> #{createTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != modifyUserId"> #{modifyUserId,jdbcType=BIGINT},</if>
+		<if test="null != modifyTime"> #{modifyTime,jdbcType=TIMESTAMP},</if>
+	</trim>
+  </insert>
+  <delete id="batchDeleteByArray">
+    delete from sys_permission where permission_id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="batchDeleteByList">
+    delete from sys_permission where permission_id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <select id="getList" parameterType="cn.netinnet.ninauthorization.domain.SysPermission" resultMap="BaseResultMap">
+     select permission_id,parent_id, permission_type, permission_code, permission_name, permission_seq, router_name, router_path, router_component, router_meta, router_redirect, self_layout, router_hidden, router_top, project_type, create_user_id, create_time, modify_user_id, modify_time from sys_permission
+    <include refid="sql_where" />
+  </select>
+
+	<!-- 查询对应项目类型的所有权限列表 -->
+	<select id="queryAllPermission" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from sys_permission
+		<where>
+			<if test="projectTypes != null">
+				project_type in
+				<foreach collection="projectTypes" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+			</if>
+		</where>
+	</select>
+
+	<!-- 获取用户路由权限 -->
+	<select id="queryUserRouter" resultMap="BaseResultMap">
+		select
+			sp.permission_id,
+			sp.parent_id,
+			sp.permission_type,
+			sp.permission_code,
+			sp.permission_name,
+			sp.router_name,
+			sp.router_path,
+			sp.router_component,
+			sp.router_meta,
+			sp.router_redirect,
+			sp.router_hidden,
+			sp.router_top,
+		    sp.self_layout,
+			sp.permission_seq
+		from sys_permission sp
+		inner join sys_role_permission srp
+			on sp.permission_id = srp.permission_id
+			and srp.del_flag = 0
+		where srp.role_code = #{roleCode}
+		  and sp.project_type = #{projectType}
+		  and sp.permission_type = 1
+	</select>
+
+	<!-- 根据权限条件统计数量 -->
+	<select id="countPermissionByCondition" resultType="java.lang.Integer">
+		select
+		count(1)
+		from sys_permission
+		<where>
+			<if test="permissionCode != null">
+				and permission_code = #{permissionCode}
+			</if>
+			<if test="permissionId != null">
+				and permission_id != #{permissionId}
+			</if>
+			<if test="parentId != null">
+				and parent_id = #{parentId}
+			</if>
+		</where>
+	</select>
+
+	<!-- 查询对应项目的所有菜单权限列表 -->
+	<select id="queryAllMenuPermission" resultMap="BaseResultMap">
+		select
+		permission_id,
+		parent_id,
+		permission_name,
+		router_path,
+		router_top,
+		self_layout
+		from sys_permission
+		<where>
+			permission_type = 1
+			<if test="projectType != null">
+				and project_type = #{projectType}
+			</if>
+		</where>
+	</select>
+
+</mapper>

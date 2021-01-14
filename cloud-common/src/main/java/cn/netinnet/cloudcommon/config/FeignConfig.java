@@ -1,4 +1,4 @@
-package cn.netinnet.cloudcommon.feign;
+package cn.netinnet.cloudcommon.config;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;

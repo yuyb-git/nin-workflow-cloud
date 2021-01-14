@@ -1,15 +1,14 @@
-package cn.netinnet.ninzuul.controller;
+package cn.netinnet.ninauthorization.controller;
 
-import cn.netinnet.cloudcommon.annotation.RequiresPermission;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.dto.UserInfo;
 import cn.netinnet.cloudcommon.globol.HttpResultEntry;
 import cn.netinnet.cloudcommon.globol.ResultEnum;
 import cn.netinnet.cloudcommon.utils.UserUtil;
-import cn.netinnet.ninzuul.dao.SysPermissionMapper;
-import cn.netinnet.ninzuul.dao.SysRolePermissionMapper;
-import cn.netinnet.ninzuul.domain.SysPermission;
-import cn.netinnet.ninzuul.service.SysPermissionService;
+import cn.netinnet.ninauthorization.dao.SysPermissionMapper;
+import cn.netinnet.ninauthorization.dao.SysRolePermissionMapper;
+import cn.netinnet.ninauthorization.domain.SysPermission;
+import cn.netinnet.ninauthorization.service.SysPermissionService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
@@ -119,7 +118,7 @@ public class SysPermissionController{
      * @Date 2019/10/15 9:34
      * @Description 删除权限(逻辑删除)
      */
-    @RequiresPermission("permission:delete")
+    @RequiresPermissions("permission:delete")
     @PostMapping("/deletePermission")
     public HttpResultEntry deletePermission(Long permissionId) {
         // id不可为空

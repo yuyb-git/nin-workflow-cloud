@@ -46,7 +46,6 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/login", "anon");
 
         filterChainDefinitionMap.put("/api/**", "anon");
-        filterChainDefinitionMap.put("/sysPermission/getPermissionByRoleCode", "anon");
         filterChainDefinitionMap.put("/education/login", "anon");
         filterChainDefinitionMap.put("/education/logout", "anon");
         filterChainDefinitionMap.put("/education/changePwd", "anon");

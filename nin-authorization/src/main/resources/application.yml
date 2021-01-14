@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8775
 
 # 日志配置
 logging:
@@ -10,21 +10,15 @@ logging:
 
 # 配置mybatis
 mybatis:
-  mapperLocations: classpath*:cn/netinnet/ninzuul/dao/mapper/*Mapper.xml
+  mapperLocations: classpath*:cn/netinnet/ninauthorization/dao/mapper/*Mapper.xml
   configLocation: classpath:mybatis-config.xml
-  typeAliasesPackage: cn.netinnet.ninzuul.domain
+  typeAliasesPackage: cn.netinnet.ninauthorization.domain
 
 spring:
   application:
-    name: nin-zuul
+    name: nin-authorization
   profiles:
     active: dev
-  zipkin:
-    base-url: http://172.16.39.15:9411
-    discovery-client-enabled: true
-  sleuth:
-    sampler:
-      probability: 1.0
   # 配置redis
   session:
     store-type: redis
@@ -49,19 +43,6 @@ spring:
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
-    filters: stat
-    maxActive: 1000
-    initialSize: 10
-    maxWait: 9000
-    minIdle: 1
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: select 'x'
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-    maxOpenPreparedStatements: 20
   kafka:
     bootstrap-servers: 172.16.39.13:9092
   cloud:
@@ -74,29 +55,11 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
-zuul:
-  routes:
-    process-center: /process/**
-    education-center: /education/**
-  # 忽略匹配，不允许访问通过
-  ignored-patterns: /*-center/**
-  host:
-    connect-timeout-millis: 15000
-    socket-timeout-millis: 60000   #socket超时
-
 ribbon:
   eager-load:
     enabled: true
   ReadTimeout: 10000
   ConnectTimeout: 10000
-
-# 项目配置
-ninzuul:
-  shiro:
-    # 后端免认证接口 url
-    #  /ue/uploadimage, /tGameStudent/importGameStudent, /student/importStudent, /tCourse/importTest, （上传接口）
-    anonUrl: /, /index, /education/login, /education/logout, /refreshToken, /error/**, /test/**,
-      /fdata/**, /fchart/**, /UEditor/**, /ue/**,/api/**,/sysPermission/getPermissionByRoleCode
 
 app:
   app_id: '@u'
@@ -115,3 +78,4 @@ app:
 kafka:
   topic_name_producer: log
   consumer_group_id: log-center
+

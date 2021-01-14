@@ -1,6 +1,6 @@
-package cn.netinnet.educationcenter.feign;
+package cn.netinnet.cloudcommon.feign;
 
-import cn.netinnet.educationcenter.feign.fallback.NinZuulClientFallback;
+import cn.netinnet.cloudcommon.feign.fallback.NinAuthorizationClientFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 /**
- * @ClassName NinZuulClient
+ * @ClassName NinAuthorizationClient
  * @Description
  * @Author yuyb
- * @Date 2021/1/7 17:28
+ * @Date 2021/1/14 14:08
  */
-@FeignClient(value = "nin-zuul", fallback = NinZuulClientFallback.class)
-public interface NinZuulClient {
+@FeignClient(value = "nin-authorization", fallback = NinAuthorizationClientFallback.class)
+public interface NinAuthorizationClient {
 
     /**  方法描述
      * @Description 根据角色编码获取权限

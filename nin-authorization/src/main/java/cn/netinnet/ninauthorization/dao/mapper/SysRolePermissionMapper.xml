@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.netinnet.ninauthorization.dao.SysRolePermissionMapper">
+  <resultMap id="BaseResultMap" type="cn.netinnet.ninauthorization.domain.SysRolePermission">
+    <id column="role_permission_id" jdbcType="BIGINT" property="rolePermissionId" />
+    <result column="role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="role_code" jdbcType="VARCHAR" property="roleCode" />
+    <result column="permission_id" jdbcType="BIGINT" property="permissionId" />
+    <result column="permission_code" jdbcType="VARCHAR" property="permissionCode" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user_id" jdbcType="BIGINT" property="modifyUserId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_permission_id, role_id, role_code, permission_id, permission_code, create_user_id, 
+    create_time, modify_user_id, modify_time, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role_permission
+    where role_permission_id = #{rolePermissionId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_role_permission
+    where role_permission_id = #{rolePermissionId,jdbcType=BIGINT}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.netinnet.ninauthorization.domain.SysRolePermission">
+    update sys_role_permission
+    <set>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionId != null">
+        permission_id = #{permissionId,jdbcType=BIGINT},
+      </if>
+      <if test="permissionCode != null">
+        permission_code = #{permissionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where role_permission_id = #{rolePermissionId,jdbcType=BIGINT}
+  </update>
+  <sql id="sql_columns">
+    insert into sys_role_permission
+	<trim prefix="(" suffix=") values" suffixOverrides=",">
+		role_permission_id,role_id,role_code,permission_id,permission_code,create_user_id,modify_user_id,del_flag,
+	</trim>
+  </sql>
+  <sql id="sql_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		, #{item.rolePermissionId}
+		, #{item.roleId}
+		, #{item.roleCode}
+		, #{item.permissionId}
+		, #{item.permissionCode}
+		, #{item.createUserId}
+		, #{item.createTime}
+		, #{item.modifyUserId}
+		, #{item.modifyTime}
+		, #{item.delFlag}
+	</trim>	
+  </sql>
+  <sql id="sql_where">
+    <where>
+		<if test="null != item.rolePermissionId">and role_permission_id = #{item.rolePermissionId}</if>
+		<if test="null != item.roleId">and role_id = #{item.roleId}</if>
+		<if test="null != item.roleCode">and role_code = #{item.roleCode}</if>
+		<if test="null != item.permissionId">and permission_id = #{item.permissionId}</if>
+		<if test="null != item.permissionCode">and permission_code = #{item.permissionCode}</if>
+		<if test="null != item.createUserId">and create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">and create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">and modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">and modify_time = #{item.modifyTime}</if>
+		<if test="null != item.delFlag">and del_flag = #{item.delFlag}</if>
+	</where>
+  </sql>
+  <sql id="sql_update">
+    update sys_role_permission set
+	<trim prefix="" suffix="" prefixOverrides=",">
+		<if test="null != item.rolePermissionId">, role_permission_id = #{item.rolePermissionId}</if>
+		<if test="null != item.roleId">, role_id = #{item.roleId}</if>
+		<if test="null != item.roleCode">, role_code = #{item.roleCode}</if>
+		<if test="null != item.permissionId">, permission_id = #{item.permissionId}</if>
+		<if test="null != item.permissionCode">, permission_code = #{item.permissionCode}</if>
+		<if test="null != item.createUserId">, create_user_id = #{item.createUserId}</if>
+		<if test="null != item.createTime">, create_time = #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, modify_user_id = #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, modify_time = #{item.modifyTime}</if>
+		<if test="null != item.delFlag">, del_flag = #{item.delFlag}</if>
+	</trim>
+	where  role_permission_id = #{item.rolePermissionId}
+  </sql>
+  <sql id="sql_save_columns">
+    insert into sys_role_permission
+	<trim prefix="(" suffix=") values" prefixOverrides=",">
+		<if test="null != list[0].rolePermissionId">, role_permission_id</if>
+		<if test="null != list[0].roleId">, role_id</if>
+		<if test="null != list[0].roleCode">, role_code</if>
+		<if test="null != list[0].permissionId">, permission_id</if>
+		<if test="null != list[0].permissionCode">, permission_code</if>
+		<if test="null != list[0].createUserId">, create_user_id</if>
+		<if test="null != list[0].createTime">, create_time</if>
+		<if test="null != list[0].modifyUserId">, modify_user_id</if>
+		<if test="null != list[0].modifyTime">, modify_time</if>
+		<if test="null != list[0].delFlag">, del_flag</if>
+	</trim>	
+  </sql>
+  <sql id="sql_save_values">
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+		<if test="null != item.rolePermissionId">, #{item.rolePermissionId}</if>
+		<if test="null != item.roleId">, #{item.roleId}</if>
+		<if test="null != item.roleCode">, #{item.roleCode}</if>
+		<if test="null != item.permissionId">, #{item.permissionId}</if>
+		<if test="null != item.permissionCode">, #{item.permissionCode}</if>
+		<if test="null != item.createUserId">, #{item.createUserId}</if>
+		<if test="null != item.createTime">, #{item.createTime}</if>
+		<if test="null != item.modifyUserId">, #{item.modifyUserId}</if>
+		<if test="null != item.modifyTime">, #{item.modifyTime}</if>
+		<if test="null != item.delFlag">, #{item.delFlag}</if>
+	</trim>	
+  </sql>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <include refid="sql_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_values" />
+	</foreach>
+  </insert>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+    <include refid="sql_save_columns" />
+	<foreach collection="list" index="index" item="item" open="" separator="," close="">
+	  <include refid="sql_save_values" />
+	</foreach>
+  </insert>
+  <update id="batchUpdateByPrimaryKey">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <insert id="insertSelective" parameterType="cn.netinnet.ninauthorization.domain.SysRolePermission">
+    insert into sys_role_permission
+	<trim prefix="(" suffix=") " suffixOverrides=",">
+		<if test="null != rolePermissionId"> role_permission_id,</if>
+		<if test="null != roleId"> role_id,</if>
+		<if test="null != roleCode"> role_code,</if>
+		<if test="null != permissionId"> permission_id,</if>
+		<if test="null != permissionCode"> permission_code,</if>
+		<if test="null != createUserId"> create_user_id,</if>
+		<if test="null != createTime"> create_time,</if>
+		<if test="null != modifyUserId"> modify_user_id,</if>
+		<if test="null != modifyTime"> modify_time,</if>
+		<if test="null != delFlag"> del_flag,</if>
+	</trim>
+	 <trim prefix=" values(" suffix=")" suffixOverrides=",">
+		<if test="null != rolePermissionId"> #{rolePermissionId,jdbcType=BIGINT},</if>
+		<if test="null != roleId"> #{roleId,jdbcType=BIGINT},</if>
+		<if test="null != roleCode"> #{roleCode,jdbcType=VARCHAR},</if>
+		<if test="null != permissionId"> #{permissionId,jdbcType=BIGINT},</if>
+		<if test="null != permissionCode"> #{permissionCode,jdbcType=VARCHAR},</if>
+		<if test="null != createUserId"> #{createUserId,jdbcType=BIGINT},</if>
+		<if test="null != createTime"> #{createTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != modifyUserId"> #{modifyUserId,jdbcType=BIGINT},</if>
+		<if test="null != modifyTime"> #{modifyTime,jdbcType=TIMESTAMP},</if>
+		<if test="null != delFlag"> #{delFlag,jdbcType=TINYINT},</if>
+	</trim>
+  </insert>
+  <delete id="batchDeleteByArray">
+    delete from sys_role_permission where role_permission_id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="batchDeleteByList">
+    delete from sys_role_permission where role_permission_id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <select id="getList" parameterType="cn.netinnet.ninauthorization.domain.SysRolePermission" resultMap="BaseResultMap">
+     select role_permission_id,role_id, role_code, permission_id, permission_code, create_user_id, create_time, modify_user_id, modify_time, del_flag from sys_role_permission
+    <include refid="sql_where" />
+  </select>
+
+  <!-- 查询某个角色编码拥有的权限 -->
+  <select id="queryPermissionByRoleCode" resultType="java.lang.String">
+      select
+        permission_code
+      from sys_role_permission
+      where role_code = #{roleCode}
+      and del_flag = 0
+  </select>
+
+  <!-- 查询当前角色拥有的权限id列表 -->
+  <select id="queryPermissionIdsByRoleId" resultType="java.lang.Long">
+      select
+        permission_id
+      from sys_role_permission
+      where role_id = #{roleId}
+      and del_flag = 0
+  </select>
+
+  <!-- 批量逻辑删除对应的角色权限 -->
+  <update id="logicDeleteByRoleIds">
+      update sys_role_permission
+      set del_flag = 1,
+        modify_user_id = #{userId}
+      where role_id in
+      <foreach collection="roleIds" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+      and del_flag = 0
+  </update>
+
+    <!-- 逻辑删除对应的角色权限 -->
+  <update id="logicDeleteByRoleId">
+      update sys_role_permission
+      set del_flag = 1,
+        modify_user_id = #{userId}
+      where role_id = #{roleId}
+      and del_flag = 0
+  </update>
+
+  <!-- 删除原有的角色权限 -->
+  <delete id="deletePermissionByRoleId">
+      delete from sys_role_permission
+      where role_id = #{roleId}
+      and del_flag = 0
+  </delete>
+
+  <!-- 同步更新权限编码 -->
+  <update id="updatePermissionCodeById">
+      update sys_role_permission
+      set permission_code = #{permissionCode}
+      where permission_id = #{permissionId}
+  </update>
+</mapper>

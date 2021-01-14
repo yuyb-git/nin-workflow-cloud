@@ -2,6 +2,7 @@ package cn.netinnet.educationcenter.service.impl;
 
 import cn.netinnet.cloudcommon.constant.*;
 import cn.netinnet.cloudcommon.dto.UserInfo;
+import cn.netinnet.cloudcommon.feign.NinAuthorizationClient;
 import cn.netinnet.cloudcommon.globol.HttpResultEntry;
 import cn.netinnet.cloudcommon.globol.ResultEnum;
 import cn.netinnet.cloudcommon.kafka.KafkaProducer;
@@ -14,7 +15,6 @@ import cn.netinnet.educationcenter.dao.SysBatchStudentMapper;
 import cn.netinnet.educationcenter.dao.SysSchoolMapper;
 import cn.netinnet.educationcenter.dao.SysUserMapper;
 import cn.netinnet.educationcenter.domain.SysUser;
-import cn.netinnet.educationcenter.feign.NinZuulClient;
 import cn.netinnet.educationcenter.service.SysUserService;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -38,7 +38,7 @@ public class SysUserServiceImpl extends BaseService<SysUser> implements SysUserS
     @Resource
     private SysUserMapper sysUserMapper;
     @Resource
-    NinZuulClient ninZuulClient;
+    NinAuthorizationClient ninAuthorizationClient;
     @Resource
     SysSchoolMapper sysSchoolMapper;
     @Resource
@@ -109,7 +109,7 @@ public class SysUserServiceImpl extends BaseService<SysUser> implements SysUserS
             kafkaProducer.sendMsg(topicName, data);
         }
         // 获取用户对应的权限集
-        List<String> rolePermission = ninZuulClient.getPermissionByRoleCode(userInfo.getRoleCode());
+        List<String> rolePermission = ninAuthorizationClient.getPermissionByRoleCode(userInfo.getRoleCode());
         Set<String> permissionSet = rolePermission.stream()
                 // 过滤空字符的权限
                 .filter(StringUtils::isNotBlank)
