@@ -52,7 +52,7 @@ public class PermissionAspect {
             String roleCode = userInfo.getRoleCode();
             List<String> rolePermission = ninAuthorizationClient.getPermissionByRoleCode(roleCode);
             String requirePermission = requiresPermission.value();
-            if(!rolePermission.contains(requirePermission)){
+            if(rolePermission == null || rolePermission.isEmpty() || !rolePermission.contains(requirePermission)){
                 throw new CustomException("没有该操作权限！");
             }
         }

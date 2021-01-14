@@ -8,12 +8,6 @@ logging:
     web: debug
     org.springframework.cloud.openfeign: debug
 
-# 配置mybatis
-mybatis:
-  mapperLocations: classpath*:cn/netinnet/ninzuul/dao/mapper/*Mapper.xml
-  configLocation: classpath:mybatis-config.xml
-  typeAliasesPackage: cn.netinnet.ninzuul.domain
-
 spring:
   application:
     name: nin-zuul
@@ -49,19 +43,6 @@ spring:
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
-    filters: stat
-    maxActive: 1000
-    initialSize: 10
-    maxWait: 9000
-    minIdle: 1
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: select 'x'
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-    maxOpenPreparedStatements: 20
   kafka:
     bootstrap-servers: 172.16.39.13:9092
   cloud:
