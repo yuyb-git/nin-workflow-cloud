@@ -2,10 +2,10 @@ package cn.netinnet.cloudcommon.aspect;
 
 import cn.netinnet.cloudcommon.annotation.RequiresPermission;
 import cn.netinnet.cloudcommon.dto.UserInfo;
-import cn.netinnet.cloudcommon.exception.CustomException;
 import cn.netinnet.cloudcommon.feign.NinAuthorizationClient;
 import cn.netinnet.cloudcommon.utils.UserUtil;
 import groovy.util.logging.Slf4j;
+import org.apache.shiro.authz.AuthorizationException;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -53,7 +53,7 @@ public class PermissionAspect {
             List<String> rolePermission = ninAuthorizationClient.getPermissionByRoleCode(roleCode);
             String requirePermission = requiresPermission.value();
             if(rolePermission == null || rolePermission.isEmpty() || !rolePermission.contains(requirePermission)){
-                throw new CustomException("没有该操作权限！");
+                throw new AuthorizationException("没有该操作权限！");
             }
         }
 
