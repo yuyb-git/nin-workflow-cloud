@@ -1,7 +1,7 @@
 package cn.netinnet.logcenter.service;
 
 
-import cn.netinnet.common.base.Service;
+import cn.netinnet.cloudcommon.base.Service;
 import cn.netinnet.logcenter.domain.SysLoginLog;
 
 /**

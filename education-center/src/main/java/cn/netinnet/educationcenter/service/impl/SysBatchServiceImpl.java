@@ -1,12 +1,12 @@
 package cn.netinnet.educationcenter.service.impl;
 
+import cn.netinnet.cloudcommon.base.BaseService;
 import cn.netinnet.cloudcommon.constant.UserConstant;
 import cn.netinnet.cloudcommon.dto.UserInfo;
 import cn.netinnet.cloudcommon.exception.CustomException;
+import cn.netinnet.cloudcommon.utils.DateUtil;
+import cn.netinnet.cloudcommon.utils.StringUtil;
 import cn.netinnet.cloudcommon.utils.UserUtil;
-import cn.netinnet.common.base.BaseService;
-import cn.netinnet.common.util.DateUtil;
-import cn.netinnet.common.util.StringUtil;
 import cn.netinnet.educationcenter.constant.ParaConstant;
 import cn.netinnet.educationcenter.dao.SysBatchMapper;
 import cn.netinnet.educationcenter.dao.SysBatchStudentMapper;
@@ -37,11 +37,6 @@ public class SysBatchServiceImpl extends BaseService<SysBatch> implements SysBat
     SysExamSessionMapper sysExamSessionMapper;
     @Resource
     SysUserMapper sysUserMapper;
-
-    @Override
-    public int updateByPrimaryKeySelective(SysBatch sysBatch, long l) {
-        return 0;
-    }
 
     @Override
     public int insertSelective(SysBatch sysBatch, long userId) {

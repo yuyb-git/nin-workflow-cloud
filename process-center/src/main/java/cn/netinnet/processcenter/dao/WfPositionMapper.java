@@ -6,7 +6,7 @@
  */
 package cn.netinnet.processcenter.dao;
 
-import cn.netinnet.common.base.BaseMapper;
+import cn.netinnet.cloudcommon.base.BaseMapper;
 import cn.netinnet.processcenter.domain.WfPosition;
 import org.apache.ibatis.annotations.Param;
 

@@ -3,15 +3,15 @@ package cn.netinnet.educationcenter.controller;
 import cn.netinnet.cloudcommon.annotation.LogMark;
 import cn.netinnet.cloudcommon.annotation.PreventRepeatSubmit;
 import cn.netinnet.cloudcommon.annotation.RequiresPermission;
+import cn.netinnet.cloudcommon.base.BaseController;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.constant.UserConstant;
 import cn.netinnet.cloudcommon.dto.ExamInfo;
 import cn.netinnet.cloudcommon.dto.UserInfo;
 import cn.netinnet.cloudcommon.globol.HttpResultEntry;
 import cn.netinnet.cloudcommon.globol.ResultEnum;
+import cn.netinnet.cloudcommon.utils.SessionUtil;
 import cn.netinnet.cloudcommon.utils.UserUtil;
-import cn.netinnet.common.base.BaseController;
-import cn.netinnet.common.util.httpclient.SessionUtil;
 import cn.netinnet.educationcenter.constant.ParaConstant;
 import cn.netinnet.educationcenter.domain.SysBatch;
 import cn.netinnet.educationcenter.service.SysBatchService;
@@ -199,7 +199,7 @@ public class SysBatchController extends BaseController {
      **/
     @PostMapping("/chooseBatch")
     public HttpResultEntry chooseBatch(@RequestParam Long batchId){
-        SysBatch sysBatch = sysBatchService.selectByPrimaryKey(batchId);
+        SysBatch sysBatch = sysBatchService.selectById(batchId);
         if(sysBatch.getBeginDate() == null && sysBatch.getBatchStatus() != 1){
             return HttpResultEntry.error("该批次未开始或已被暂停，请联系管理员！");
         }
@@ -296,7 +296,7 @@ public class SysBatchController extends BaseController {
     */
     @PostMapping("/difChooseBatch")
     public HttpResultEntry difChooseBatch(@RequestParam("batchId") Long batchId, @RequestParam("userId") Long userId){
-        SysBatch sysBatch = sysBatchService.selectByPrimaryKey(batchId);
+        SysBatch sysBatch = sysBatchService.selectById(batchId);
         if(sysBatch.getBeginDate() == null && sysBatch.getBatchStatus() != 1){
             return HttpResultEntry.error("该批次未开始或已被暂停，请联系管理员！");
         }

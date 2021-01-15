@@ -1,8 +1,8 @@
 package cn.netinnet.logcenter.service.impl;
 
+import cn.netinnet.cloudcommon.base.BaseService;
 import cn.netinnet.cloudcommon.exception.CustomException;
-import cn.netinnet.common.base.BaseService;
-import cn.netinnet.common.util.DateUtil;
+import cn.netinnet.cloudcommon.utils.DateUtil;
 import cn.netinnet.logcenter.dao.SysLogMapper;
 import cn.netinnet.logcenter.domain.SysLog;
 import cn.netinnet.logcenter.service.SysLogService;
@@ -26,11 +26,6 @@ public class SysLogServiceImpl extends BaseService<SysLog> implements SysLogServ
 
     @Resource
     private SysLogMapper sysLogMapper;
-
-    @Override
-    public int updateByPrimaryKeySelective(SysLog sysLog, long l) {
-        return 0;
-    }
 
     @Override
     public int insertSelective(SysLog sysLog, long userId) {

@@ -6,7 +6,7 @@
  */
 package cn.netinnet.logcenter.dao;
 
-import cn.netinnet.common.base.BaseMapper;
+import cn.netinnet.cloudcommon.base.BaseMapper;
 import cn.netinnet.logcenter.domain.SysLog;
 import org.apache.ibatis.annotations.Param;
 

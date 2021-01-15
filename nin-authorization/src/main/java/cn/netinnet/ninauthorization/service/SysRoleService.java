@@ -1,7 +1,7 @@
 package cn.netinnet.ninauthorization.service;
 
+import cn.netinnet.cloudcommon.base.Service;
 import cn.netinnet.cloudcommon.globol.HttpResultEntry;
-import cn.netinnet.common.base.Service;
 import cn.netinnet.ninauthorization.domain.SysRole;
 
 import java.util.List;

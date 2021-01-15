@@ -6,7 +6,7 @@
  */
 package cn.netinnet.educationcenter.dao;
 
-import cn.netinnet.common.base.BaseMapper;
+import cn.netinnet.cloudcommon.base.BaseMapper;
 import cn.netinnet.educationcenter.domain.SysBatchStudent;
 import cn.netinnet.educationcenter.domain.SysExamUser;
 import cn.netinnet.educationcenter.domain.dto.SessionCompleteDetail;

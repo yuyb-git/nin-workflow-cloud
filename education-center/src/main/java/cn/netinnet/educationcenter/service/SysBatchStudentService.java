@@ -1,7 +1,7 @@
 package cn.netinnet.educationcenter.service;
 
 
-import cn.netinnet.common.base.Service;
+import cn.netinnet.cloudcommon.base.Service;
 import cn.netinnet.educationcenter.domain.SysBatchStudent;
 
 import java.util.List;

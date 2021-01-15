@@ -6,7 +6,7 @@
  */
 package cn.netinnet.ninauthorization.dao;
 
-import cn.netinnet.common.base.BaseMapper;
+import cn.netinnet.cloudcommon.base.BaseMapper;
 import cn.netinnet.ninauthorization.domain.SysRole;
 import org.apache.ibatis.annotations.Param;
 

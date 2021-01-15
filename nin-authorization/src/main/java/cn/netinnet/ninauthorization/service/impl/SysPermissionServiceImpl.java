@@ -1,12 +1,12 @@
 package cn.netinnet.ninauthorization.service.impl;
 
+import cn.netinnet.cloudcommon.base.BaseService;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.dto.UserInfo;
 import cn.netinnet.cloudcommon.globol.HttpResultEntry;
+import cn.netinnet.cloudcommon.utils.DateUtil;
 import cn.netinnet.cloudcommon.utils.JsonValidator;
 import cn.netinnet.cloudcommon.utils.UserUtil;
-import cn.netinnet.common.base.BaseService;
-import cn.netinnet.common.util.DateUtil;
 import cn.netinnet.ninauthorization.dao.SysPermissionMapper;
 import cn.netinnet.ninauthorization.dao.SysRolePermissionMapper;
 import cn.netinnet.ninauthorization.domain.SysPermission;
@@ -95,7 +95,7 @@ public class SysPermissionServiceImpl extends BaseService<SysPermission>
             insertSelective(sysPermission, userId);
         } else {
             // 编辑权限
-            updateByPrimaryKeySelective(sysPermission, userId);
+            updateByIdSelective(sysPermission);
             // 同步更新关联表中的权限编码
             String permissionCode = "";
             if (StringUtils.isNotBlank(sysPermission.getPermissionCode())) {
@@ -104,11 +104,6 @@ public class SysPermissionServiceImpl extends BaseService<SysPermission>
             sysRolePermissionMapper.updatePermissionCodeById(permissionId, permissionCode);
         }
         return HttpResultEntry.ok(GlobalConstant.SUCCESS_MSG, permissionId);
-    }
-
-    @Override
-    public int updateByPrimaryKeySelective(SysPermission sysPermission, long l) {
-        return 0;
     }
 
     @Override

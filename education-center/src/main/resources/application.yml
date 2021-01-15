@@ -89,6 +89,9 @@ app:
   upload_class_name: cn.netinnet.common.util.file.LocalFileUtil
   cdn_upload_url:
   isOpenLog: true
+  shiro:
+    # 后端免认证接口 url
+    anonUrl: /, /index, /education/login, /education/logout, /refreshToken
 
 kafka:
   topic_name_producer: log

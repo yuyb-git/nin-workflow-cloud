@@ -1,7 +1,7 @@
 package cn.netinnet.processcenter.service;
 
+import cn.netinnet.cloudcommon.base.Service;
 import cn.netinnet.cloudcommon.globol.HttpResultEntry;
-import cn.netinnet.common.base.Service;
 import cn.netinnet.processcenter.domain.WfDept;
 import cn.netinnet.processcenter.domain.WfStaff;
 import com.alibaba.fastjson.JSONArray;

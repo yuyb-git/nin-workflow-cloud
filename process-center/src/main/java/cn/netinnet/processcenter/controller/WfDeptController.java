@@ -2,11 +2,11 @@ package cn.netinnet.processcenter.controller;
 
 import cn.netinnet.cloudcommon.annotation.LogMark;
 import cn.netinnet.cloudcommon.annotation.PreventRepeatSubmit;
+import cn.netinnet.cloudcommon.base.BaseController;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.dto.UserInfo;
 import cn.netinnet.cloudcommon.globol.HttpResultEntry;
 import cn.netinnet.cloudcommon.utils.UserUtil;
-import cn.netinnet.common.base.BaseController;
 import cn.netinnet.processcenter.domain.WfDept;
 import cn.netinnet.processcenter.service.WfDeptService;
 import com.alibaba.fastjson.JSONObject;

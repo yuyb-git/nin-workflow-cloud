@@ -3,6 +3,7 @@ package cn.netinnet.educationcenter.controller;
 import cn.netinnet.cloudcommon.annotation.LogMark;
 import cn.netinnet.cloudcommon.annotation.PreventRepeatSubmit;
 import cn.netinnet.cloudcommon.annotation.RequiresPermission;
+import cn.netinnet.cloudcommon.base.BaseController;
 import cn.netinnet.cloudcommon.constant.ErrorMsgConstant;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.constant.UserConstant;
@@ -11,7 +12,6 @@ import cn.netinnet.cloudcommon.globol.ResultEnum;
 import cn.netinnet.cloudcommon.utils.ExcelUtils;
 import cn.netinnet.cloudcommon.utils.StringUtilForFile;
 import cn.netinnet.cloudcommon.utils.UserUtil;
-import cn.netinnet.common.base.BaseController;
 import cn.netinnet.educationcenter.dao.SysUserMapper;
 import cn.netinnet.educationcenter.domain.SysUser;
 import cn.netinnet.educationcenter.service.SysUserService;
@@ -99,7 +99,7 @@ public class StudentController extends BaseController {
         if (userId == null) {
             return HttpResultEntry.customize(ResultEnum.R_PARAM);
         }
-        SysUser user = sysUserService.selectByPrimaryKey(userId);
+        SysUser user = sysUserService.selectById(userId);
         return HttpResultEntry.ok(GlobalConstant.SUCCESS_MSG, user);
     }
 

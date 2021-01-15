@@ -1,7 +1,7 @@
 package cn.netinnet.educationcenter.service;
 
 
-import cn.netinnet.common.base.Service;
+import cn.netinnet.cloudcommon.base.Service;
 import cn.netinnet.educationcenter.domain.SysExamQuestion;
 import cn.netinnet.educationcenter.domain.SysExamSession;
 import cn.netinnet.educationcenter.domain.dto.ExamQuestion;

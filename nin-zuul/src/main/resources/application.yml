@@ -71,27 +71,11 @@ ribbon:
   ReadTimeout: 10000
   ConnectTimeout: 10000
 
-# 项目配置
-ninzuul:
+app:
+  isOpenLog: true
   shiro:
     # 后端免认证接口 url
-    #  /ue/uploadimage, /tGameStudent/importGameStudent, /student/importStudent, /tCourse/importTest, （上传接口）
-    anonUrl: /, /index, /education/login, /education/logout, /refreshToken, /error/**, /test/**,
-      /fdata/**, /fchart/**, /UEditor/**, /ue/**,/api/**,/sysPermission/getPermissionByRoleCode
-
-app:
-  app_id: '@u'
-  license: db1c10320edf347c8dae208f1e7539cd
-  product: product
-  ignore_action:
-  cdn_static_url: cdn/static/
-  cdn_common_url: cdn/common/
-  #本地文件上传保存路径 localFileUtil下配置
-  upload_path: /cdn/data/
-  temp_path: /cdn/data/temp/
-  upload_class_name: cn.netinnet.common.util.file.LocalFileUtil
-  cdn_upload_url:
-  isOpenLog: true
+    anonUrl: /, /index, /education/login, /education/logout, /refreshToken
 
 kafka:
   topic_name_producer: log

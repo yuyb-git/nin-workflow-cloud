@@ -1,11 +1,11 @@
 package cn.netinnet.processcenter.service.impl;
 
+import cn.netinnet.cloudcommon.base.BaseService;
 import cn.netinnet.cloudcommon.constant.CacheConstant;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.exception.CustomException;
+import cn.netinnet.cloudcommon.utils.DateUtil;
 import cn.netinnet.cloudcommon.utils.RedisUtil;
-import cn.netinnet.common.base.BaseService;
-import cn.netinnet.common.util.DateUtil;
 import cn.netinnet.processcenter.dao.WfDeptMapper;
 import cn.netinnet.processcenter.dao.WfPositionMapper;
 import cn.netinnet.processcenter.dao.WfStaffMapper;
@@ -33,11 +33,6 @@ public class WfDeptServiceImpl extends BaseService<WfDept> implements WfDeptServ
     private WfStaffMapper wfStaffMapper;
     @Resource
     private WfPositionMapper wfPositionMapper;
-
-    @Override
-    public int updateByPrimaryKeySelective(WfDept wfDept, long l) {
-        return 0;
-    }
 
     @Override
     public int insertSelective(WfDept wfDept, long userId) {

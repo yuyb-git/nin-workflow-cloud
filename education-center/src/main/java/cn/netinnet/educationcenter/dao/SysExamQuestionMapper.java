@@ -6,7 +6,7 @@
  */
 package cn.netinnet.educationcenter.dao;
 
-import cn.netinnet.common.base.BaseMapper;
+import cn.netinnet.cloudcommon.base.BaseMapper;
 import cn.netinnet.educationcenter.domain.SysExamQuestion;
 import cn.netinnet.educationcenter.domain.dto.ExamQuestion;
 import org.apache.ibatis.annotations.Param;

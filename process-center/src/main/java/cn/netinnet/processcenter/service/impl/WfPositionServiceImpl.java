@@ -1,15 +1,15 @@
 package cn.netinnet.processcenter.service.impl;
 
+import cn.netinnet.cloudcommon.base.BaseService;
 import cn.netinnet.cloudcommon.constant.CacheConstant;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.exception.CustomException;
 import cn.netinnet.cloudcommon.globol.HttpResultEntry;
 import cn.netinnet.cloudcommon.globol.ResultEnum;
 import cn.netinnet.cloudcommon.utils.CommonUtil;
+import cn.netinnet.cloudcommon.utils.DateUtil;
 import cn.netinnet.cloudcommon.utils.RedisUtil;
-import cn.netinnet.common.base.BaseService;
-import cn.netinnet.common.util.DateUtil;
-import cn.netinnet.common.util.StringUtil;
+import cn.netinnet.cloudcommon.utils.StringUtil;
 import cn.netinnet.processcenter.dao.WfPositionMapper;
 import cn.netinnet.processcenter.dao.WfStaffMapper;
 import cn.netinnet.processcenter.domain.WfPosition;
@@ -39,11 +39,6 @@ public class WfPositionServiceImpl extends BaseService<WfPosition> implements Wf
     WfErrorPointMapper wfErrorPointMapper;
     @Resource
     WfProcDefMapper wfProcDefMapper;*/
-
-    @Override
-    public int updateByPrimaryKeySelective(WfPosition wfPosition, long l) {
-        return 0;
-    }
 
     @Override
     public int insertSelective(WfPosition wfPosition, long userId) {

@@ -1,5 +1,6 @@
 package cn.netinnet.educationcenter.service.impl;
 
+import cn.netinnet.cloudcommon.base.BaseService;
 import cn.netinnet.cloudcommon.constant.*;
 import cn.netinnet.cloudcommon.dto.UserInfo;
 import cn.netinnet.cloudcommon.feign.NinAuthorizationClient;
@@ -7,10 +8,6 @@ import cn.netinnet.cloudcommon.globol.HttpResultEntry;
 import cn.netinnet.cloudcommon.globol.ResultEnum;
 import cn.netinnet.cloudcommon.kafka.KafkaProducer;
 import cn.netinnet.cloudcommon.utils.*;
-import cn.netinnet.common.base.BaseService;
-import cn.netinnet.common.util.DateUtil;
-import cn.netinnet.common.util.Md5EncryptUtil;
-import cn.netinnet.common.util.StringUtil;
 import cn.netinnet.educationcenter.dao.SysBatchStudentMapper;
 import cn.netinnet.educationcenter.dao.SysSchoolMapper;
 import cn.netinnet.educationcenter.dao.SysUserMapper;
@@ -486,11 +483,6 @@ public class SysUserServiceImpl extends BaseService<SysUser> implements SysUserS
             }
         }
         return errList;
-    }
-
-    @Override
-    public int updateByPrimaryKeySelective(SysUser sysUser, long l) {
-        return 0;
     }
 
     @Override

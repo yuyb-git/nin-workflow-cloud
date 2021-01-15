@@ -1,5 +1,6 @@
 package cn.netinnet.educationcenter.service.impl;
 
+import cn.netinnet.cloudcommon.base.BaseService;
 import cn.netinnet.cloudcommon.constant.ErrorMsgConstant;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.constant.UserConstant;
@@ -8,14 +9,7 @@ import cn.netinnet.cloudcommon.dto.UserInfo;
 import cn.netinnet.cloudcommon.exception.CustomException;
 import cn.netinnet.cloudcommon.globol.HttpResultEntry;
 import cn.netinnet.cloudcommon.globol.ResultEnum;
-import cn.netinnet.cloudcommon.utils.CommonUtil;
-import cn.netinnet.cloudcommon.utils.RegUtil;
-import cn.netinnet.cloudcommon.utils.UserUtil;
-import cn.netinnet.common.base.BaseService;
-import cn.netinnet.common.util.DateUtil;
-import cn.netinnet.common.util.Md5EncryptUtil;
-import cn.netinnet.common.util.StringUtil;
-import cn.netinnet.common.util.httpclient.SessionUtil;
+import cn.netinnet.cloudcommon.utils.*;
 import cn.netinnet.educationcenter.constant.ParaConstant;
 import cn.netinnet.educationcenter.dao.*;
 import cn.netinnet.educationcenter.domain.SysExamScore;
@@ -64,11 +58,6 @@ public class SysExamUserServiceImpl extends BaseService<SysExamUser> implements 
     SysExamUserService sysExamUserService;
 //    @Resource
 //    JudgeQuestionUtil judgeQuestionUtil;
-
-    @Override
-    public int updateByPrimaryKeySelective(SysExamUser sysExamUser, long l) {
-        return 0;
-    }
 
     @Override
     public int insertSelective(SysExamUser sysExamUser, long userId) {

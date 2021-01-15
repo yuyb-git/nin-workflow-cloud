@@ -1,6 +1,6 @@
 package cn.netinnet.logcenter.service.impl;
 
-import cn.netinnet.common.base.BaseService;
+import cn.netinnet.cloudcommon.base.BaseService;
 import cn.netinnet.logcenter.dao.SysLoginLogMapper;
 import cn.netinnet.logcenter.domain.SysLoginLog;
 import cn.netinnet.logcenter.service.SysLoginLogService;
@@ -19,11 +19,6 @@ public class SysLoginLogServiceImpl extends BaseService<SysLoginLog> implements 
 
     @Resource
     private SysLoginLogMapper sysLoginLogMapper;
-
-    @Override
-    public int updateByPrimaryKeySelective(SysLoginLog sysLoginLog, long l) {
-        return 0;
-    }
 
     @Override
     public int insertSelective(SysLoginLog sysLoginLog, long userId) {

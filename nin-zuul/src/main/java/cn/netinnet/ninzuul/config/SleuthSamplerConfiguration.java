@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @ClassName SleuthSamplerConfiguration
- * @Description
+ * @Description 避免启动加载sleuth时主线程与redis配置死锁
  * @Author yuyb
  * @Date 2021/1/8 14:21
  */

@@ -1,11 +1,11 @@
 package cn.netinnet.educationcenter.service.impl;
 
+import cn.netinnet.cloudcommon.base.BaseService;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.exception.CustomException;
+import cn.netinnet.cloudcommon.utils.DateUtil;
 import cn.netinnet.cloudcommon.utils.StrUtil;
-import cn.netinnet.common.base.BaseService;
-import cn.netinnet.common.util.DateUtil;
-import cn.netinnet.common.util.StringUtil;
+import cn.netinnet.cloudcommon.utils.StringUtil;
 import cn.netinnet.educationcenter.constant.ParaConstant;
 import cn.netinnet.educationcenter.dao.*;
 import cn.netinnet.educationcenter.domain.*;
@@ -44,10 +44,6 @@ public class SysExamQuestionServiceImpl extends BaseService<SysExamQuestion> imp
     @Resource
     SysUserMapper sysUserMapper;
 
-    @Override
-    public int updateByPrimaryKeySelective(SysExamQuestion sysExamQuestion, long l) {
-        return 0;
-    }
 
     @Override
     public int insertSelective(SysExamQuestion sysExamQuestion, long userId) {

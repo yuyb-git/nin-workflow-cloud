@@ -1,6 +1,6 @@
 package cn.netinnet.logcenter.kafka;
 
-import cn.netinnet.common.util.DateUtil;
+import cn.netinnet.cloudcommon.utils.DateUtil;
 import cn.netinnet.logcenter.domain.SysLog;
 import cn.netinnet.logcenter.domain.SysLoginLog;
 import cn.netinnet.logcenter.service.SysLogService;

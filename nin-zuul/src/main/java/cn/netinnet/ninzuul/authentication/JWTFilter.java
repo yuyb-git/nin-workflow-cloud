@@ -33,7 +33,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
     /**
      * 静态变量通过set方法注入
      **/
-    @Value("${ninzuul.shiro.anonUrl}")
+    @Value("${app.shiro.anonUrl}")
     public void setAnonUrl(String anonUrl) {
         JWTFilter.anonUrl = anonUrl;
     }
