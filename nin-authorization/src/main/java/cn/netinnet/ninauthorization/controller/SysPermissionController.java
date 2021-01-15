@@ -11,7 +11,6 @@ import cn.netinnet.ninauthorization.dao.SysRolePermissionMapper;
 import cn.netinnet.ninauthorization.domain.SysPermission;
 import cn.netinnet.ninauthorization.service.SysPermissionService;
 import org.apache.commons.lang.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -72,7 +71,7 @@ public class SysPermissionController{
      * @Date 2019/10/15 9:34
      * @Description 新增权限
      */
-    @RequiresPermissions("permission:add")
+    @RequiresPermission("permission:add")
     @PostMapping("/addPermission")
     public HttpResultEntry addPermission(@Valid SysPermission permission) {
         String permissionCode = permission.getPermissionCode();
@@ -95,7 +94,7 @@ public class SysPermissionController{
      * @Date 2019/10/15 9:34
      * @Description 编辑权限
      */
-    @RequiresPermissions("permission:edit")
+    @RequiresPermission("permission:edit")
     @PostMapping("/editPermission")
     public HttpResultEntry editPermission(@Valid SysPermission permission) {
         Long permissionId = permission.getPermissionId();
@@ -144,7 +143,7 @@ public class SysPermissionController{
      * @Date 2019/10/15 13:37
      * @Description 后台查询权限列表树
      */
-    @RequiresPermissions("permission:view")
+    @RequiresPermission("permission:view")
     @GetMapping("/queryPermissionTree")
     public HttpResultEntry queryPermissionTree(Integer projectType) {
         return sysPermissionService.queryPermissionTree(projectType);

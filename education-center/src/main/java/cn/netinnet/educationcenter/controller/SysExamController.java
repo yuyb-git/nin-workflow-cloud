@@ -2,6 +2,7 @@ package cn.netinnet.educationcenter.controller;
 
 import cn.netinnet.cloudcommon.annotation.LogMark;
 import cn.netinnet.cloudcommon.annotation.PreventRepeatSubmit;
+import cn.netinnet.cloudcommon.annotation.RequiresPermission;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.constant.ParaConstant;
 import cn.netinnet.cloudcommon.constant.UserConstant;
@@ -15,7 +16,6 @@ import cn.netinnet.common.util.StringUtil;
 import cn.netinnet.common.util.httpclient.SessionUtil;
 import cn.netinnet.educationcenter.dao.SysExamUserMapper;
 import cn.netinnet.educationcenter.domain.SysExamSession;
-import cn.netinnet.educationcenter.domain.SysQuestion;
 import cn.netinnet.educationcenter.service.SysExamQuestionService;
 import cn.netinnet.educationcenter.service.SysExamSessionService;
 import cn.netinnet.educationcenter.service.SysExamUserService;
@@ -25,7 +25,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -129,7 +128,7 @@ public class SysExamController extends BaseController {
         return HttpResultEntry.ok(GlobalConstant.SUCCESS_MSG, sysUserService.userInfoSet(userInfo, false, null));
     }
 
-    @RequiresPermissions("sysExam:view")
+    @RequiresPermission("sysExam:view")
     @GetMapping("/queryList")
     public HttpResultEntry queryList(@RequestParam(required = false) String page,
                                      @RequestParam(required = false) String size,
@@ -144,7 +143,7 @@ public class SysExamController extends BaseController {
         return HttpResultEntry.ok(GlobalConstant.SUCCESS_MSG, result);
     }
 
-    @RequiresPermissions("sysExam:add")
+    @RequiresPermission("sysExam:add")
     @LogMark("新增考试")
     @PostMapping("/addExam")
     @PreventRepeatSubmit
@@ -157,7 +156,7 @@ public class SysExamController extends BaseController {
         return HttpResultEntry.ok();
     }
 
-    @RequiresPermissions("sysExam:edit")
+    @RequiresPermission("sysExam:edit")
     @LogMark("修改考试")
     @PostMapping("/editExam")
     @PreventRepeatSubmit
@@ -166,7 +165,7 @@ public class SysExamController extends BaseController {
         return HttpResultEntry.ok();
     }
 
-    @RequiresPermissions("sysExam:delete")
+    @RequiresPermission("sysExam:delete")
     @LogMark("删除考试")
     @PostMapping("/deleteExam")
     @PreventRepeatSubmit
@@ -181,7 +180,7 @@ public class SysExamController extends BaseController {
      * @Date 2020/4/9 17:41
      * @Description 开始考试
      */
-    //@RequiresPermissions("sysExam:status")
+    //@RequiresPermission("sysExam:status")
     @LogMark("开始考试")
     @PostMapping("/startExam")
     @PreventRepeatSubmit
@@ -202,7 +201,7 @@ public class SysExamController extends BaseController {
      * @param page
      * @return cn.netinnet.workflow.common.global.HttpResultEntry
      **/
-    @RequiresPermissions("examQuestion:view")
+    @RequiresPermission("examQuestion:view")
     @GetMapping("/examQuestions")
     @PreventRepeatSubmit
     public HttpResultEntry examQuestions(Long sessionId,
@@ -241,7 +240,7 @@ public class SysExamController extends BaseController {
      * @param questionIds
      * @return cn.netinnet.workflow.common.global.HttpResultEntry
      **/
-    @RequiresPermissions("examQuestion:add")
+    @RequiresPermission("examQuestion:add")
     @LogMark("新增考试题目")
     @PostMapping("/addExamQuestions")
     @PreventRepeatSubmit
@@ -261,7 +260,7 @@ public class SysExamController extends BaseController {
      * @param questionIds
      * @return cn.netinnet.workflow.common.global.HttpResultEntry
      **/
-    @RequiresPermissions("examQuestion:del")
+    @RequiresPermission("examQuestion:del")
     @LogMark("删除考试题目")
     @PostMapping("/delExamQuestions")
     @PreventRepeatSubmit

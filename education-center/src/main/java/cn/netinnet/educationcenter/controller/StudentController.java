@@ -2,6 +2,7 @@ package cn.netinnet.educationcenter.controller;
 
 import cn.netinnet.cloudcommon.annotation.LogMark;
 import cn.netinnet.cloudcommon.annotation.PreventRepeatSubmit;
+import cn.netinnet.cloudcommon.annotation.RequiresPermission;
 import cn.netinnet.cloudcommon.constant.ErrorMsgConstant;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.constant.UserConstant;
@@ -18,7 +19,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +27,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -56,7 +55,7 @@ public class StudentController extends BaseController {
      * @Date 2019/7/8 16:53
      * @Description 新增学生
      */
-    @RequiresPermissions("student:add")
+    @RequiresPermission("student:add")
     @LogMark("新增学生")
     @PostMapping("/addStudent")
     @PreventRepeatSubmit
@@ -79,7 +78,7 @@ public class StudentController extends BaseController {
      * @Date 2019/7/8 16:53
      * @Description 编辑学生
      */
-    @RequiresPermissions("student:edit")
+    @RequiresPermission("student:edit")
     @LogMark("编辑学生")
     @PostMapping("/editStudent")
     public HttpResultEntry editStudent(@Valid SysUser user) {
@@ -109,7 +108,7 @@ public class StudentController extends BaseController {
      * @Date 2019/7/8 17:30
      * @Description 查询学生列表
      */
-    @RequiresPermissions("student:view")
+    @RequiresPermission("student:view")
     @GetMapping("/queryList")
     public HttpResultEntry queryList(SysUser sysUser, @RequestParam(defaultValue = "") String pageFun) {
         Long schoolId = UserUtil.getUser().getSchoolId();
@@ -130,7 +129,7 @@ public class StudentController extends BaseController {
      * @Date 2019/7/8 17:38
      * @Description 删除学生
      */
-    @RequiresPermissions("student:delete")
+    @RequiresPermission("student:delete")
     @LogMark("删除学生")
     @PostMapping("/deleteStudent")
     public HttpResultEntry deleteStudent(Long userId) {
@@ -147,7 +146,7 @@ public class StudentController extends BaseController {
      * @Date 2019/7/8 17:51
      * @Description 批量删除学生
      */
-    @RequiresPermissions("student:batchDelete")
+    @RequiresPermission("student:batchDelete")
     @LogMark("批量删除学生")
     @PostMapping("/batchDelete")
     public HttpResultEntry batchDelete(String userIds) {
@@ -178,7 +177,7 @@ public class StudentController extends BaseController {
      * @Date 2019/7/10 15:36
      * @Description 学生导入
      */
-    @RequiresPermissions("student:batchAdd")
+    @RequiresPermission("student:batchAdd")
     @LogMark("学生导入")
     @PostMapping("/importStudent")
     @PreventRepeatSubmit

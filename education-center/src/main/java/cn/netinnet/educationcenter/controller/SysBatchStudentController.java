@@ -2,6 +2,7 @@ package cn.netinnet.educationcenter.controller;
 
 import cn.netinnet.cloudcommon.annotation.LogMark;
 import cn.netinnet.cloudcommon.annotation.PreventRepeatSubmit;
+import cn.netinnet.cloudcommon.annotation.RequiresPermission;
 import cn.netinnet.cloudcommon.constant.ErrorMsgConstant;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.constant.ParaConstant;
@@ -16,7 +17,6 @@ import cn.netinnet.educationcenter.service.SysBatchStudentService;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -57,7 +57,7 @@ public class SysBatchStudentController extends BaseController {
      * @Date 2020/4/2/002 15:25
      * @Description 获取批次学生列表
      */
-    @RequiresPermissions("sysBatchStudent:view")
+    @RequiresPermission("sysBatchStudent:view")
     @GetMapping("/queryList")
     public HttpResultEntry list(Long batchId, Long classId, String userName, String userLogin,
                                 @RequestParam(defaultValue = "") String pageFun) {
@@ -81,7 +81,7 @@ public class SysBatchStudentController extends BaseController {
      * @Date 2020/4/7/007 10:08
      * @Description删除批次学生
      */
-    @RequiresPermissions("sysBatchStudent:delete")
+    @RequiresPermission("sysBatchStudent:delete")
     @LogMark("删除批次学生")
     @PostMapping("/deleteBatchStudent")
     @PreventRepeatSubmit
@@ -99,7 +99,7 @@ public class SysBatchStudentController extends BaseController {
      * @Date 2020/4/7/007 10:11
      * @Description
      */
-    @RequiresPermissions("sysBatchStudent:batchDelete")
+    @RequiresPermission("sysBatchStudent:batchDelete")
     @LogMark("批量删除批次学生")
     @PostMapping("/batchDelete")
     @PreventRepeatSubmit
@@ -132,7 +132,7 @@ public class SysBatchStudentController extends BaseController {
      * @Date 2020/4/7/007 13:25
      * @Description 新增批次学生
      */
-    @RequiresPermissions("sysBatchStudent:add")
+    @RequiresPermission("sysBatchStudent:add")
     @LogMark("新增批次学生")
     @PostMapping("/addBatchStudent")
     @PreventRepeatSubmit

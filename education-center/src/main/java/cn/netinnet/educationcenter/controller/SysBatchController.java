@@ -2,6 +2,7 @@ package cn.netinnet.educationcenter.controller;
 
 import cn.netinnet.cloudcommon.annotation.LogMark;
 import cn.netinnet.cloudcommon.annotation.PreventRepeatSubmit;
+import cn.netinnet.cloudcommon.annotation.RequiresPermission;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.constant.UserConstant;
 import cn.netinnet.cloudcommon.dto.ExamInfo;
@@ -19,7 +20,6 @@ import cn.netinnet.educationcenter.service.SysUserService;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -51,7 +51,7 @@ public class SysBatchController extends BaseController {
      * @Date 2020/4/10 10:20
      * @Description 查询批次列表
      */
-    @RequiresPermissions("sysBatch:view")
+    @RequiresPermission("sysBatch:view")
     @GetMapping("/queryList")
     public HttpResultEntry queryList(@RequestParam(defaultValue = "") String pageFun,
                                      @RequestParam(required = false)Integer batchStatus,
@@ -68,7 +68,7 @@ public class SysBatchController extends BaseController {
      * @Date 2020/4/9 15:59
      * @Description 新增批次
      */
-    @RequiresPermissions("sysBatch:add")
+    @RequiresPermission("sysBatch:add")
     @LogMark("新增批次")
     @PostMapping("/addBatch")
     @PreventRepeatSubmit
@@ -86,7 +86,7 @@ public class SysBatchController extends BaseController {
         return HttpResultEntry.ok();
     }
 
-    @RequiresPermissions("sysBatch:edit")
+    @RequiresPermission("sysBatch:edit")
     @LogMark("修改批次")
     @PostMapping("/editBatch")
     @PreventRepeatSubmit
@@ -104,7 +104,7 @@ public class SysBatchController extends BaseController {
         return HttpResultEntry.ok();
     }
 
-    @RequiresPermissions("sysBatch:delete")
+    @RequiresPermission("sysBatch:delete")
     @LogMark("删除批次")
     @PostMapping("/deleteBatch")
     @PreventRepeatSubmit
@@ -122,7 +122,7 @@ public class SysBatchController extends BaseController {
      * @Date 2020/4/9 17:41
      * @Description 开始批次
      */
-    @RequiresPermissions("sysBatch:status")
+    @RequiresPermission("sysBatch:status")
     @LogMark("开始批次")
     @PostMapping("/startBatch")
     @PreventRepeatSubmit
@@ -140,7 +140,7 @@ public class SysBatchController extends BaseController {
      * @Date 2020/4/9 17:41
      * @Description 暂停批次
      */
-    @RequiresPermissions("sysBatch:status")
+    @RequiresPermission("sysBatch:status")
     @LogMark("暂停批次")
     @PostMapping("/pauseBatch")
     @PreventRepeatSubmit
@@ -158,7 +158,7 @@ public class SysBatchController extends BaseController {
      * @Date 2020/4/9 17:41
      * @Description 继续批次
      */
-    @RequiresPermissions("sysBatch:status")
+    @RequiresPermission("sysBatch:status")
     @LogMark("继续批次")
     @PostMapping("/continueBatch")
     @PreventRepeatSubmit

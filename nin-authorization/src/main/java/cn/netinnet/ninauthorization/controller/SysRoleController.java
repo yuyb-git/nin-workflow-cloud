@@ -1,5 +1,6 @@
 package cn.netinnet.ninauthorization.controller;
 
+import cn.netinnet.cloudcommon.annotation.RequiresPermission;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.globol.HttpResultEntry;
 import cn.netinnet.cloudcommon.globol.ResultEnum;
@@ -9,7 +10,6 @@ import cn.netinnet.ninauthorization.service.SysRoleService;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import org.apache.commons.lang.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +37,7 @@ public class SysRoleController {
      * @Date 2019/8/8 16:01
      * @Description 角色列表
      */
-    @RequiresPermissions("sysRole:view")
+    @RequiresPermission("sysRole:view")
     @GetMapping("/queryList")
     public HttpResultEntry queryList(SysRole sysRole, @RequestParam(defaultValue = "") String pageFun) {
         if (StringUtils.isNotBlank(sysRole.getRoleName())) {
@@ -51,7 +51,7 @@ public class SysRoleController {
      * @Date 2019/8/8 17:02
      * @Description 新增角色
      */
-    @RequiresPermissions("sysRole:add")
+    @RequiresPermission("sysRole:add")
     @PostMapping("/addRole")
     public HttpResultEntry addRole(@Valid SysRole role, String rolePermissionJson) {
         // 校验code是否已存在
@@ -67,7 +67,7 @@ public class SysRoleController {
      * @Date 2019/8/8 17:16
      * @Description 编辑角色
      */
-    @RequiresPermissions("sysRole:edit")
+    @RequiresPermission("sysRole:edit")
     @PostMapping("/editRole")
     public HttpResultEntry editRole(@Valid SysRole role, String rolePermissionJson) {
         Long roleId = role.getRoleId();
@@ -88,7 +88,7 @@ public class SysRoleController {
      * @Date 2019/8/8 17:21
      * @Description 删除角色(逻辑删除)
      */
-    @RequiresPermissions("sysAdmin:delete")
+    @RequiresPermission("sysAdmin:delete")
     @PostMapping("/deleteRole")
     public HttpResultEntry deleteRole(Long roleId) {
         // id不可为空
@@ -103,7 +103,7 @@ public class SysRoleController {
      * @Date 2019/8/8 17:29
      * @Description 批量删除角色(逻辑删除)
      */
-    @RequiresPermissions("sysRole:batchDelete")
+    @RequiresPermission("sysRole:batchDelete")
     @PostMapping("/batchDeleteRole")
     public HttpResultEntry batchDeleteRole(String roleIds) {
         // ids不可为空

@@ -2,6 +2,7 @@ package cn.netinnet.processcenter.controller;
 
 import cn.netinnet.cloudcommon.annotation.LogMark;
 import cn.netinnet.cloudcommon.annotation.PreventRepeatSubmit;
+import cn.netinnet.cloudcommon.annotation.RequiresPermission;
 import cn.netinnet.cloudcommon.constant.GlobalConstant;
 import cn.netinnet.cloudcommon.constant.ParaConstant;
 import cn.netinnet.cloudcommon.constant.UserConstant;
@@ -15,7 +16,6 @@ import cn.netinnet.processcenter.domain.WfCompany;
 import cn.netinnet.processcenter.service.WfCompanyService;
 import com.alibaba.fastjson.JSONArray;
 import com.github.pagehelper.PageInfo;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -63,7 +63,7 @@ public class WfCompanyController extends BaseController {
      * @date 2020/4/14
      * @return cn.netinnet.workflow.common.global.HttpResultEntry
      */
-    @RequiresPermissions("company:add")
+    @RequiresPermission("company:add")
     @LogMark("后台新增企业")
     @PostMapping("/addSystemCompany")
     @PreventRepeatSubmit
@@ -75,7 +75,7 @@ public class WfCompanyController extends BaseController {
         return HttpResultEntry.ok();
     }
 
-    @RequiresPermissions("company:edit")
+    @RequiresPermission("company:edit")
     @LogMark("后台编辑企业")
     @PostMapping("/editSystemCompany")
     @PreventRepeatSubmit
@@ -142,7 +142,7 @@ public class WfCompanyController extends BaseController {
     * @date 2020/5/22
     * @return cn.netinnet.workflow.common.global.HttpResultEntry
     */
-    @RequiresPermissions("company:view")
+    @RequiresPermission("company:view")
     @GetMapping("/sysList")
     public HttpResultEntry sysList(@RequestParam(value = "enable", required = false) Integer enable,
                                    @RequestParam(required = false) String companyName,
@@ -191,7 +191,7 @@ public class WfCompanyController extends BaseController {
      * @param companyId
      * @return cn.netinnet.workflow.common.global.HttpResultEntry
      **/
-    @RequiresPermissions("company:delete")
+    @RequiresPermission("company:delete")
     @LogMark("后台删除企业")
     @PostMapping("/delete")
     @PreventRepeatSubmit
@@ -207,7 +207,7 @@ public class WfCompanyController extends BaseController {
      * @author Caicm
      * @date 2020/5/26 10:40
      */
-    @RequiresPermissions("company:batchDelete")
+    @RequiresPermission("company:batchDelete")
     @LogMark("批量删除企业")
     @PostMapping("/batchDelete")
     @PreventRepeatSubmit
@@ -237,7 +237,7 @@ public class WfCompanyController extends BaseController {
      * @author Caicm
      * @date 2020/5/26 10:09
      */
-    @RequiresPermissions("company:active")
+    @RequiresPermission("company:active")
     @PostMapping("/enableCompany")
     public HttpResultEntry  enableCompany(@RequestParam("companyId")Long companyId){
         List<Long> companyIdList = new ArrayList<>();
@@ -253,7 +253,7 @@ public class WfCompanyController extends BaseController {
      * @author Caicm
      * @date 2020/5/26 10:09
      */
-    @RequiresPermissions("company:forbidden")
+    @RequiresPermission("company:forbidden")
     @PostMapping("/disableCompany")
     public HttpResultEntry  disableCompany(@RequestParam("companyId")Long companyId){
         List<Long> companyIdList = new ArrayList<>();
@@ -273,7 +273,7 @@ public class WfCompanyController extends BaseController {
      * @author Caicm
      * @date 2020/5/26 10:09
      */
-    @RequiresPermissions("company:batchActive")
+    @RequiresPermission("company:batchActive")
     @PostMapping("/batchEnableCompany")
     public HttpResultEntry  batchEnableCompany(@RequestParam("companyIds")String companyIds){
         List<Long> companyIdList = JSONArray.parseArray(companyIds, Long.class);
@@ -288,7 +288,7 @@ public class WfCompanyController extends BaseController {
      * @author Caicm
      * @date 2020/6/3 17:32
      */
-    @RequiresPermissions("company:batchForbidden")
+    @RequiresPermission("company:batchForbidden")
     @PostMapping("/batchDisableCompany")
     public HttpResultEntry  batchDisableCompany(@RequestParam("companyIds")String companyIds){
         List<Long> companyIdList = JSONArray.parseArray(companyIds, Long.class);
