@@ -40,6 +40,11 @@ public class WfPosition implements Serializable {
     private Integer level;
 
     /**
+     * 职级
+     */
+    private Long positionGradeId;
+
+    /**
      * 归属企业id
      */
     private Long companyId;
@@ -152,6 +157,24 @@ public class WfPosition implements Serializable {
     }
 
     /**
+     * 获取职级
+     *
+     * @return position_grade_id - 职级
+     */
+    public Long getPositionGradeId() {
+        return positionGradeId;
+    }
+
+    /**
+     * 设置职级
+     *
+     * @param positionGradeId 职级
+     */
+    public void setPositionGradeId(Long positionGradeId) {
+        this.positionGradeId = positionGradeId;
+    }
+
+    /**
      * 获取归属企业id
      *
      * @return company_id - 归属企业id
@@ -224,6 +247,7 @@ public class WfPosition implements Serializable {
         sb.append(", positionCode=").append(positionCode);
         sb.append(", parent=").append(parent);
         sb.append(", level=").append(level);
+        sb.append(", positionGradeId=").append(positionGradeId);
         sb.append(", companyId=").append(companyId);
         sb.append(", userId=").append(userId);
         sb.append(", modifyTime=").append(modifyTime);

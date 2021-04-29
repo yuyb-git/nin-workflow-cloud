@@ -2,20 +2,17 @@
  * WfStaff.java
  * Copyright(c) 2017-2018 厦门网中网软件有限公司
  * All right reserved.
- * 2020-07-07 Created
+ * 2021-04-07 Created
  */
 package cn.netinnet.processcenter.domain;
 
-import org.hibernate.validator.constraints.Length;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * @author admin
- * @date   2020-07-07
+ * @date   2021-04-07
  **/
 public class WfStaff implements Serializable {
     /**
@@ -26,14 +23,11 @@ public class WfStaff implements Serializable {
     /**
      * 姓名
      */
-    @NotBlank(message = "员工姓名不能为空")
-    @Length(max = 20, message = "姓名长度不能超过20")
     private String staffName;
 
     /**
      * 工号
      */
-    @NotBlank(message = "工号不能为空")
     private String jobNumber;
 
     /**
@@ -49,20 +43,22 @@ public class WfStaff implements Serializable {
     /**
      * 所属企业id
      */
-    @NotNull(message = "所属企业不能为空")
     private Long companyId;
 
     /**
      * 部门id
      */
-    @NotNull(message = "员工部门不能为空")
     private Long deptId;
 
     /**
      * 岗位id
      */
-    @NotNull(message = "员工岗位不能为空")
     private Long positionId;
+
+    /**
+     * 薪资
+     */
+    private BigDecimal salary;
 
     /**
      * 电话
@@ -99,7 +95,7 @@ public class WfStaff implements Serializable {
      */
     private Date modifyTime;
 
-    private static final long serialVersionUID = 6143205380368347136L;
+    private static final long serialVersionUID = 9080132710556649472L;
 
     /**
      * 获取员工id
@@ -246,6 +242,24 @@ public class WfStaff implements Serializable {
     }
 
     /**
+     * 获取薪资
+     *
+     * @return salary - 薪资
+     */
+    public BigDecimal getSalary() {
+        return salary;
+    }
+
+    /**
+     * 设置薪资
+     *
+     * @param salary 薪资
+     */
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
+    }
+
+    /**
      * 获取电话
      *
      * @return tel - 电话
@@ -385,6 +399,7 @@ public class WfStaff implements Serializable {
         sb.append(", companyId=").append(companyId);
         sb.append(", deptId=").append(deptId);
         sb.append(", positionId=").append(positionId);
+        sb.append(", salary=").append(salary);
         sb.append(", tel=").append(tel);
         sb.append(", email=").append(email);
         sb.append(", enable=").append(enable);
